@@ -1,5 +1,6 @@
 ---
-// [多语言已永久停用] Language 类型与 supportedLangs 传递链已停用（原本只服务于语言切换按钮）
+// [多语言已永久停用] 语言切换按钮、supportedLangs 传递链与 Astro i18n 配置均已在 v1.0.6–v1.0.9 移除，
+// <html lang> 硬编码为 "zh-CN"；历史代码备份在 i18n-backup/，见 note/disabled-features.md
 import Button from '@/components/Button.astro'
 import Footer from '@/components/Footer.astro'
 import Header from '@/components/Header.astro'
@@ -40,7 +41,7 @@ const MarginBottom = 'mb-12'
 ---
 
 <html
-  lang={Astro.currentLocale}
+  lang="zh-CN"
   class:list={[
     fontStyle,
     isPost ? 'scroll-smooth' : '',

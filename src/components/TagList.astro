@@ -1,20 +1,18 @@
 ---
-import type { Language } from '@/i18n/config'
-import { getTagPath } from '@/i18n/path'
+import { getTagPath } from '@/utils/path'
 
 interface Props {
   tags: string[]
   currentTag?: string
-  lang: Language
 }
 
-const { tags, currentTag = '', lang } = Astro.props
+const { tags, currentTag = '' } = Astro.props
 ---
 
 <div class="no-heti mb-10.5 flex flex-wrap gap-x-3 gap-y-3.2">
   {tags.map(tag => (
     <a
-      href={getTagPath(tag, lang)}
+      href={getTagPath(tag)}
       class:list={[
         'relative inline-block border border-secondary/25 rounded-full px-3.2 py-0.7 ring-secondary/80',
         'transition-[colors,box-shadow] ease-out hover:(border-secondary/80 c-primary font-medium ring-0.2)',

@@ -1,20 +1,15 @@
 ---
 import TagList from '@/components/TagList.astro'
-import { defaultLocale } from '@/config'
 import Layout from '@/layouts/Layout.astro'
 import { getAllTags } from '@/utils/content'
 
 // [多语言已永久停用] 本文件原为 [...lang]/tags/index.astro，lang 参数与语言版 getStaticPaths 已一并移除
-const currentLang = defaultLocale
-const allTags = await getAllTags(currentLang)
+const allTags = await getAllTags()
 ---
 
 <Layout>
   <!-- Decorative Line -->
   <div class="uno-decorative-line" />
   <!-- Tag List -->
-  <TagList
-    tags={allTags}
-    lang={currentLang}
-  />
+  <TagList tags={allTags} />
 </Layout>

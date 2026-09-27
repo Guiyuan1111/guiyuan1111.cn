@@ -8,8 +8,7 @@ import rehypeSlug from 'rehype-slug'
 import remarkDirective from 'remark-directive'
 import remarkMath from 'remark-math'
 import UnoCSS from 'unocss/astro'
-import { base, defaultLocale, themeConfig } from './src/config'
-import { langMap } from './src/i18n/config'
+import { base, themeConfig } from './src/config'
 import { rehypeCodeCopyButton } from './src/plugins/rehype-code-copy-button.mjs'
 import { rehypeExternalLinks } from './src/plugins/rehype-external-links.mjs'
 import { rehypeHeadingAnchor } from './src/plugins/rehype-heading-anchor.mjs'
@@ -33,18 +32,9 @@ export default defineConfig({
     defaultStrategy: 'viewport', // hover, tap, viewport, load
   },
   ...imageConfig,
-  // [多语言已永久停用] 本站只有 zh 一个语言，此块不可注释掉，原因有二：
-  //   1) Layout.astro:40 的 <html lang={Astro.currentLocale}> 依赖它；注释后 lang 属性丢失，
-  //      uno.config.ts 的 cjk: 变体（:lang(zh)/:lang(ja)/:lang(ko)）随之失效，Header/Navbar 中文排版样式会掉；
-  //   2) 它不参与页面生成——页面数量完全由 src/config.ts 的 moreLocales 决定（当前为空数组，只生成根路径页面），无性能开销。
-  // 真正要停用多语言生成，看的是 moreLocales，不是这里。
-  i18n: {
-    locales: Object.entries(langMap).map(([path, codes]) => ({
-      path,
-      codes: [...codes] as [string, ...string[]],
-    })),
-    defaultLocale,
-  },
+  // [多语言已永久停用] 本站只有中文，原 i18n 块已于 v1.0.9 删除：<html lang> 在 Layout.astro 硬编码为
+  // "zh-CN"（uno.config.ts 的 cjk: 变体只依赖 html lang 属性，与 Astro i18n 配置无关）。
+  // 历史代码备份在 i18n-backup/，停用与恢复说明见 note/disabled-features.md
   integrations: [
     UnoCSS({
       injectReset: true,

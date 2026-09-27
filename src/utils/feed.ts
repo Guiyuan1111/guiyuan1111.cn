@@ -1,19 +1,17 @@
-import type { APIContext, ImageMetadata } from 'astro'
+import type { ImageMetadata } from 'astro'
 import type { CollectionEntry } from 'astro:content'
-import type { Language } from '@/i18n/config'
 import { getImage } from 'astro:assets'
 import { getCollection } from 'astro:content'
 import { Feed } from 'feed'
 import MarkdownIt from 'markdown-it'
 import { parse } from 'node-html-parser'
 import sanitizeHtml from 'sanitize-html'
-import { base, defaultLocale, themeConfig } from '@/config'
-import { ui } from '@/i18n/ui'
+import { base, themeConfig } from '@/config'
 import { memoize } from '@/utils/cache'
 import { getPostDescription } from '@/utils/description'
 
 const markdownParser = new MarkdownIt()
-const { title, description, i18nTitle, url, author } = themeConfig.site
+const { title, description, url, author } = themeConfig.site
 const { folo } = themeConfig.seo ?? {}
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -105,28 +103,25 @@ async function fixRelativeImagePaths(htmlContent: string, baseUrl: string): Prom
  * >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
  * Generate a feed object supporting both RSS and Atom formats
  *
- * @param options Feed generation options
- * @param options.lang Optional language code
  * @returns A Feed instance ready for RSS or Atom output
  */
-export async function generateFeed({ lang }: { lang?: Language } = {}) {
-  const currentUI = ui[lang as keyof typeof ui] ?? ui[defaultLocale as keyof typeof ui] ?? {}
-  const siteURL = lang ? `${url}${base}/${lang}/` : `${url}${base}/`
+export async function generateFeed() {
+  const siteURL = `${url}${base}/`
 
   // Create Feed instance
   const feed = new Feed({
-    title: i18nTitle ? currentUI.title : title,
-    description: i18nTitle ? currentUI.description : description,
+    title,
+    description,
     id: siteURL,
     link: siteURL,
-    language: lang ?? themeConfig.global.locale,
+    language: 'zh',
     copyright: `Copyright © ${new Date().getFullYear()} ${author}`,
     updated: new Date(),
     generator: 'Astro-Theme-Retypeset with Feed for Node.js',
 
     feedLinks: {
-      rss: new URL(lang ? `${base}/${lang}/rss.xml` : `${base}/rss.xml`, url).toString(),
-      atom: new URL(lang ? `${base}/${lang}/atom.xml` : `${base}/atom.xml`, url).toString(),
+      rss: new URL(`${base}/rss.xml`, url).toString(),
+      atom: new URL(`${base}/atom.xml`, url).toString(),
     },
 
     author: {
@@ -135,17 +130,10 @@ export async function generateFeed({ lang }: { lang?: Language } = {}) {
     },
   })
 
-  // Filter posts by language and exclude drafts
+  // Exclude drafts
   const posts = await getCollection(
     'posts',
-    ({ data }: { data: CollectionEntry<'posts'>['data'] }) => {
-      const isNotDraft = !data.draft
-      const isCorrectLang = data.lang === lang
-        || data.lang === ''
-        || (lang === undefined && data.lang === defaultLocale)
-
-      return isNotDraft && isCorrectLang
-    },
+    ({ data }: { data: CollectionEntry<'posts'>['data'] }) => !data.draft,
   )
 
   // Sort posts by published date in descending order and limit to the latest 25
@@ -209,10 +197,8 @@ export async function generateFeed({ lang }: { lang?: Language } = {}) {
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // Generate RSS 2.0 format feed
-export async function generateRSS(context: APIContext) {
-  const feed = await generateFeed({
-    lang: context.params?.lang as Language | undefined,
-  })
+export async function generateRSS() {
+  const feed = await generateFeed()
 
   // Add XSLT stylesheet to RSS feed
   let rssXml = feed.rss2()
@@ -229,10 +215,8 @@ export async function generateRSS(context: APIContext) {
 }
 
 // Generate Atom 1.0 format feed
-export async function generateAtom(context: APIContext) {
-  const feed = await generateFeed({
-    lang: context.params?.lang as Language | undefined,
-  })
+export async function generateAtom() {
+  const feed = await generateFeed()
 
   // Add XSLT stylesheet to Atom feed
   let atomXml = feed.atom1()

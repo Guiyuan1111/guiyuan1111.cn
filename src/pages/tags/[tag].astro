@@ -1,14 +1,13 @@
 ---
 import PostList from '@/components/PostList.astro'
 import TagList from '@/components/TagList.astro'
-import { defaultLocale } from '@/config'
 import Layout from '@/layouts/Layout.astro'
 import { getAllTags, getPostsByTag } from '@/utils/content'
 
 // [多语言已永久停用] 本文件原为 [...lang]/tags/[tag].astro，lang 参数与按语言展开的循环已移除；
-// getTagSupportedLangs（判断标签在各语言下是否有文章）也随语言切换一起停用
+// getTagSupportedLangs（判断标签在各语言下是否有文章）也已在 v1.0.9 随语言概念一起删除
 export async function getStaticPaths() {
-  const tags = await getAllTags(defaultLocale)
+  const tags = await getAllTags()
   return tags.map(tag => ({
     params: { tag },
     props: { tag },
@@ -20,9 +19,8 @@ interface Props {
 }
 
 const { tag } = Astro.props
-const currentLang = defaultLocale
-const posts = await getPostsByTag(tag, currentLang)
-const allTags = await getAllTags(currentLang)
+const posts = await getPostsByTag(tag)
+const allTags = await getAllTags()
 ---
 
 <Layout>
@@ -32,12 +30,10 @@ const allTags = await getAllTags(currentLang)
   <TagList
     tags={allTags}
     currentTag={tag}
-    lang={currentLang}
   />
 
   <!-- Posts List -->
   <PostList
     posts={posts}
-    lang={currentLang}
   />
 </Layout>

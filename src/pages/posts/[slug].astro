@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-// [多语言已永久停用] Language 类型仅用于已停用的 slugToLangsMap 与 supportedLangs
 import { getCollection, render } from 'astro:content'
 // [评论系统永久停用] 评论组件已移出构建，见 comment-backup/ 与 note/disabled-features.md 第 3 节
 // import Comment from '@/components/Comment/Index.astro'
@@ -8,11 +7,10 @@ import PostDate from '@/components/PostDate.astro'
 import TagList from '@/components/TagList.astro'
 import BackButton from '@/components/Widgets/BackButton.astro'
 import TOC from '@/components/Widgets/TOC.astro'
-import { defaultLocale } from '@/config'
 import Layout from '@/layouts/Layout.astro'
 import { checkPostSlugDuplication } from '@/utils/content'
 import { getPostDescription } from '@/utils/description'
-// [CSS 按页分割] 正文排版、扩展容器与评论定制样式仅文章页需要（原在 Layout.astro 全局加载）
+// [CSS 按页分割] 正文排版与扩展容器样式仅文章页需要（原在 Layout.astro 全局加载）
 // [评论系统永久停用] comment.css（208 行，Twikoo/Waline/Giscus 定制样式）已移至 comment-backup/
 // import '@/styles/comment.css'
 import '@/styles/extension.css'
@@ -27,15 +25,14 @@ export async function getStaticPaths() {
     throw new Error(`Duplicate post slugs:\n${duplicates.join('\n')}`)
   }
 
-  // [多语言已永久停用] 本文件原为 [...lang]/posts/[slug].astro。
-  // 语言 getStaticPaths、lang 参数、slugToLangsMap（同 slug 各语言版本聚合）与 supportedLangs
-  // 传递链已全部移除；恢复多语言需重建 [...lang]/ 路由与该映射，完整步骤见 note/disabled-features.md
+  // [多语言已永久停用] 本文件原为 [...lang]/posts/[slug].astro，语言版 getStaticPaths、lang 参数、
+  // slugToLangsMap 与 supportedLangs 传递链已在 v1.0.6–v1.0.9 全部移除；
+  // 内容 schema 的 lang 只允许 ''/'zh'，无需再按语言筛选。
+  // 历史代码备份在 i18n-backup/，见 note/disabled-features.md
 
   return posts
     // Show drafts in dev mode only
     .filter(post => import.meta.env.DEV || !post.data.draft)
-    // 匹配当前语言（恒为 zh）或通用文章（lang: ''）
-    .filter(post => post.data.lang === defaultLocale || post.data.lang === '')
     .map(post => ({
       params: { slug: post.data.abbrlink || post.id },
       props: { post },
@@ -47,7 +44,6 @@ interface Props {
 }
 
 const { post } = Astro.props
-const currentLang = defaultLocale
 const slug = post.data.abbrlink || post.id
 const description = getPostDescription(post, 'meta')
 const { Content, headings, remarkPluginFrontmatter } = await render(post)
@@ -66,7 +62,7 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
       <!-- Title -->
       <h1 class="post-title">
         <span
-          transition:name={`post-${slug}${currentLang ? `-${currentLang}` : ''}`}
+          transition:name={`post-${slug}`}
           data-disable-theme-toggle-transition
         >
           {post.data.title}
@@ -78,7 +74,7 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
     <div
       id="post-date"
       class="mb-17.2 block c-primary font-time"
-      transition:name={`time-${slug}${currentLang ? `-${currentLang}` : ''}`}
+      transition:name={`time-${slug}`}
       data-disable-theme-toggle-transition
     >
       <PostDate
@@ -97,10 +93,7 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
       <!-- Tag List -->
       {post.data.tags?.length > 0 && (
         <div class="mt-12.6 uno-decorative-line" />
-        <TagList
-          tags={post.data.tags}
-          lang={currentLang}
-        />
+        <TagList tags={post.data.tags} />
       )}
       <!-- [评论系统永久停用] 评论区渲染已注释，本站不再提供评论功能
       <Comment />

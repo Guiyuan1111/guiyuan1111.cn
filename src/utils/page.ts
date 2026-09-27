@@ -1,6 +1,5 @@
-import { base, moreLocales } from '@/config'
-import { getLangFromPath } from '@/i18n/lang'
-import { getLocalizedPath } from '@/i18n/path'
+import { base } from '@/config'
+import { getLocalizedPath } from '@/utils/path'
 
 // Determine if the path matches a specific page type
 function matchPageType(path: string, prefix: string = '') {
@@ -12,18 +11,16 @@ function matchPageType(path: string, prefix: string = '') {
   // Remove leading and trailing slashes from the path
   const normalizedPath = pathWithoutBase.replace(/^\/|\/$/g, '')
 
-  // Homepage check: matches root path ('') or language code ('en', 'zh-tw')
+  // Homepage check: matches root path only
   if (prefix === '') {
-    return normalizedPath === '' || (moreLocales as readonly string[]).includes(normalizedPath)
+    return normalizedPath === ''
   }
 
   // Ensure strict segment boundary matching to prevent partial matches
   const startsWithSegment = (target: string, segment: string) =>
     target === segment || target.startsWith(`${segment}/`)
 
-  // Match both default language paths and localized paths
   return startsWithSegment(normalizedPath, prefix)
-    || moreLocales.some(lang => startsWithSegment(normalizedPath, `${lang}/${prefix}`))
 }
 
 export function isHomePage(path: string) {
@@ -42,21 +39,13 @@ export function isAboutPage(path: string) {
   return matchPageType(path, 'about')
 }
 
-// Returns page context with language, page types and localization helper
+// Returns page context with page types and localization helper
 export function getPageInfo(path: string) {
-  const currentLang = getLangFromPath(path)
-  const isHome = isHomePage(path)
-  const isPost = isPostPage(path)
-  const isTag = isTagPage(path)
-  const isAbout = isAboutPage(path)
-
   return {
-    currentLang,
-    isHome,
-    isPost,
-    isTag,
-    isAbout,
-    getLocalizedPath: (targetPath: string) =>
-      getLocalizedPath(targetPath, currentLang),
+    isHome: isHomePage(path),
+    isPost: isPostPage(path),
+    isTag: isTagPage(path),
+    isAbout: isAboutPage(path),
+    getLocalizedPath: (targetPath: string) => getLocalizedPath(targetPath),
   }
 }

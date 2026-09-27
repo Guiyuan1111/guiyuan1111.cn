@@ -1,15 +1,10 @@
 ---
 import type { MarkdownHeading } from 'astro'
 import TocIcon from '@/assets/icons/toc-icon.svg'
-import { ui } from '@/i18n/ui'
-import { getPageInfo } from '@/utils/page'
 
 interface Props {
   headings: MarkdownHeading[]
 }
-
-const { currentLang } = getPageInfo(Astro.url.pathname)
-const currentUI = ui[currentLang as keyof typeof ui] ?? {}
 
 const { headings = [] } = Astro.props
 const filteredHeadings = headings.filter(heading => heading.depth >= 2 && heading.depth <= 4)
@@ -35,7 +30,7 @@ const filteredHeadings = headings.filter(heading => heading.depth >= 2 && headin
       >
         {/* Title on Mobile */}
         <span id="toc-mobile-text">
-          {currentUI.toc}
+          目录
         </span>
 
         {/* Icon on Desktop */}

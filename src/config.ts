@@ -6,18 +6,12 @@ import type { ThemeConfig } from '@/types'
 export const themeConfig: ThemeConfig = {
   // 站点信息 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START
   site: {
-    // 站点标题
-    // ⚠️ 仅当下方 i18nTitle 为 false 时才生效；当前为 true，页面实际标题取自 src/i18n/ui.ts 各语言的 title
+    // 站点标题（首页大标题、<title>、og:title 的来源之一，消费点：Header.astro、Head.astro、og/[...image].ts）
     title: 'Guiyuan1111的博客',
-    // 站点副标题，生效条件同上（当前不生效）
+    // 站点副标题
     subtitle: '百无一用是深情，不屑一顾最相思',
-    // 站点描述，输出到 <meta name="description"> 与 RSS 描述
-    // 生效条件同上：当前 i18nTitle=true，实际描述取自 src/i18n/ui.ts 的 description
+    // 站点描述，输出到 <meta name="description">、og:description 与 RSS 描述
     description: '更新Guiyuan1111的技术博客和哲学日常',
-    // 是否改用 src/i18n/ui.ts 中的多语言标题/副标题/描述
-    // true  = 首页大标题、<title>、og:title、RSS 标题全读 ui.ts（消费点：Header.astro:10-11、Head.astro:30-32、feed.ts:118-119）
-    // false = 改读上面 title / subtitle / description 三个静态字段
-    i18nTitle: true, // true | false
     // 作者名，输出到 <meta name="author"> 与 RSS/Atom 的 author
     author: 'Guiyuan1111',
     // 站点 URL：协议 + 域名，末尾不带斜杠
@@ -62,14 +56,6 @@ export const themeConfig: ThemeConfig = {
 
   // 全局设置 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START
   global: {
-    // 默认语言（即站点主语言）
-    // 决定 defaultLocale 与 allLocales[0]，默认语言的 URL 不带前缀（如 https://guiyuan1111.cn/）
-    locale: 'zh', // de | en | es | fr | ja | ko | pl | pt | ru | zh | zh-tw
-    // 额外启用的语言（URL 会带 /en/、/ja/ 等前缀）
-    // 不要重复填写上面 locale 已有的语言；可传空数组 []
-    // ⚠️ [暂时禁用多语言以优化性能] 恢复方法：取消注释下面一行，并删除紧接着的空数组行
-    // moreLocales: ['en', 'es', 'ja', 'ru', 'zh-tw'], // ['de', 'en', 'es', 'fr', 'ja', 'ko', 'pl', 'pt', 'ru', 'zh', 'zh-tw']
-    moreLocales: [],
     // 正文字体风格：sans 无衬线（默认，页面轻）| serif 衬线（纸质书感，走 EarlySummer 字体）
     fontStyle: 'sans', // sans | serif
     // 文章发布日期显示格式，作用于文章列表与文章页日期组件（PostDate.astro）
@@ -156,17 +142,12 @@ export const themeConfig: ThemeConfig = {
     // ⚠️ 当前是主题作者的 ID，访问数据会计入作者账号
     // https://cloud.umami.is
     umamiAnalyticsID: 'dab0e4b9-9cbf-43c3-af60-b09d3b545c38',
-    // Folo 订阅验证：两项都填了才会给 RSS/Atom 输出 folo_challenge meta（feed.ts:197-202）
+    // Folo 订阅验证：两项都填了才会给 RSS/Atom 输出 folo_challenge meta（feed.ts）
     // https://folo.is/
     folo: {
       feedID: '',
       userID: '',
     },
-    // ⚠️ 已废弃字段：v1.0.3 起非文章页分享图改为构建期生成的静态图 /og/home.png，
-    // 不再调用 apiflash 截图服务，全项目已无人读取此值，保留仅为类型兼容，可忽略。
-    // apiflash access key（历史用途：为 og:image 实时生成网页截图）
-    // https://apiflash.com/
-    apiflashKey: '',
   },
   // SEO 设置 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
 
@@ -218,12 +199,6 @@ export const themeConfig: ThemeConfig = {
   // 预加载与资源设置 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
 }
 
-// 以下导出供 astro.config、i18n、页面路由等模块直接使用，通常无需改动
+// 以下导出供 astro.config 等模块直接使用，通常无需改动
 // base：把 '/' 归一化成空字符串，其余去掉末尾斜杠，方便拼 URL
 export const base = themeConfig.site.base === '/' ? '' : themeConfig.site.base.replace(/\/$/, '')
-// 默认语言，Astro i18n 的 defaultLocale
-export const defaultLocale = themeConfig.global.locale
-// 额外语言列表
-export const moreLocales = themeConfig.global.moreLocales
-// 当前实际启用的全部语言 = 默认语言 + 额外语言；所有 [...lang] 路由的 getStaticPaths 都由它展开
-export const allLocales = [defaultLocale, ...moreLocales]

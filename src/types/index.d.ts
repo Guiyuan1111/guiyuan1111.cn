@@ -1,5 +1,4 @@
 import type { CollectionEntry } from 'astro:content'
-import type { Language } from '@/i18n/config'
 
 export type Post = CollectionEntry<'posts'> & {
   remarkPluginFrontmatter: {
@@ -12,7 +11,6 @@ export interface ThemeConfig {
     title: string
     subtitle: string
     description: string
-    i18nTitle: boolean
     author: string
     url: string
     base: string
@@ -34,8 +32,6 @@ export interface ThemeConfig {
     }
   }
   global: {
-    locale: Language
-    moreLocales: Language[]
     fontStyle: 'sans' | 'serif'
     dateFormat: 'YYYY-MM-DD' | 'MM-DD-YYYY' | 'DD-MM-YYYY' | 'MMM D YYYY' | 'D MMM YYYY'
     toc: boolean
@@ -80,7 +76,6 @@ export interface ThemeConfig {
       feedID?: string
       userID?: string
     }
-    apiflashKey?: string
   }
   footer: {
     links: {

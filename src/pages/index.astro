@@ -1,16 +1,12 @@
 ---
 import PostList from '@/components/PostList.astro'
-import { defaultLocale } from '@/config'
 import Layout from '@/layouts/Layout.astro'
 import { getPinnedPosts, getPostsByYear } from '@/utils/content'
 // [CSS 按页分割] 首页文章摘要列表使用 .heti 排版（PostList.astro 中的描述块）
 import '@/styles/markdown.css'
 
-// [多语言已永久停用] 本文件原为 [...lang]/index.astro，lang 参数与语言版 getStaticPaths 已一并移除。
-// 当前语言恒为默认语言 zh；内容按 lang:'zh' 或 lang:'' 匹配，见 src/utils/content.ts
-const currentLang = defaultLocale
-const pinnedPosts = await getPinnedPosts(currentLang)
-const postsByYear = await getPostsByYear(currentLang)
+const pinnedPosts = await getPinnedPosts()
+const postsByYear = await getPostsByYear()
 ---
 
 <Layout>
@@ -18,7 +14,7 @@ const postsByYear = await getPostsByYear(currentLang)
   {pinnedPosts.length > 0 && (
     <section class="mb-7.5">
       <div class="uno-decorative-line" />
-      <PostList posts={pinnedPosts} lang={currentLang} pinned={true} />
+      <PostList posts={pinnedPosts} pinned={true} />
     </section>
   )}
 
@@ -26,7 +22,7 @@ const postsByYear = await getPostsByYear(currentLang)
   {Array.from(postsByYear.entries(), ([_year, posts]) => (
     <section class="mb-7.5">
       <div class="uno-decorative-line" />
-      <PostList posts={posts} lang={currentLang} />
+      <PostList posts={posts} />
     </section>
   ))}
 </Layout>

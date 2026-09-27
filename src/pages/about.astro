@@ -1,17 +1,12 @@
 ---
 import { getCollection, render } from 'astro:content'
-import { defaultLocale } from '@/config'
 import Layout from '@/layouts/Layout.astro'
 // [CSS 按页分割] 关于页正文走与文章页相同的 markdown 插件管线（.heti 排版、admonition/fold/github-card 等扩展容器均可能出现）
 import '@/styles/extension.css'
 import '@/styles/markdown.css'
 
-// [多语言已永久停用] 本文件原为 [...lang]/about.astro，lang 参数与语言版 getStaticPaths 已一并移除
-const currentLang = defaultLocale
-// 取当前语言的 about，缺失时回退到 lang:'' 的通用条目
-const allAboutEntries = await getCollection('about')
-const aboutEntry = allAboutEntries.find(entry => entry.data.lang === currentLang)
-  ?? allAboutEntries.find(entry => entry.data.lang === '')
+const aboutEntries = await getCollection('about')
+const aboutEntry = aboutEntries[0]
 const { Content } = aboutEntry ? await render(aboutEntry) : { Content: null }
 ---
 
