@@ -7,7 +7,8 @@
 >   Umami/验证码/Twitter ID 已清空、页脚已指向本仓库、图床白名单已清空、关于页已重写。
 > - 唯一保留的主题痕迹：页脚 "Powered by Astro and Retypeset" 致谢链接、feed generator 字符串、
 >   `package.json` 的上游 `name/repository`（均属正常署名，见第 4 节）。
-> - 待用户自行补充：Google/Bing 验证码（如需站长工具）、自建统计 ID、Email 页脚链接、关于页正文细节。
+> - 待用户自行补充：Google/Bing 验证码（如需站长工具）、自建统计 ID、关于页正文细节
+>   （邮箱已于 v1.0.10 补上：页脚 + 关于页联系一栏）。
 
 ---
 
@@ -22,7 +23,7 @@
 | `seo.verification.google/bing` | `''` | 留空不输出验证 meta | ✅ 已清空（原作者的码验证不了本站） |
 | `seo.umamiAnalyticsID` | `''` | 留空不加载统计 | ✅ 已清空（此前访问数据计入作者账号） |
 | `footer.links[GitHub]` | `Guiyuan1111/guiyuan1111.cn` | 页脚社交链接 | ✅ 已指向本仓库 |
-| `footer.links[Email]` | 已移除（注释示例保留） | — | ✅ 作者邮箱已删；需要时填自己的 |
+| `footer.links[Email]` | `guiyuan1111@qq.com`（v1.0.10 补上，渲染为 mailto 链接） | 页脚社交链接 | ✅ 已加上 |
 | `preload.imageHostURL` | `''` | 留空则 astro.config 不设 remotePatterns 白名单 | ✅ 已清空（内容图片全部本地化） |
 | `preload.customUmamiAnalyticsJS` | `''` | 留空不加载 | ✅ 已清空（作者自建统计实例） |
 | ~~`site.i18nTitle`~~ / ~~`global.locale`~~ / ~~`global.moreLocales`~~ / ~~`seo.apiflashKey`~~ | 已删除 | — | ✅ v1.0.9 死字段清理 |

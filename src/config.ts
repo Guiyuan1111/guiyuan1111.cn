@@ -165,10 +165,10 @@ export const themeConfig: ThemeConfig = {
         name: 'GitHub',
         url: 'https://github.com/Guiyuan1111/guiyuan1111.cn',
       },
-      // {
-      //   name: 'Email',
-      //   url: 'you@example.com',
-      // },
+      {
+        name: 'Email',
+        url: 'guiyuan1111@qq.com',
+      },
     ],
     // 网站起始年份，与当前年份相同时页脚只显示一个年份，不同则显示 "起始年 - 当前年"
     startYear: 2025,

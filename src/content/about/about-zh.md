@@ -6,4 +6,6 @@ lang: zh
 
 站点基于开源主题 [Retypeset](https://github.com/radishzzz/astro-theme-retypeset)（Astro 框架）构建。
 
-<!-- TODO: 补充个人介绍（研究方向 / 正在做的项目 / 联系方式等），替换或删除本注释即可 -->
+联系：[guiyuan1111@qq.com](mailto:guiyuan1111@qq.com)
+
+<!-- TODO: 补充个人介绍（研究方向 / 正在做的项目等），替换或删除本注释即可 -->
