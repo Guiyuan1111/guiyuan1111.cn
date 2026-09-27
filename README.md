@@ -30,10 +30,24 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 
 ## 本项目自定义（Project Customizations）
 
-本仓库基于上游主题 [radishzzz/astro-theme-retypeset](https://github.com/radishzzz/astro-theme-retypeset) 搭建。当前对主题做了以下裁剪，**均以注释方式保留原代码，可随时恢复**，详见 [note/disabled-features.md](note/disabled-features.md)：
+本仓库基于上游主题 [radishzzz/astro-theme-retypeset](https://github.com/radishzzz/astro-theme-retypeset) 搭建。
+
+### 功能裁剪（注释保留，可随时恢复）
+
+均以注释方式保留原代码，详见 [note/disabled-features.md](note/disabled-features.md)：
 
 - **禁用多语言切换**：仅生成中文页面。实测构建页面数 103 → 18（-83%）、构建时间约 -50%，见 [性能实测报告](note/report/perf/2026-09-27-i18n-sound-disable-verification.md)。
 - **禁用界面音效**：页面加载不再预载 10 个音效 WAV 文件。
+
+### 构建与部署优化
+
+- **构建期字体移出部署产物**（v1.0.2）：OG 图渲染专用的 16MB NotoSansSC OTF 从 `public/` 迁至 `src/assets/fonts/`，部署产物字体体积 21MB → 4MB。
+- **构建命令瘦身**（v1.0.2）：`astro check` 从 dev/build 拆出为独立 `pnpm check`（在 CI 中执行）；移除与 Astro/Vite 默认压缩重复的 `astro-compress`。
+- **KaTeX 样式按需加载**（v1.0.3）：数学样式表仅注入带 `math: true` frontmatter 的文章页。**写作须知：含数学公式的文章需在 frontmatter 中加 `math: true`**。
+- **og:image 静态化**（v1.0.3）：非文章页分享图统一使用构建期生成的 `/og/home.png`，已移除 apiflash 第三方截图回退（含上游主题遗留的硬编码 key）。
+- **CI 门禁**（v1.0.3）：GitHub Actions 双 job（lint + typecheck / build），见 `.github/workflows/ci.yml`。
+
+版本履历见 [note/release/](note/release/)；性能分析与优化建议见 [note/report/perf/](note/report/perf/)。
 
 主题本身的完整功能说明与使用文档见上方各语言 README 及上游仓库。
 
