@@ -52,6 +52,11 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 - **CI 缓存**（v1.0.4）：astro-og-canvas 产物与 Astro 内容层在 Actions 间缓存。
 - **未启用语言文章归档**（v1.0.4）：45 篇 en/es/ja/ru/zh-tw 文章移至 `src/content/_archive/`（git mv 保留历史），不再进入 markdown 构建管线；恢复多语言时需一并移回，见 [note/disabled-features.md](note/disabled-features.md)。
 
+### 站点身份
+
+- **首页标题与副标题**（v1.0.5）：`Guiyuan1111的博客` / `百无一用是深情，不屑一顾最相思`，改在 `src/i18n/ui.ts` 的 `zh` 条目（因 `i18nTitle: true`，`src/config.ts` 的 `site.title` 不生效）。改文案须同步重建 EarlySummer 显示字体子集，方法见 [note/font-subset.md](note/font-subset.md)。
+- **其余身份信息尚未站点化**：`site.url`、`author`、Waline 评论地址、Umami 统计 ID、Google/Bing 验证码、页脚链接、图片白名单域名仍指向主题作者，完整清单见 [note/site-identity.md](note/site-identity.md)。
+
 版本履历见 [note/release/](note/release/)；性能分析与优化建议见 [note/report/perf/](note/report/perf/)。
 
 主题本身的完整功能说明与使用文档见上方各语言 README 及上游仓库。
