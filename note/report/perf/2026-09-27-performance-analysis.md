@@ -1,5 +1,7 @@
 # 性能优化分析报告（静态分析 + 业界方案对比）
 
+> **实施状态（2026-09-27 更新）**：P0 三项已于 v1.0.2 落地（移字体出 public、拆 astro check、删 astro-compress）；P1 三项已于 v1.0.3 落地（KaTeX 按需、OG 静态化去 apiflash、CI）。P2 项（评论组件懒加载、wheel passive、字体预载精简等）仍待实施。见 [note/release/1.0.2.md](../../release/1.0.2.md)、[note/release/1.0.3.md](../../release/1.0.3.md)。
+
 - **分析对象**：guiyuan1111.cn（astro-theme-retypeset v1.0.0）
 - **分析日期**：2026-09-27
 - **分析方式**：只读静态分析，所有优化建议均先查询互联网已有实现，择优选取；未改动任何源码
