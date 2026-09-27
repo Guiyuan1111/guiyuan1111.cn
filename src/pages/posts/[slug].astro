@@ -1,15 +1,13 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 // [多语言已永久停用] Language 类型仅用于已停用的 slugToLangsMap 与 supportedLangs
-// import type { Language } from '@/i18n/config'
 import { getCollection, render } from 'astro:content'
 import Comment from '@/components/Comment/Index.astro'
 import PostDate from '@/components/PostDate.astro'
 import TagList from '@/components/TagList.astro'
 import BackButton from '@/components/Widgets/BackButton.astro'
 import TOC from '@/components/Widgets/TOC.astro'
-import { allLocales } from '@/config'
-import { getLangFromLocale, getLangRouteParam } from '@/i18n/lang'
+import { defaultLocale } from '@/config'
 import Layout from '@/layouts/Layout.astro'
 import { checkPostSlugDuplication } from '@/utils/content'
 import { getPostDescription } from '@/utils/description'
@@ -27,62 +25,27 @@ export async function getStaticPaths() {
     throw new Error(`Duplicate post slugs:\n${duplicates.join('\n')}`)
   }
 
-  // [多语言已永久停用] slugToLangsMap（同 slug 各语言版本聚合，供语言切换按钮判断可切去哪）已整块停用。
-  // 只剩单语言后，该映射恒为 ['zh']，对路由与页面不再有任何作用。
-  // 恢复方法：取消下面整块注释，并恢复 props 中的 supportedLangs 与 Layout 的传递链（见 note/disabled-features.md）
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  // Build a map of post slugs to their supported languages
-  // Handles both specific language posts (e.g., 'en') and universal posts (lang: '')
-  // const slugToLangsMap = new Map<string, Set<Language>>()
-  //
-  // for (const post of posts) {
-  //   const slug = post.data.abbrlink || post.id
-  //   const lang = post.data.lang
-  //
-  //   let langSet = slugToLangsMap.get(slug)
-  //   if (!langSet) {
-  //     langSet = new Set()
-  //     slugToLangsMap.set(slug, langSet)
-  //   }
-  //
-  //   if (lang) {
-  //     langSet.add(lang as Language)
-  //   }
-  //   else {
-  //     allLocales.forEach(locale => langSet.add(locale))
-  //   }
-  // }
-  //
-  // // Convert the map to a sorted record for the component props
-  // // Ensure languages are always sorted by the order defined in config
-  // const slugToLangs: Record<string, Language[]> = {}
-  // for (const [slug, langs] of slugToLangsMap) {
-  //   slugToLangs[slug] = [...langs].sort((a, b) => allLocales.indexOf(a) - allLocales.indexOf(b))
-  // }
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  // [多语言已永久停用] 本文件原为 [...lang]/posts/[slug].astro。
+  // 语言 getStaticPaths、lang 参数、slugToLangsMap（同 slug 各语言版本聚合）与 supportedLangs
+  // 传递链已全部移除；恢复多语言需重建 [...lang]/ 路由与该映射，完整步骤见 note/disabled-features.md
 
-  return allLocales.flatMap(lang => posts
+  return posts
     // Show drafts in dev mode only
     .filter(post => import.meta.env.DEV || !post.data.draft)
-    // Match current language or universal posts
-    .filter(post => post.data.lang === lang || post.data.lang === '')
-    .map((post) => {
-      const slug = post.data.abbrlink || post.id
-      return {
-        params: { lang: getLangRouteParam(lang), slug },
-        props: { post /* , supportedLangs: slugToLangs[slug] */ },
-      }
-    }),
-  )
+    // 匹配当前语言（恒为 zh）或通用文章（lang: ''）
+    .filter(post => post.data.lang === defaultLocale || post.data.lang === '')
+    .map(post => ({
+      params: { slug: post.data.abbrlink || post.id },
+      props: { post },
+    }))
 }
 
 interface Props {
   post: CollectionEntry<'posts'>
-  // [多语言已永久停用] supportedLangs: Language[]
 }
 
-const { post /* , supportedLangs */ } = Astro.props
-const currentLang = getLangFromLocale(Astro.currentLocale)
+const { post } = Astro.props
+const currentLang = defaultLocale
 const slug = post.data.abbrlink || post.id
 const description = getPostDescription(post, 'meta')
 const { Content, headings, remarkPluginFrontmatter } = await render(post)

@@ -1,22 +1,18 @@
 ---
 import PostList from '@/components/PostList.astro'
 import TagList from '@/components/TagList.astro'
-import { allLocales } from '@/config'
-import { getLangFromLocale, getLangRouteParam } from '@/i18n/lang'
+import { defaultLocale } from '@/config'
 import Layout from '@/layouts/Layout.astro'
 import { getAllTags, getPostsByTag } from '@/utils/content'
-// [多语言已永久停用] 原本用于「同一标签在各语言下是否有文章」，只有单语言后恒等于当前语言，已停用
-// import { getTagSupportedLangs } from '@/utils/content'
 
+// [多语言已永久停用] 本文件原为 [...lang]/tags/[tag].astro，lang 参数与按语言展开的循环已移除；
+// getTagSupportedLangs（判断标签在各语言下是否有文章）也随语言切换一起停用
 export async function getStaticPaths() {
-  const paths = await Promise.all(allLocales.map(async (lang) => {
-    const langTags = await getAllTags(lang)
-    return langTags.map(tag => ({
-      params: { lang: getLangRouteParam(lang), tag },
-      props: { tag },
-    }))
+  const tags = await getAllTags(defaultLocale)
+  return tags.map(tag => ({
+    params: { tag },
+    props: { tag },
   }))
-  return paths.flat()
 }
 
 interface Props {
@@ -24,10 +20,9 @@ interface Props {
 }
 
 const { tag } = Astro.props
-const currentLang = getLangFromLocale(Astro.currentLocale)
+const currentLang = defaultLocale
 const posts = await getPostsByTag(tag, currentLang)
 const allTags = await getAllTags(currentLang)
-// const supportedLangs = await getTagSupportedLangs(tag)
 ---
 
 <Layout>

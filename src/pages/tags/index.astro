@@ -1,17 +1,11 @@
 ---
 import TagList from '@/components/TagList.astro'
-import { allLocales } from '@/config'
-import { getLangFromLocale, getLangRouteParam } from '@/i18n/lang'
+import { defaultLocale } from '@/config'
 import Layout from '@/layouts/Layout.astro'
 import { getAllTags } from '@/utils/content'
 
-export async function getStaticPaths() {
-  return allLocales.map(lang => ({
-    params: { lang: getLangRouteParam(lang) },
-  }))
-}
-
-const currentLang = getLangFromLocale(Astro.currentLocale)
+// [多语言已永久停用] 本文件原为 [...lang]/tags/index.astro，lang 参数与语言版 getStaticPaths 已一并移除
+const currentLang = defaultLocale
 const allTags = await getAllTags(currentLang)
 ---
 
