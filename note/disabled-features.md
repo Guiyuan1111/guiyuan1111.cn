@@ -26,6 +26,11 @@
 1. `src/config.ts`：取消注释 `moreLocales: ['en', 'es', 'ja', 'ru', 'zh-tw']`，删除 `moreLocales: []` 行。
 2. `src/components/Button.astro`：去掉语言切换按钮外的 HTML 注释。
 3. `src/content.config.ts`：按文件内注释提示改回 `import` 行与两处 `lang` 字段。
+4. 将 `src/content/_archive/` 下的文章用 `git mv` 移回 `src/content/posts/` 与 `src/content/about/` 对应位置（归档时目录结构保持不变：`_archive/posts/examples/`、`_archive/posts/guides/` 对应 `posts/examples/`、`posts/guides/`，`_archive/about/` 对应 `about/`）。
+
+### 多语言文章归档（2026-09-27）
+
+禁用多语言后，`src/content/posts` 与 `src/content/about` 下 45 篇非中文 md（`lang: en|es|ja|ru|zh-tw`）永远不会生成页面，却仍消耗 shiki/katex/mermaid 渲染，已移至 `src/content/_archive/`（该目录下划线开头且不在任何 glob 集合的 base 内，不进构建管线）。保留原地：9 篇 posts（8 篇 `lang: zh` + 1 篇 `lang` 留空且 `draft: true` 的 Universal Post）与 1 篇 about-zh。
 
 ## 效果（实测）
 
