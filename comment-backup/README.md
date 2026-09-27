@@ -26,11 +26,14 @@
 | `src/types/index.d.ts` | `comment` 类型字段整块注释 |
 | `src/layouts/Layout.astro` | `MarginBottom` 的 `themeConfig.comment.enabled` 三元表达式注释，统一为 `mb-12` |
 | `src/pages/posts/[slug].astro` | `import Comment`、`import '@/styles/comment.css'`、`<Comment />` 三处注释 |
-| `src/i18n/config.ts` | `giscusLocaleMap` / `twikooLocaleMap` / `walineLocaleMap` 三套语言映射整块注释 |
+| `src/i18n/config.ts` | `giscusLocaleMap` / `twikooLocaleMap` / `walineLocaleMap` 三套语言映射整块注释（**该文件已于 v1.0.9 随 `src/i18n/` 删除，恢复时需 `git checkout v1.0.8 -- src/i18n/config.ts` 取回**） |
 | `package.json` | 移除 `@waline/client` 与 `twikoo` 依赖（`pnpm install` 已同步 lockfile） |
 | `tsconfig.json` / `eslint.config.mjs` | `comment-backup` 与 `i18n-backup` 加入 exclude / ignores |
 
 ## 恢复方法
+
+> ⚠️ v1.0.9 起 `src/i18n/` 已删除，第 4 步中「取消 `src/i18n/config.ts` 注释」改为
+> `git checkout v1.0.8 -- src/i18n/config.ts` 取回该文件（详见 note/disabled-features.md 第 3 节）。
 
 1. `git mv comment-backup/components src/components/Comment`
 2. `git mv comment-backup/comment.css src/styles/comment.css`

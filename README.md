@@ -33,13 +33,14 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 
 本仓库基于上游主题 [radishzzz/astro-theme-retypeset](https://github.com/radishzzz/astro-theme-retypeset) 搭建。
 
-### 功能裁剪（注释保留，可随时恢复）
+### 功能裁剪
 
 均以注释方式保留原代码，详见 [note/disabled-features.md](note/disabled-features.md)：
 
-- **多语言永久停用**（v1.0.6 + v1.0.7）：站点只生成中文页面，且确定不再开启多语言。v1.0.6 注释了语言切换按钮、hreflang、`slugToLangsMap`/`supportedLangs` 传递链，并把 45 篇外语文章 + 6 份 README 翻译 + 切换按钮图标共 52 个文件 `git mv` 集中到 [i18n-backup/](i18n-backup/)；v1.0.7 进一步把 `src/pages/[...lang]/` 7 个路由改名为普通路径、移除 lang 参数与语言版 `getStaticPaths`，**`src/pages/` 下已无任何 i18n 引用**。`src/i18n/` 四个文件与 `astro.config` 的 i18n 块因仍有 13 处静态引用**不能删除**，已加「永久停用」横幅说明。实测构建页面数 103 → 18（-83%）、构建时间约 -50%，见 [性能实测报告](note/report/perf/2026-09-27-i18n-sound-disable-verification.md)。
-- **禁用界面音效**：页面加载不再预载 10 个音效 WAV 文件。
-- **评论系统永久停用**（v1.0.8）：站点不使用评论功能。评论组件 4 个（412 行）+ `comment.css`（208 行）+ giscus 主题资源共 7 个文件 `git mv` 到 [comment-backup/](comment-backup/)；`config.ts`/`types`/`Layout`/`posts/[slug]` 的接入点与 `i18n/config.ts` 的三套评论语言映射全部注释；依赖 `@waline/client`、`twikoo` 已移除。构建产物不再有任何评论请求。
+- **多语言永久停用**（v1.0.1–v1.0.7，**v1.0.9 删除代码**）：站点只生成中文页面，且确定不再开启多语言。v1.0.6 把 45 篇外语文章 + 6 份 README 翻译 + 切换按钮图标共 52 个文件 `git mv` 集中到 [i18n-backup/](i18n-backup/)；v1.0.7 把 `src/pages/[...lang]/` 7 个路由改名为普通路径；v1.0.9 配置唯一化重构**删除了 `src/i18n/` 四个文件与 `astro.config` 的 i18n 块**（`<html lang="zh-CN">` 硬编码进 Layout），`src/` 中已无任何 i18n 代码引用。实测构建页面数 103 → 18（-83%）、构建时间约 -50%，见 [性能实测报告](note/report/perf/2026-09-27-i18n-sound-disable-verification.md)。
+- **禁用界面音效**：页面加载不再预载 10 个音效 WAV 文件（注释保留，可随时恢复）。
+- **评论系统永久停用**（v1.0.8）：站点不使用评论功能。评论组件 4 个（412 行）+ `comment.css`（208 行）+ giscus 主题资源共 7 个文件 `git mv` 到 [comment-backup/](comment-backup/)；`config.ts`/`types`/`Layout`/`posts/[slug]` 的接入点注释保留；依赖 `@waline/client`、`twikoo` 已移除。构建产物不再有任何评论请求。
+- **上游演示内容已删除**（v1.0.9）：`posts/guides/`、`posts/examples/` 与草稿 Universal Post 均为主题示例（含上游 URL、图床与失效的评论说明），已从 git 历史可找回；写新文章用 `pnpm new-post <标题>`。
 
 ### 构建与部署优化
 
@@ -48,16 +49,17 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 - **KaTeX 样式按需加载**（v1.0.3）：数学样式表仅注入带 `math: true` frontmatter 的文章页。**写作须知：含数学公式的文章需在 frontmatter 中加 `math: true`**。
 - **og:image 静态化**（v1.0.3）：非文章页分享图统一使用构建期生成的 `/og/home.png`，已移除 apiflash 第三方截图回退（含上游主题遗留的硬编码 key）。
 - **CI 门禁**（v1.0.3）：GitHub Actions 双 job（lint + typecheck / build），见 `.github/workflows/ci.yml`。
-- **图片管线收敛**（v1.0.4）：14 张内容源图统一收敛到 1600px（原 3000-5088px 直出），远程图床大图本地化至 `src/content/posts/_images/`，`remotePatterns` 收紧 hostname 白名单；产物内容图片 10.44MB → 2.81MB（-73%）。
+- **图片管线收敛**（v1.0.4）：14 张内容源图统一收敛到 1600px（原 3000-5088px 直出），远程图床大图本地化至 `src/content/posts/_images/`，`remotePatterns` 收紧 hostname 白名单；产物内容图片 10.44MB → 2.81MB（-73%）。（演示文章删除后 `_images/` 已清空，白名单域名已随站点化清空）
 - **移除无效字体预载**（v1.0.4）：STIX 双字体仅被 markdown 装饰引用且默认 sans 模式用不到，每页 112KB 预载移除（Head.astro 注释保留恢复方法）。
 - **CSS 按页分割**（v1.0.4）：markdown/comment/extension 三个仅文章页需要的样式下沉到 posts/[slug]、about、index，全局 Layout.css 124KB → 95.5KB。
 - **CI 缓存**（v1.0.4）：astro-og-canvas 产物与 Astro 内容层在 Actions 间缓存。
-- **未启用语言文章归档**（v1.0.4，v1.0.6 迁入统一备份目录）：45 篇 en/es/ja/ru/zh-tw 文章先移至 `src/content/_archive/` 脱离构建管线，v1.0.6 进一步连同 README 翻译等一起 `git mv` 到 [i18n-backup/](i18n-backup/)（保留历史），见 [note/disabled-features.md](note/disabled-features.md)。
+- **gallery wheel 监听条件挂载 + 移除 partytown**（v1.0.9）：`passive:false` wheel 监听仅在存在 `.gallery-container` 的页面挂载；统计 ID 清空后 Partytown 运行时（每页 loader + 产物 ~108K）连同依赖、补丁一并移除。
 
-### 站点身份
+### 站点身份（v1.0.9 已收尾）
 
-- **首页标题与副标题**（v1.0.5）：`Guiyuan1111的博客` / `百无一用是深情，不屑一顾最相思`，改在 `src/i18n/ui.ts` 的 `zh` 条目（因 `i18nTitle: true`，`src/config.ts` 的 `site.title` 不生效）。改文案须同步重建 EarlySummer 显示字体子集，方法见 [note/font-subset.md](note/font-subset.md)。
-- **站点身份已部分站点化**：`site.url`（`https://guiyuan1111.cn`）与 `site.author` 已改。仍指向主题作者的有：`site.title/subtitle/description`（因 `i18nTitle: true` 不生效）、Umami 统计 ID 与脚本域名、Google/Bing 验证码、`twitterID`、页脚 GitHub/邮箱链接、图片白名单域名，完整清单见 [note/site-identity.md](note/site-identity.md)。（评论地址一项已随评论系统永久停用一并移除，v1.0.8）
+- **配置单源**：v1.0.9 删除 `i18nTitle`/`locale`/`moreLocales`/`apiflashKey` 等死字段后，`src/config.ts` 成为全站唯一配置源，标题（`Guiyuan1111的博客`）、副标题（`百无一用是深情，不屑一顾最相思`）、描述均直接生效；改文案须同步重建 EarlySummer 显示字体子集，方法见 [note/font-subset.md](note/font-subset.md)。
+- **作者遗留已清理**：Umami 统计 ID 与自建脚本域名、Google/Bing 验证码、`twitterID` 已清空（留空即不输出/不加载），页脚 GitHub 链接指向本仓库、作者 Email 链接已移除，图床白名单域名已清空，关于页已重写。完整清单见 [note/site-identity.md](note/site-identity.md)。
+- 保留的致谢：页脚 "Powered by Astro and Retypeset"、feed generator 字符串与 `pnpm update-theme` 上游地址。
 
 **全部笔记入口见 [note/README.md](note/README.md)**（按场景速查）；版本履历见 [note/release/](note/release/)；性能分析与优化建议见 [note/report/perf/](note/report/perf/)。
 

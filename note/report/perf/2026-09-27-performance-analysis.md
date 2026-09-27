@@ -9,6 +9,13 @@
 > - **P1-6「补最小 CI」已完成**（v1.0.3 + v1.0.4 缓存）；文中「本项目无 `.git`、无 CI」均为分析时基线，**现已不成立**，正文中相关处已就地标注。
 > - 其余 P2 项（wheel passive、字体预载、partytown、chunkSizeWarningLimit）仍待实施——其中字体预载已由 v1.0.4 的 STIX 预载移除部分解决。
 > - 本文其余为只读静态分析存档，行号以分析时快照为准。
+>
+> **〔2026-09-28 第三次更新，现为 v1.0.9——P2 清尾，本报告建议全部关闭〕**
+> - **#8 wheel passive 已落地**：`MediaEmbed.astro` 改为仅当页面存在 `.gallery-container` 时挂载 `passive:false` 监听（`astro:page-load`/`before-swap` 增减），其余页面保持合成器滚动。
+> - **#10 partytown 已移除**：统计 ID 于站点化收尾时清空，Partytown 运行时（每页内联 loader + 产物 `~partytown/` 约 108K）成为死重，集成、`@astrojs/partytown` 依赖与 `patches/` 补丁一并移除；将来接统计的恢复方法已写入 `astro.config.ts` 注释。
+> - **#9 字体预载核实为无剩余项**：现存 3 个预载（EarlySummer 子集、Snell-Black、Snell-Bold）分别服务首屏标题/日期/UI 文案字体链，#5 处 STIX 预载移除后本项已闭环。
+> - **#11 chunkSizeWarningLimit 维持现状**：仅容纳 mermaid 动态 chunk，站内图表文章占比低，不构成实际告警源。
+> - 基线中的「16MB 字体在 public」「页面 103 页」等数据属 v1.0.0 快照，现状见 [note/release/1.0.9.md](../../release/1.0.9.md)。
 
 - **分析对象**：guiyuan1111.cn（astro-theme-retypeset v1.0.0）
 - **分析日期**：2026-09-27

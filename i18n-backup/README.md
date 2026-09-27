@@ -25,11 +25,15 @@
 
 ## 恢复方法（如将来需要）
 
+> ⚠️ **v1.0.9 起恢复门槛提高**：配置唯一化重构已删除 `src/i18n/` 四个文件与 `astro.config.ts`
+> 的 i18n 块，「取消注释即恢复」不再成立。完整步骤见
+> [note/disabled-features.md](../note/disabled-features.md) 第 1 节——需先
+> `git checkout v1.0.8 -- src/i18n/` 取回 i18n 层源码，再回改配置与路由。
+
 1. `git mv i18n-backup/content/posts src/content/_archive/posts`
    `git mv i18n-backup/content/about src/content/_archive/about`
    （先放回 `_archive`，再按 `note/disabled-features.md` 的步骤恢复多语言）
 2. `git mv i18n-backup/docs assets/docs`
 3. `git mv i18n-backup/icons/language-switcher.svg src/assets/icons/`
-4. 按 [note/disabled-features.md](../note/disabled-features.md) 取消注释 `moreLocales`、
-   语言切换按钮与 content schema，并同步重建 EarlySummer 字体子集
-   （见 [note/font-subset.md](../note/font-subset.md)）。
+4. 按 [note/disabled-features.md](../note/disabled-features.md) 恢复 i18n 配置与语言切换按钮，
+   并同步重建 EarlySummer 字体子集（见 [note/font-subset.md](../note/font-subset.md)）。

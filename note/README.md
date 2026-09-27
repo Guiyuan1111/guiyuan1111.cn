@@ -2,8 +2,10 @@
 
 guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目笔记入口。
 
-> **当前版本：v1.0.8**（2026-09-27）。版本详情见 [release/](./release/)；
-> **多语言与评论系统已永久停用**，界面音效暂时禁用，总清单见 [disabled-features.md](./disabled-features.md)。
+> **当前版本：v1.0.9**（2026-09-28）。版本详情见 [release/](./release/)；
+> **多语言与评论系统已永久停用且代码已删除**（恢复需从 git 历史取回，见
+> [disabled-features.md](./disabled-features.md)），界面音效暂时禁用；
+> `src/config.ts` 已是全站唯一配置源，站点化已收尾。
 
 ---
 
@@ -17,8 +19,8 @@ guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目�
 | 按版本查改动 | [release/](./release/) |
 | 做性能优化、看历史实测数据 | [report/perf/](./report/perf/) |
 | 了解项目架构与运行原理 | [codebase-analysis/](./codebase-analysis/)（⚠️ 已标注过时，先读其总览横幅） |
-| 恢复被归档的多语言文件 | [../i18n-backup/README.md](../i18n-backup/README.md) |
-| 恢复被归档的评论系统 | [../comment-backup/README.md](../comment-backup/README.md) |
+| 找被归档的多语言文件 | [../i18n-backup/README.md](../i18n-backup/README.md) |
+| 找被归档的评论系统 | [../comment-backup/README.md](../comment-backup/README.md) |
 
 ---
 
@@ -26,13 +28,13 @@ guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目�
 
 | 文件 | 内容 |
 | --- | --- |
-| [disabled-features.md](./disabled-features.md) | **功能停用总账**。多语言（4 阶段：性能裁剪 → 内容归档 → 文件备份 → 路由去 i18n）、评论系统、界面音效的改动位置、保留项原因与恢复方法 |
-| [site-identity.md](./site-identity.md) | **个人信息位置清单**。`config.ts` 与 `ui.ts` 中每个字段的行号、影响范围、当前是否已站点化 |
+| [disabled-features.md](./disabled-features.md) | **功能停用总账**。多语言（5 阶段：性能裁剪 → 内容归档 → 文件备份 → 路由去 i18n → **v1.0.9 配置唯一化删除 i18n 层**）、评论系统、界面音效的改动位置与恢复方法 |
+| [site-identity.md](./site-identity.md) | **个人信息位置清单**。站点化已收尾：标题/描述单源生效，作者遗留（统计/验证码/页脚/图床）已清空或替换 |
 | [font-subset.md](./font-subset.md) | **EarlySummer 显示字体子集重建方法**。改标题/副标题必看：版本对齐、子集命令、unicode-range 同步与自检 |
 
 ## 版本履历
 
-[release/](./release/) 共 8 版，每版一份变更与实测记录：
+[release/](./release/) 共 9 版，每版一份变更与实测记录：
 
 | 版本 | 主题 |
 | --- | --- |
@@ -44,6 +46,7 @@ guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目�
 | [1.0.6](./release/1.0.6.md) | 多语言永久停用：文件备份 `i18n-backup/`、清理页面语言概念 |
 | [1.0.7](./release/1.0.7.md) | 路由去 i18n：`[...lang]/` 改名为普通路径 |
 | [1.0.8](./release/1.0.8.md) | 评论系统永久停用：归档 `comment-backup/`、移除依赖 |
+| [1.0.9](./release/1.0.9.md) | **配置唯一化重构**：删 `src/i18n/` 与死字段、站点化收尾、清演示文章、wheel passive、移除 partytown |
 
 ## 分析报告
 
@@ -51,15 +54,16 @@ guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目�
 
 | 文件 | 状态 |
 | --- | --- |
-| [2026-09-27-performance-analysis.md](./report/perf/2026-09-27-performance-analysis.md) | 静态分析 + 业界方案对比。P0/P1 **全部已落地**；P2 中评论类条目已作废，wheel passive 与字体预载仍待实施 |
+| [2026-09-27-performance-analysis.md](./report/perf/2026-09-27-performance-analysis.md) | 静态分析 + 业界方案对比。P0/P1 全部已落地；**P2 已随 v1.0.9 清尾**（评论类作废、wheel passive 与 partytown 已做、字体预载核实无剩余项） |
 | [2026-09-27-i18n-sound-disable-verification.md](./report/perf/2026-09-27-i18n-sound-disable-verification.md) | v1.0.1 实测基线：页面 103 → 18（-83%）、构建约 -50%。数据仍被后续版本引用 |
 
 ### 代码库分析（[codebase-analysis/](./codebase-analysis/)）
 
 > ⚠️ **这是 2026-09-27 00:13 的分析快照（v1.0.0），已部分过时**。
 > 每份报告顶部都加了过时横幅与变更对照表；**架构分层、remark/rehype 管道、LQIP 协议、
-> memoize 缓存等与版本无关的设计分析仍然准确**，路由/构建链/评论/i18n 相关内容需以本索引与
-> [disabled-features.md](./disabled-features.md) 为准。
+> memoize 缓存等与版本无关的设计分析仍然准确**，路由/构建链/评论/i18n 相关内容需以本索引、
+> [disabled-features.md](./disabled-features.md) 与 [release/1.0.9.md](./release/1.0.9.md) 为准
+> （v1.0.9 起 `src/i18n/` 已删除、i18n 块已移除）。
 
 | 文件 | 现状 |
 | --- | --- |
@@ -80,3 +84,4 @@ guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目�
 | [../comment-backup/](../comment-backup/) | 评论组件 4 个、`comment.css`、giscus 主题资源 | 7（目录共 8，含其 README） |
 
 两处均含 README：清单、原位置、恢复步骤。
+注意：v1.0.9 起恢复它们还需先从 git 历史（tag `v1.0.8`）取回 `src/i18n/`，见 [disabled-features.md](./disabled-features.md)。

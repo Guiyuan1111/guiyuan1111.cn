@@ -9,6 +9,7 @@
 > | 构建链改为 `astro build && pnpm apply-lqip`；`astro check` 拆为独立 `pnpm check`；`astro-compress` 已移除（v1.0.2） | 「三段式构建」、Compress 集成、构建阶段序列 |
 > | **多语言永久停用**：`src/pages/[...lang]/` 7 个路由改名为普通路径，`slugToLangsMap`/`supportedLangs`/hreflang 已移除（v1.0.6–v1.0.7） | 全部路由路径与 `getStaticPaths` 说明、i18n 调用链、语言切换机制 |
 > | **评论系统永久停用**：`src/components/Comment/` 与 `comment.css` 归档、`config.ts` comment 块注释（v1.0.8） | 「评论三选一」、评论 locale map、配置驱动开关条目 |
+> | **配置唯一化重构（v1.0.9）**：`src/i18n/` 删除、astro.config i18n 块删除、`i18nTitle`/`moreLocales`/`apiflashKey` 死字段删除、lang 传递链移除；上游演示文章与 partytown 集成删除 | 所有涉及 `src/i18n/`、`[...lang]`、语言切换、统计开关的描述；页面数基线（现为 4 页） |
 > | 45 篇外语文章由 `src/content/_archive/` 迁至 `i18n-backup/`（v1.0.6） | 目录树中的内容归档路径 |
 > | 站点身份已部分站点化（`site.url`、`site.author`、首页标题） | 示例中引用的作者域名与标题 |
 >
