@@ -17,16 +17,16 @@ abbrlink: markdown-extended-features
 ### 语法
 
 ```
-![图片描述](https://image.radishzz.cc/image/gallery/06.webp)
+![图片描述](../_images/06.webp)
 
-![_图片描述](https://image.radishzz.cc/image/gallery/06.webp)
+![_图片描述](../_images/06.webp)
 ```
 
 ### 效果
 
-![图片描述](https://image.radishzz.cc/image/gallery/06.webp)
+![图片描述](../_images/06.webp)
 
-![_图片描述](https://image.radishzz.cc/image/gallery/06.webp)
+![_图片描述](../_images/06.webp)
 
 ## 提示块
 
@@ -132,22 +132,22 @@ graph TD;
 
 ```
 :::gallery
-![羊驼](https://image.radishzz.cc/image/gallery/sheep-1.jpg)
-![转头](https://image.radishzz.cc/image/gallery/sheep-2.jpg)
-![对视](https://image.radishzz.cc/image/gallery/sheep-3.jpg)
-![小羊驼](https://image.radishzz.cc/image/gallery/sheep-4.jpg)
-![可爱捏](https://image.radishzz.cc/image/gallery/sheep-5.jpg)
+![羊驼](../_images/sheep-1.webp)
+![转头](../_images/sheep-2.webp)
+![对视](../_images/sheep-3.webp)
+![小羊驼](../_images/sheep-4.webp)
+![可爱捏](../_images/sheep-5.webp)
 :::
 ```
 
 ### 效果
 
 :::gallery
-![羊驼](https://image.radishzz.cc/image/gallery/sheep-1.jpg)
-![转头](https://image.radishzz.cc/image/gallery/sheep-2.jpg)
-![对视](https://image.radishzz.cc/image/gallery/sheep-3.jpg)
-![小羊驼](https://image.radishzz.cc/image/gallery/sheep-4.jpg)
-![可爱捏](https://image.radishzz.cc/image/gallery/sheep-5.jpg)
+![羊驼](../_images/sheep-1.webp)
+![转头](../_images/sheep-2.webp)
+![对视](../_images/sheep-3.webp)
+![小羊驼](../_images/sheep-4.webp)
+![可爱捏](../_images/sheep-5.webp)
 :::
 
 ## GitHub 仓库

@@ -21,7 +21,7 @@ import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs'
 const { url: site } = themeConfig.site
 const { imageHostURL } = themeConfig.preload ?? {}
 const imageConfig = imageHostURL
-  ? { image: { domains: [imageHostURL], remotePatterns: [{ protocol: 'https' }] } }
+  ? { image: { domains: [imageHostURL], remotePatterns: [{ protocol: 'https', hostname: imageHostURL }] } }
   : {}
 
 export default defineConfig({
