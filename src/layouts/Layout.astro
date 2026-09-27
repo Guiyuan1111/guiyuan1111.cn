@@ -8,7 +8,8 @@ import CodeCopyButton from '@/components/Widgets/CodeCopyButton.astro'
 import GithubCard from '@/components/Widgets/GithubCard.astro'
 import ImageZoom from '@/components/Widgets/ImageZoom.astro'
 import MediaEmbed from '@/components/Widgets/MediaEmbed.astro'
-import SoundEffect from '@/components/Widgets/SoundEffect.astro'
+// [暂时禁用界面音效] 恢复方法：取消本行及下方 <SoundEffect /> 的注释
+// import SoundEffect from '@/components/Widgets/SoundEffect.astro'
 import { themeConfig } from '@/config'
 import Head from '@/layouts/Head.astro'
 import { getPageInfo } from '@/utils/page'
@@ -57,7 +58,8 @@ const MarginBottom = isPost && themeConfig.comment.enabled
       <Footer />
     </div>
     <Button supportedLangs={supportedLangs} />
-    <SoundEffect />
+    <!-- [暂时禁用界面音效] 恢复方法：取消本注释块及上方对应 import 的注释 -->
+    <!-- <SoundEffect /> -->
     <CodeCopyButton />
     <GithubCard />
     <MediaEmbed />
