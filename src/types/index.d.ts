@@ -42,29 +42,30 @@ export interface ThemeConfig {
     katex: boolean
     reduceMotion: boolean
   }
-  comment: {
-    enabled: boolean
-    giscus?: {
-      repo?: string
-      repoId?: string
-      category?: string
-      categoryId?: string
-      mapping?: 'pathname' | 'url' | 'title' | 'og:title'
-      strict?: '0' | '1'
-      reactionsEnabled?: '0' | '1'
-      emitMetadata?: '0' | '1'
-      inputPosition?: 'top' | 'bottom'
-    }
-    twikoo?: {
-      envId?: string
-    }
-    waline?: {
-      serverURL?: string
-      emoji?: string[]
-      search?: boolean
-      imageUploader?: boolean
-    }
-  }
+  // [评论系统永久停用] comment 字段随评论组件一起注释；恢复时取消下面整块注释
+  // comment: {
+  //   enabled: boolean
+  //   giscus?: {
+  //     repo?: string
+  //     repoId?: string
+  //     category?: string
+  //     categoryId?: string
+  //     mapping?: 'pathname' | 'url' | 'title' | 'og:title'
+  //     strict?: '0' | '1'
+  //     reactionsEnabled?: '0' | '1'
+  //     emitMetadata?: '0' | '1'
+  //     inputPosition?: 'top' | 'bottom'
+  //   }
+  //   twikoo?: {
+  //     envId?: string
+  //   }
+  //   waline?: {
+  //     serverURL?: string
+  //     emoji?: string[]
+  //     search?: boolean
+  //     imageUploader?: boolean
+  //   }
+  // }
   seo?: {
     twitterID?: string
     verification?: {

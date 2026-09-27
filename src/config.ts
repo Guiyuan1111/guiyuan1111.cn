@@ -84,47 +84,49 @@ export const themeConfig: ThemeConfig = {
   },
   // 全局设置 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
 
+  // [评论系统永久停用] 本站确定不会使用评论功能（2026-09-27 决定），整块已注释。
+  // 组件：src/components/Comment/（4 个文件、412 行）→ comment-backup/components/
+  // 样式：src/styles/comment.css（208 行）→ comment-backup/
+  // 资源：public/giscus/（2 个主题 css）→ comment-backup/giscus/
+  // 依赖：package.json 的 @waline/client 与 twikoo 已移除
+  // 恢复方法（5 处）：本块注释、types/index.d.ts 的 comment 字段、Layout.astro 的 MarginBottom、
+  // posts/[slug].astro 的 <Comment /> 与 comment.css、以及 git mv 回组件/样式/资源并重装依赖
+  // 详见 note/disabled-features.md 第 3 节
   // 评论设置 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START
-  comment: {
-    // 评论总开关（false 时下面三家都不渲染）
-    // 注意：还要对应平台的凭据非空才会启用，见 Comment/Index.astro 的判定
-    enabled: true, // true | false
-    // Giscus —— 基于 GitHub Discussions，数据存在你自己的仓库
-    // https://giscus.app/ 网页上填好参数即可得到 repo/repoId/category/categoryId
-    giscus: {
-      repo: '', // 例：'Guiyuan1111/guiyuan1111.cn'，非空即启用
-      repoId: '',
-      category: '',
-      categoryId: '',
-      mapping: 'pathname', // 评论与页面的对应方式，一般保持 pathname
-      strict: '0',
-      reactionsEnabled: '1',
-      emitMetadata: '0',
-      inputPosition: 'bottom', // 评论框位置：bottom | top
-    },
-    // Twikoo —— 自建/托管后端，需要腾讯云等环境的 envId
-    // https://twikoo.js.org/
-    twikoo: {
-      envId: '', // 非空即启用
-      // 前端版本号在 package.json 的 twikoo 依赖里改
-    },
-    // Waline —— 当前站点实际在用的一家（serverURL 非空即启用）
-    // https://waline.js.org/en/
-    waline: {
-      // 评论服务端地址（⚠️ 当前仍是主题作者的服务器，站点化时需换成自己的）
-      serverURL: 'https://retypeset-comment.radishzz.cc',
-      // 表情包来源，可加多行
-      emoji: [
-        'https://unpkg.com/@waline/emojis@1.2.0/tw-emoji',
-        // 'https://unpkg.com/@waline/emojis@1.2.0/bmoji',
-        // 更多表情：https://waline.js.org/en/guide/features/emoji.html
-      ],
-      // 评论区 GIF 搜索
-      search: false, // true | false
-      // 评论区图片上传
-      imageUploader: false, // true | false
-    },
-  },
+  // comment: {
+  //   // 评论总开关（false 时下面三家都不渲染）
+  //   // 还要对应平台的凭据非空才会启用，见 Comment/Index.astro 的判定
+  //   enabled: true, // true | false
+  //   // Giscus —— 基于 GitHub Discussions，数据存在你自己的仓库（https://giscus.app/）
+  //   giscus: {
+  //     repo: '', // 例：'Guiyuan1111/guiyuan1111.cn'，非空即启用
+  //     repoId: '',
+  //     category: '',
+  //     categoryId: '',
+  //     mapping: 'pathname', // 评论与页面的对应方式，一般保持 pathname
+  //     strict: '0',
+  //     reactionsEnabled: '1',
+  //     emitMetadata: '0',
+  //     inputPosition: 'bottom', // 评论框位置：bottom | top
+  //   },
+  //   // Twikoo —— 自建/托管后端，需要腾讯云等环境的 envId（https://twikoo.js.org/）
+  //   twikoo: {
+  //     envId: '', // 非空即启用
+  //   },
+  //   // Waline —— 原本实际在用的一家，serverURL 非空即启用（https://waline.js.org/en/）
+  //   waline: {
+  //     // ⚠️ 停用前仍指向主题作者的评论服务器
+  //     serverURL: 'https://retypeset-comment.radishzz.cc',
+  //     // 表情包来源，可加多行
+  //     emoji: [
+  //       'https://unpkg.com/@waline/emojis@1.2.0/tw-emoji',
+  //       // 'https://unpkg.com/@waline/emojis@1.2.0/bmoji',
+  //       // 更多表情：https://waline.js.org/en/guide/features/emoji.html
+  //     ],
+  //     search: false, // 评论区 GIF 搜索
+  //     imageUploader: false, // 评论区图片上传
+  //   },
+  // },
   // 评论设置 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
 
   // SEO 设置 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START

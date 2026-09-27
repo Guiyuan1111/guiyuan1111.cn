@@ -2,7 +2,8 @@
 import type { CollectionEntry } from 'astro:content'
 // [多语言已永久停用] Language 类型仅用于已停用的 slugToLangsMap 与 supportedLangs
 import { getCollection, render } from 'astro:content'
-import Comment from '@/components/Comment/Index.astro'
+// [评论系统永久停用] 评论组件已移出构建，见 comment-backup/ 与 note/disabled-features.md 第 3 节
+// import Comment from '@/components/Comment/Index.astro'
 import PostDate from '@/components/PostDate.astro'
 import TagList from '@/components/TagList.astro'
 import BackButton from '@/components/Widgets/BackButton.astro'
@@ -12,7 +13,8 @@ import Layout from '@/layouts/Layout.astro'
 import { checkPostSlugDuplication } from '@/utils/content'
 import { getPostDescription } from '@/utils/description'
 // [CSS 按页分割] 正文排版、扩展容器与评论定制样式仅文章页需要（原在 Layout.astro 全局加载）
-import '@/styles/comment.css'
+// [评论系统永久停用] comment.css（208 行，Twikoo/Waline/Giscus 定制样式）已移至 comment-backup/
+// import '@/styles/comment.css'
 import '@/styles/extension.css'
 import '@/styles/markdown.css'
 
@@ -100,8 +102,9 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
           lang={currentLang}
         />
       )}
-      <!-- Comment -->
+      <!-- [评论系统永久停用] 评论区渲染已注释，本站不再提供评论功能
       <Comment />
+      -->
     </div>
   </article>
 </Layout>

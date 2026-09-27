@@ -24,6 +24,14 @@ export const langMap = {
 // Supported Languages
 export type Language = keyof typeof langMap
 
+/*
+ * [评论系统永久停用] 本站确定不会使用评论功能（2026-09-27 决定）。
+ * 下面三套评论系统语言映射只有 Comment/{Giscus,Twikoo,Waline}.astro 引用，
+ * 已随评论组件一起注释 —— 组件在 comment-backup/components/，样式与 giscus 主题资源也已移出。
+ * 恢复方法：取消本整块注释，并把 comment-backup/ 下的组件、样式、资源 git mv 回原位。
+ * 详见 note/disabled-features.md 第 3 节
+ */
+/*
 // Giscus Language Map
 // https://giscus.app/
 export const giscusLocaleMap: Record<Language, string> = {
@@ -71,3 +79,4 @@ export const walineLocaleMap: Record<Language, string> = {
   'zh': 'zh-CN',
   'zh-tw': 'zh-TW',
 }
+*/
