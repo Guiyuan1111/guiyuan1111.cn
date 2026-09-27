@@ -20,13 +20,22 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 
 - Built with Astro and UnoCSS
 - Support for SEO, Sitemap, OpenGraph, RSS, MDX, LaTeX, Mermaid, and TOC
-- i18n support
+- i18n support *(本站当前已禁用，见下文)*
 - Light / Dark mode
 - Elegant view transitions
 - Rich theme customization
 - Optimized typography
 - Responsive design
 - Comment system
+
+## 本项目自定义（Project Customizations）
+
+本仓库基于上游主题 [radishzzz/astro-theme-retypeset](https://github.com/radishzzz/astro-theme-retypeset) 搭建。当前对主题做了以下裁剪，**均以注释方式保留原代码，可随时恢复**，详见 [note/disabled-features.md](note/disabled-features.md)：
+
+- **禁用多语言切换**：仅生成中文页面。实测构建页面数 103 → 18（-83%）、构建时间约 -50%，见 [性能实测报告](note/report/perf/2026-09-27-i18n-sound-disable-verification.md)。
+- **禁用界面音效**：页面加载不再预载 10 个音效 WAV 文件。
+
+主题本身的完整功能说明与使用文档见上方各语言 README 及上游仓库。
 
 ## Performance
 
