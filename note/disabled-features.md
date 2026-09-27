@@ -16,6 +16,7 @@
 | ① 性能裁剪 | 2026-09-27（v1.0.1） | `moreLocales` 清空、语言切换按钮注释、schema 放宽 |
 | ② 内容归档 | 2026-09-27（v1.0.4） | 45 篇外语文章 `git mv` 移出构建管线 |
 | ③ 永久停用 | 2026-09-27（v1.0.6） | 文件集中备份到 `i18n-backup/`，清理页面里的语言概念 |
+| ④ 路由去 i18n | 2026-09-27（v1.0.7） | `src/pages/[...lang]/` 7 个路由改名为普通路径，lang 参数与语言版 `getStaticPaths` 全部移除；`src/pages/` 下已无任何 i18n 引用 |
 
 ### 改动位置
 
@@ -29,6 +30,8 @@
 | `src/layouts/Head.astro` | hreflang 备选链接块注释；`allLocales`/`defaultLocale` 导入移除 |
 | `src/content.config.ts` | 内容 schema 的 `lang` 校验从 `allLocales` 放宽为 `langMap` 全部已知语言，避免残留多语言文章报错；原行已注释 |
 | `src/i18n/*.ts`（4 个文件） | 顶部各加「多语言已永久停用」横幅，说明为何不能删除 |
+| **`src/pages/` 路由改名（v1.0.7）** | `[...lang]/` 目录改回普通路径：`index.astro`、`about.astro`、`posts/[slug].astro`、`tags/index.astro`、`tags/[tag].astro`、`rss.xml.ts`、`atom.xml.ts`。非动态路由的语言版 `getStaticPaths` 直接删除；`posts/[slug]` 与 `tags/[tag]` 去掉 `lang` 参数，`currentLang` 改取 `defaultLocale` |
+| `src/i18n/lang.ts` 的两个函数（v1.0.7） | `getLangRouteParam`、`getLangFromLocale` 在路由去 i18n 后零调用方，已连同 `langMap` 导入一起注释 |
 
 ### 文件备份：`i18n-backup/`
 
@@ -47,9 +50,9 @@
 | 保留项 | 原因 |
 | --- | --- |
 | `astro.config.ts` 的 `i18n` 块 | `Layout.astro` 的 `<html lang>` 依赖它；注释掉会丢失 lang 属性，导致 `uno.config.ts` 的 `cjk:` 变体（`:lang(zh)` 等）失效、Header/Navbar 中文排版样式掉。它不参与页面生成，无性能开销 |
-| `src/i18n/` 全部工具代码 | 有 **21 处静态值引用**（astro.config、content.config、7 个路由、Footer、PostList/TagList、utils/page、3 个评论组件、Navbar/Header/TOC/Head/feed）。删除必然构建失败 |
-| `[...lang]` 路由目录名 | 改名收益极小（当前只生成根路径页面），却要动 7 个路由文件并连带 `feed.ts` 的 `params.lang`，风险高于收益 |
-| `src/i18n/ui.ts` 的 11 语言文案 | 被 5 处静态引用；只有 zh 条目被读取，其余为死数据但无害 |
+| `src/i18n/` 全部工具代码 | 仍有 **16 处静态值引用**（astro.config、content.config、Footer、utils/page、utils/description、PostList/TagList、3 个评论组件、Navbar/Header/TOC/Head、feed、types）。`src/pages/` 已完全不引用 i18n，但组件与工具层仍依赖，删除必然构建失败 |
+| `src/i18n/ui.ts` 的 11 语言文案 | 被 Navbar/Header/TOC/Head/feed 5 处静态引用；只有 zh 条目被读取，其余为死数据但无害 |
+| `src/pages/` 中的 `currentLang` | 各路由取 `defaultLocale` 后传给内容查询与 `PostList`/`TagList` 的 `lang` prop，是正文筛选条件的一部分，与 i18n 机制本身无关 |
 
 ### 恢复方法（仅作记录，不打算执行）
 
@@ -58,8 +61,12 @@
 3. `src/components/Button.astro`：取消语言切换按钮块、`Props`、`Language` 与 path 导入的注释。
 4. `src/layouts/Layout.astro`、`posts/[slug].astro`、`tags/[tag].astro`：按各文件内 `[多语言已永久停用]` 注释提示，恢复 `supportedLangs` 与 `slugToLangsMap` 传递链。
 5. `src/layouts/Head.astro`：恢复 hreflang 块及第 4 行的 `allLocales`/`defaultLocale` 导入。
-6. `src/content.config.ts`：按文件内注释改回 `import` 行与两处 `lang` 字段。
-7. 重建 EarlySummer 显示字体子集（多语言 UI 文案字符要进子集），见 [font-subset.md](./font-subset.md)。
+6. **恢复 `[...lang]/` 路由**（v1.0.7 改名的部分，难度最高）：把 7 个路由文件移回 `src/pages/[...lang]/`，
+   重建各文件的 `getStaticPaths`（按 `allLocales` 展开并带 `params.lang`）、`posts/[slug]` 的 `slugToLangsMap`
+   与 `supportedLangs` 传递链，`rss.xml.ts`/`atom.xml.ts` 恢复 lang 参数，并恢复
+   `src/i18n/lang.ts` 中已注释的 `getLangRouteParam`/`getLangFromLocale` 与 `langMap` 导入。
+7. `src/content.config.ts`：按文件内注释改回 `import` 行与两处 `lang` 字段。
+8. 重建 EarlySummer 显示字体子集（多语言 UI 文案字符要进子集），见 [font-subset.md](./font-subset.md)。
 
 ### 效果（实测）
 
