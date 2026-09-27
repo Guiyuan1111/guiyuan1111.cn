@@ -1,3 +1,11 @@
+// ═══════════════════════════════════════════════════════════════════════════════════════════════════
+// [多语言已永久停用] 本站确定不再开启多语言（2026-09-27 决定）。
+// 本文件不能删除：被 [...lang] 下 7 个路由、Footer.astro、src/utils/page.ts、src/i18n/path.ts 静态引用。
+// 实际作用只剩两件：getLangRouteParam 对 zh 返回 undefined（默认语言落在根路径，不带 /zh/ 前缀），
+// 以及 getLangFromLocale 把 Astro.currentLocale 换成短码。两者都只处理 zh。
+// 备份：i18n-backup/ ｜ 停用与恢复清单：note/disabled-features.md
+// ═══════════════════════════════════════════════════════════════════════════════════════════════════
+
 import type { Language } from '@/i18n/config'
 import { allLocales, base, defaultLocale, moreLocales } from '@/config'
 import { langMap } from '@/i18n/config'

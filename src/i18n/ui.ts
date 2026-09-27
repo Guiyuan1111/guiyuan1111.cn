@@ -1,3 +1,17 @@
+// ═══════════════════════════════════════════════════════════════════════════════════════════════════
+// [多语言已永久停用] 本站确定不再开启多语言（2026-09-27 决定）。
+// 本文件不能删除：被 Navbar、Header、Widgets/TOC、layouts/Head、utils/feed.ts 静态引用。
+// 实际只有 zh 一个条目会被读取（currentLang 恒为 'zh'），其余 10 种语言的 title/subtitle/
+// description/posts/tags/about/toc 均为死数据。
+//
+// ⚠️ 首页标题与副标题的来源由 src/config.ts 的 site.i18nTitle 决定：
+//   i18nTitle = true  （当前）→ 读本文件 zh 条目的 title / subtitle / description
+//   i18nTitle = false        → 读 src/config.ts 的 site.title / subtitle / description
+// 想让 config.ts 里填的三个字段生效，把 i18nTitle 改成 false 即可。
+//
+// 备份：i18n-backup/ ｜ 停用与恢复清单：note/disabled-features.md
+// ═══════════════════════════════════════════════════════════════════════════════════════════════════
+
 import type { Language } from '@/i18n/config'
 
 interface Translation {

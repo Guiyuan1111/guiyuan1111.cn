@@ -1,3 +1,12 @@
+// ═══════════════════════════════════════════════════════════════════════════════════════════════════
+// [多语言已永久停用] 本站确定不再开启多语言（2026-09-27 决定）。
+// 本文件不能删除：getTagPath / getPostPath / getLocalizedPath 被 TagList、PostList、Footer、
+// src/utils/page.ts 静态引用，是页面链接生成的必经路径。
+// 已无任何调用方的三个函数（仅剩 Button.astro 里被注释的引用）：
+//   getNextLangPath / getNextGlobalLangPath / getNextSupportedLangPath —— 语言切换按钮专用，随按钮一起停用。
+// 备份：i18n-backup/ ｜ 停用与恢复清单：note/disabled-features.md
+// ═══════════════════════════════════════════════════════════════════════════════════════════════════
+
 import type { Language } from '@/i18n/config'
 import { allLocales, base, defaultLocale } from '@/config'
 import { getLangFromPath, getNextGlobalLang } from '@/i18n/lang'
