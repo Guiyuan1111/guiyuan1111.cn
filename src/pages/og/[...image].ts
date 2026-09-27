@@ -1,6 +1,7 @@
 import type { CollectionEntry } from 'astro:content'
 import { OGImageRoute } from 'astro-og-canvas'
 import { getCollection } from 'astro:content'
+import { themeConfig } from '@/config'
 import { getPostDescription } from '@/utils/description'
 
 // eslint-disable-next-line antfu/no-top-level-await
@@ -16,6 +17,14 @@ const pages = Object.fromEntries(
     },
   ]),
 )
+
+const { title, subtitle } = themeConfig.site
+
+// Static site OG card, used as fallback for non-post pages (home, tags, about)
+pages.home = {
+  title,
+  description: subtitle,
+}
 
 // Configure Open Graph image generation route
 // eslint-disable-next-line antfu/no-top-level-await
