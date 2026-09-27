@@ -31,4 +31,16 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - uses: actions/cache@v4
+        with:
+          path: node_modules/.astro-og-canvas
+          key: ${{ runner.os }}-og-${{ hashFiles('src/content/posts/**', 'src/content/about/**', 'src/assets/fonts/*', 'src/pages/og/**', 'pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-og-
+      - uses: actions/cache@v4
+        with:
+          path: .astro
+          key: ${{ runner.os }}-astro-${{ hashFiles('src/content/**', 'pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-astro-
       - run: pnpm build
