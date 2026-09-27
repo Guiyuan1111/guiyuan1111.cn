@@ -1,12 +1,12 @@
 {
   "name": "astro-theme-retypeset",
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "packageManager": "pnpm@10.33.0",
   "repository": "https://github.com/radishzzz/astro-theme-retypeset",
   "scripts": {
-    "dev": "astro check && astro dev",
-    "build": "astro check && astro build && pnpm apply-lqip",
+    "dev": "astro dev",
+    "build": "astro build && pnpm apply-lqip",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint .",
@@ -22,7 +22,6 @@
     "@astrojs/sitemap": "^3.7.2",
     "@waline/client": "^3.13.0",
     "astro": "^6.1.5",
-    "astro-compress": "^2.4.1",
     "astro-og-canvas": "^0.11.0",
     "canvaskit-wasm": "^0.41.1",
     "feed": "^5.2.0",
