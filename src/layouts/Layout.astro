@@ -1,5 +1,5 @@
 ---
-import type { Language } from '@/i18n/config'
+// [多语言已永久停用] Language 类型与 supportedLangs 传递链已停用（原本只服务于语言切换按钮）
 import Button from '@/components/Button.astro'
 import Footer from '@/components/Footer.astro'
 import Header from '@/components/Header.astro'
@@ -25,10 +25,10 @@ interface Props {
   postDescription?: string
   postSlug?: string
   postMath?: boolean
-  supportedLangs?: Language[]
+  // [多语言已永久停用] supportedLangs?: Language[]
 }
 
-const { postTitle, postDescription, postSlug, postMath, supportedLangs = [] } = Astro.props
+const { postTitle, postDescription, postSlug, postMath /* , supportedLangs = [] */ } = Astro.props
 const { isPost } = getPageInfo(Astro.url.pathname)
 const fontStyle = themeConfig.global.fontStyle === 'serif' ? 'font-serif' : 'font-sans'
 const MarginBottom = isPost && themeConfig.comment.enabled
@@ -57,7 +57,7 @@ const MarginBottom = isPost && themeConfig.comment.enabled
       </main>
       <Footer />
     </div>
-    <Button supportedLangs={supportedLangs} />
+    <Button />
     <!-- [暂时禁用界面音效] 恢复方法：取消本注释块及上方对应 import 的注释 -->
     <!-- <SoundEffect /> -->
     <CodeCopyButton />

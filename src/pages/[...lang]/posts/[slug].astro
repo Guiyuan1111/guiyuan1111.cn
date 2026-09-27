@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import type { Language } from '@/i18n/config'
+// [多语言已永久停用] Language 类型仅用于已停用的 slugToLangsMap 与 supportedLangs
+// import type { Language } from '@/i18n/config'
 import { getCollection, render } from 'astro:content'
 import Comment from '@/components/Comment/Index.astro'
 import PostDate from '@/components/PostDate.astro'
@@ -26,35 +27,38 @@ export async function getStaticPaths() {
     throw new Error(`Duplicate post slugs:\n${duplicates.join('\n')}`)
   }
 
+  // [多语言已永久停用] slugToLangsMap（同 slug 各语言版本聚合，供语言切换按钮判断可切去哪）已整块停用。
+  // 只剩单语言后，该映射恒为 ['zh']，对路由与页面不再有任何作用。
+  // 恢复方法：取消下面整块注释，并恢复 props 中的 supportedLangs 与 Layout 的传递链（见 note/disabled-features.md）
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   // Build a map of post slugs to their supported languages
   // Handles both specific language posts (e.g., 'en') and universal posts (lang: '')
-  const slugToLangsMap = new Map<string, Set<Language>>()
-
-  for (const post of posts) {
-    const slug = post.data.abbrlink || post.id
-    const lang = post.data.lang
-
-    let langSet = slugToLangsMap.get(slug)
-    if (!langSet) {
-      langSet = new Set()
-      slugToLangsMap.set(slug, langSet)
-    }
-
-    if (lang) {
-      langSet.add(lang as Language)
-    }
-    else {
-      allLocales.forEach(locale => langSet.add(locale))
-    }
-  }
-
-  // Convert the map to a sorted record for the component props
-  // Ensure languages are always sorted by the order defined in config
-  const slugToLangs: Record<string, Language[]> = {}
-  for (const [slug, langs] of slugToLangsMap) {
-    slugToLangs[slug] = [...langs].sort((a, b) => allLocales.indexOf(a) - allLocales.indexOf(b))
-  }
+  // const slugToLangsMap = new Map<string, Set<Language>>()
+  //
+  // for (const post of posts) {
+  //   const slug = post.data.abbrlink || post.id
+  //   const lang = post.data.lang
+  //
+  //   let langSet = slugToLangsMap.get(slug)
+  //   if (!langSet) {
+  //     langSet = new Set()
+  //     slugToLangsMap.set(slug, langSet)
+  //   }
+  //
+  //   if (lang) {
+  //     langSet.add(lang as Language)
+  //   }
+  //   else {
+  //     allLocales.forEach(locale => langSet.add(locale))
+  //   }
+  // }
+  //
+  // // Convert the map to a sorted record for the component props
+  // // Ensure languages are always sorted by the order defined in config
+  // const slugToLangs: Record<string, Language[]> = {}
+  // for (const [slug, langs] of slugToLangsMap) {
+  //   slugToLangs[slug] = [...langs].sort((a, b) => allLocales.indexOf(a) - allLocales.indexOf(b))
+  // }
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   return allLocales.flatMap(lang => posts
@@ -66,7 +70,7 @@ export async function getStaticPaths() {
       const slug = post.data.abbrlink || post.id
       return {
         params: { lang: getLangRouteParam(lang), slug },
-        props: { post, supportedLangs: slugToLangs[slug] },
+        props: { post /* , supportedLangs: slugToLangs[slug] */ },
       }
     }),
   )
@@ -74,10 +78,10 @@ export async function getStaticPaths() {
 
 interface Props {
   post: CollectionEntry<'posts'>
-  supportedLangs: Language[]
+  // [多语言已永久停用] supportedLangs: Language[]
 }
 
-const { post, supportedLangs } = Astro.props
+const { post /* , supportedLangs */ } = Astro.props
 const currentLang = getLangFromLocale(Astro.currentLocale)
 const slug = post.data.abbrlink || post.id
 const description = getPostDescription(post, 'meta')
@@ -89,7 +93,6 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
   postDescription={description}
   postSlug={post.id}
   postMath={post.data.math}
-  supportedLangs={supportedLangs}
 >
   <article class="heti">
     <div class="relative">

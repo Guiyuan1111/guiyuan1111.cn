@@ -4,7 +4,9 @@ import TagList from '@/components/TagList.astro'
 import { allLocales } from '@/config'
 import { getLangFromLocale, getLangRouteParam } from '@/i18n/lang'
 import Layout from '@/layouts/Layout.astro'
-import { getAllTags, getPostsByTag, getTagSupportedLangs } from '@/utils/content'
+import { getAllTags, getPostsByTag } from '@/utils/content'
+// [多语言已永久停用] 原本用于「同一标签在各语言下是否有文章」，只有单语言后恒等于当前语言，已停用
+// import { getTagSupportedLangs } from '@/utils/content'
 
 export async function getStaticPaths() {
   const paths = await Promise.all(allLocales.map(async (lang) => {
@@ -25,10 +27,10 @@ const { tag } = Astro.props
 const currentLang = getLangFromLocale(Astro.currentLocale)
 const posts = await getPostsByTag(tag, currentLang)
 const allTags = await getAllTags(currentLang)
-const supportedLangs = await getTagSupportedLangs(tag)
+// const supportedLangs = await getTagSupportedLangs(tag)
 ---
 
-<Layout supportedLangs={supportedLangs}>
+<Layout>
   <!-- Decorative Line -->
   <div class="uno-decorative-line" />
   <!-- Tag List -->

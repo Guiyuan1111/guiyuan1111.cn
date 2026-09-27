@@ -1,7 +1,8 @@
 ---
 import { ClientRouter } from 'astro:transitions'
 import katexCSS from 'katex/dist/katex.min.css?url'
-import { allLocales, base, defaultLocale, themeConfig } from '@/config'
+// [多语言已永久停用] hreflang 块已注释，故移除 allLocales / defaultLocale；恢复时一并加回
+import { base, themeConfig } from '@/config'
 import { ui } from '@/i18n/ui'
 import { getPageInfo } from '@/utils/page'
 
@@ -68,6 +69,8 @@ const pageImage = new URL(`${base}/og/${postSlug ?? 'home'}.png`, Astro.url.orig
 <link rel="sitemap" href={`${base}/sitemap-index.xml`} />
 <link rel="alternate" href={`${base}/rss.xml`} type="application/rss+xml" title="RSS Feed" />
 <link rel="alternate" href={`${base}/atom.xml`} type="application/atom+xml" title="Atom Feed" />
+<!-- [多语言已永久停用] hreflang 备选链接块已注释：站点只有 zh 一个语言，输出的单条 hreflang="zh" 只会指向首页，无 SEO 价值。
+恢复方法：取消下面整块注释，并恢复第 4 行 import 中的 allLocales 与 defaultLocale
 {allLocales.map(lang => (
   <link
     rel="alternate"
@@ -75,6 +78,8 @@ const pageImage = new URL(`${base}/og/${postSlug ?? 'home'}.png`, Astro.url.orig
     hreflang={lang === 'zh-tw' ? 'zh-TW' : lang}
   />
 ))}
+-->
+
 
 <!-- Open Graph -->
 <meta property="og:type" content={postTitle ? 'article' : 'website'} />
