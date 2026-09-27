@@ -2,8 +2,8 @@
 
 本文件记录所有通过**注释**方式禁用的功能，原代码均已保留，可随时恢复。
 
-> ⚠️ **多语言已升级为「永久停用」**（2026-09-27 决定）：站点不会再开启多语言。
-> 界面音效仍是「暂时禁用」，见第 2 节。
+> ⚠️ **已永久停用（站点确定不会再开启）**：多语言（第 1 节）、评论系统（第 3 节）。
+> **仍为暂时禁用**：界面音效（第 2 节）。
 
 ---
 
@@ -95,3 +95,45 @@
 ### 恢复方法
 
 1. `src/layouts/Layout.astro`：取消 `import SoundEffect ...` 与 `<SoundEffect />` 两处注释。
+
+---
+
+## 3. 评论系统（永久停用，2026-09-27）
+
+站点不会使用评论功能，评论组件**整套移出构建**并归档到 [comment-backup/](../comment-backup/)。
+
+### 文件备份：`comment-backup/`
+
+已用 `git mv` 集中归档（保留历史），清单与恢复步骤见 [comment-backup/README.md](../comment-backup/README.md)：
+
+| 内容 | 数量 | 原位置 |
+| --- | --- | --- |
+| 评论组件 4 个（Index/Giscus/Twikoo/Waline，412 行） | 4 | `src/components/Comment/` |
+| 评论区定制样式 `comment.css`（208 行） | 1 | `src/styles/` |
+| giscus 主题样式 | 2 | `public/giscus/` |
+
+### 同步注释或移除的接入点
+
+| 位置 | 改动 |
+| --- | --- |
+| `src/config.ts` | `comment: { enabled, giscus, twikoo, waline }` 整块注释 |
+| `src/types/index.d.ts` | `comment` 类型字段整块注释 |
+| `src/layouts/Layout.astro` | `MarginBottom` 由 `isPost && comment.enabled ? 'mb-10' : 'mb-12'` 改为恒定 `'mb-12'`，原三元注释保留 |
+| `src/pages/posts/[slug].astro` | `import Comment`、`import '@/styles/comment.css'`、`<Comment />` 三处注释 |
+| `src/i18n/config.ts` | `giscusLocaleMap` / `twikooLocaleMap` / `walineLocaleMap` 三套语言映射整块注释（原本只有评论组件引用，注释后 i18n 的值引用从 16 处降至 13 处） |
+| `package.json` | 移除 `@waline/client`（^3.13.0）与 `twikoo`（^1.7.7），`pnpm-lock.yaml` 已同步 |
+| `tsconfig.json` | `exclude` 增加 `comment-backup`、`i18n-backup`（归档代码不做类型检查） |
+| `eslint.config.mjs` | `ignores` 增加 `comment-backup/**` |
+
+### 效果
+
+- 构建产物中不再有任何评论请求：无 Waline/Twikoo 脚本与样式、无 `public/giscus/` 静态文件。
+- 文章页底部间距由 `mb-10`（有评论）变为 `mb-12`（无评论），与其他页面一致。
+- `astro check` 覆盖文件数 59 → 55（4 个评论组件移出检查范围）。
+- 依赖树减少 `@waline/client` 与 `twikoo` 两棵子树。
+
+### 恢复方法
+
+按 [comment-backup/README.md](../comment-backup/README.md) 的 6 步执行：`git mv` 回组件/样式/资源 →
+取消 `config.ts`、`types/index.d.ts`、`i18n/config.ts`、`Layout.astro`、`posts/[slug].astro` 五处注释 →
+`pnpm add @waline/client@^3.13.0 twikoo@^1.7.7` → `pnpm check && pnpm build` 验证。
