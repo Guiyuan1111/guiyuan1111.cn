@@ -37,7 +37,7 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 
 均以注释方式保留原代码，详见 [note/disabled-features.md](note/disabled-features.md)：
 
-- **多语言永久停用**（v1.0.6 + v1.0.7）：站点只生成中文页面，且确定不再开启多语言。v1.0.6 注释了语言切换按钮、hreflang、`slugToLangsMap`/`supportedLangs` 传递链，并把 45 篇外语文章 + 6 份 README 翻译 + 切换按钮图标共 52 个文件 `git mv` 集中到 [i18n-backup/](i18n-backup/)；v1.0.7 进一步把 `src/pages/[...lang]/` 7 个路由改名为普通路径、移除 lang 参数与语言版 `getStaticPaths`，**`src/pages/` 下已无任何 i18n 引用**。`src/i18n/` 四个文件与 `astro.config` 的 i18n 块因仍有 16 处静态引用**不能删除**，已加「永久停用」横幅说明。实测构建页面数 103 → 18（-83%）、构建时间约 -50%，见 [性能实测报告](note/report/perf/2026-09-27-i18n-sound-disable-verification.md)。
+- **多语言永久停用**（v1.0.6 + v1.0.7）：站点只生成中文页面，且确定不再开启多语言。v1.0.6 注释了语言切换按钮、hreflang、`slugToLangsMap`/`supportedLangs` 传递链，并把 45 篇外语文章 + 6 份 README 翻译 + 切换按钮图标共 52 个文件 `git mv` 集中到 [i18n-backup/](i18n-backup/)；v1.0.7 进一步把 `src/pages/[...lang]/` 7 个路由改名为普通路径、移除 lang 参数与语言版 `getStaticPaths`，**`src/pages/` 下已无任何 i18n 引用**。`src/i18n/` 四个文件与 `astro.config` 的 i18n 块因仍有 13 处静态引用**不能删除**，已加「永久停用」横幅说明。实测构建页面数 103 → 18（-83%）、构建时间约 -50%，见 [性能实测报告](note/report/perf/2026-09-27-i18n-sound-disable-verification.md)。
 - **禁用界面音效**：页面加载不再预载 10 个音效 WAV 文件。
 - **评论系统永久停用**（v1.0.8）：站点不使用评论功能。评论组件 4 个（412 行）+ `comment.css`（208 行）+ giscus 主题资源共 7 个文件 `git mv` 到 [comment-backup/](comment-backup/)；`config.ts`/`types`/`Layout`/`posts/[slug]` 的接入点与 `i18n/config.ts` 的三套评论语言映射全部注释；依赖 `@waline/client`、`twikoo` 已移除。构建产物不再有任何评论请求。
 
@@ -59,7 +59,7 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 - **首页标题与副标题**（v1.0.5）：`Guiyuan1111的博客` / `百无一用是深情，不屑一顾最相思`，改在 `src/i18n/ui.ts` 的 `zh` 条目（因 `i18nTitle: true`，`src/config.ts` 的 `site.title` 不生效）。改文案须同步重建 EarlySummer 显示字体子集，方法见 [note/font-subset.md](note/font-subset.md)。
 - **站点身份已部分站点化**：`site.url`（`https://guiyuan1111.cn`）与 `site.author` 已改。仍指向主题作者的有：`site.title/subtitle/description`（因 `i18nTitle: true` 不生效）、Umami 统计 ID 与脚本域名、Google/Bing 验证码、`twitterID`、页脚 GitHub/邮箱链接、图片白名单域名，完整清单见 [note/site-identity.md](note/site-identity.md)。（评论地址一项已随评论系统永久停用一并移除，v1.0.8）
 
-版本履历见 [note/release/](note/release/)；性能分析与优化建议见 [note/report/perf/](note/report/perf/)。
+**全部笔记入口见 [note/README.md](note/README.md)**（按场景速查）；版本履历见 [note/release/](note/release/)；性能分析与优化建议见 [note/report/perf/](note/report/perf/)。
 
 主题本身的完整功能说明与使用文档见上方各语言 README 及上游仓库。
 
