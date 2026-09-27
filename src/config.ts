@@ -117,16 +117,18 @@ export const themeConfig: ThemeConfig = {
 
   // SEO 设置 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START
   seo: {
-    // Twitter/X 账号，输出 <meta name="twitter:site">（⚠️ 当前是主题作者的账号）
-    twitterID: '@radishzz_',
+    // Twitter/X 账号，输出 <meta name="twitter:site">；留空则不输出
+    // [v1.0.9 站点化] 已清空主题作者的账号，需要时填自己的（如 '@yourname'）
+    twitterID: '',
     // 搜索引擎站长验证：把后台给的验证码填进来，构建时输出对应 <meta> 标签
+    // [v1.0.9 站点化] 已清空主题作者的验证码（原作者的码验证不了本站），按需填入自己的
     verification: {
-      // Google Search Console → <meta name="google-site-verification">（⚠️ 当前是作者的码，验证不了本站）
+      // Google Search Console → <meta name="google-site-verification">
       // https://search.google.com/search-console
-      google: 'AUCrz5F1e5qbnmKKDXl2Sf8u6y0kOpEO1wLs6HMMmlM',
-      // Bing 网站管理员工具 → <meta name="msvalidate.01">（⚠️ 同上）
+      google: '',
+      // Bing 网站管理员工具 → <meta name="msvalidate.01">
       // https://www.bing.com/webmasters
-      bing: '64708CD514011A7965C84DDE1D169F87',
+      bing: '',
       // Yandex 网站管理员 → <meta name="yandex-verification">，留空则不输出
       // https://webmaster.yandex.com
       yandex: '',
@@ -135,13 +137,13 @@ export const themeConfig: ThemeConfig = {
       baidu: '',
     },
     // Google Analytics 统计 ID（形如 G-XXXXXXX），留空则不加载
-    // 以 type="text/partytown" 在 Web Worker 中执行，不占主线程（Head.astro:161-166）
+    // 以 type="text/partytown" 在 Web Worker 中执行，不占主线程（Head.astro）
     // https://analytics.google.com
     googleAnalyticsID: '',
-    // Umami 统计网站 ID（UUID），留空则不加载，同样走 Partytown（Head.astro:196-201）
-    // ⚠️ 当前是主题作者的 ID，访问数据会计入作者账号
+    // Umami 统计网站 ID（UUID），留空则不加载，同样走 Partytown（Head.astro）
+    // [v1.0.9 站点化] 已清空主题作者的 ID（此前访问数据会计入作者账号）；自建 Umami 后填入
     // https://cloud.umami.is
-    umamiAnalyticsID: 'dab0e4b9-9cbf-43c3-af60-b09d3b545c38',
+    umamiAnalyticsID: '',
     // Folo 订阅验证：两项都填了才会给 RSS/Atom 输出 folo_challenge meta（feed.ts）
     // https://folo.is/
     folo: {
@@ -161,17 +163,11 @@ export const themeConfig: ThemeConfig = {
       },
       {
         name: 'GitHub',
-        // ⚠️ 当前指向主题作者的仓库，站点化时建议改成本仓库地址
-        url: 'https://github.com/radishzzz/astro-theme-retypeset',
-      },
-      {
-        name: 'Email',
-        // ⚠️ 当前是主题作者的邮箱
-        url: 'email@radishzz.cc',
+        url: 'https://github.com/Guiyuan1111/guiyuan1111.cn',
       },
       // {
-      //   name: 'X',
-      //   url: 'https://x.com/radishzz_',
+      //   name: 'Email',
+      //   url: 'you@example.com',
       // },
     ],
     // 网站起始年份，与当前年份相同时页脚只显示一个年份，不同则显示 "起始年 - 当前年"
@@ -182,19 +178,20 @@ export const themeConfig: ThemeConfig = {
   // 预加载与资源设置 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START
   preload: {
     // 远程图床域名
-    // 会被写入 astro.config.ts 的图片 remotePatterns 白名单（:22-25）：
-    // 只有该域名（https）的远程图片才会进入构建期优化与 LQIP 占位生成，其余外链图会被拒绝
-    // ⚠️ 当前仍是主题作者的图床域名
-    imageHostURL: 'image.radishzz.cc',
+    // 非空时会被写入 astro.config.ts 的图片 remotePatterns 白名单：只有该域名（https）的远程图片
+    // 才会进入构建期优化与 LQIP 占位生成，其余外链图会被拒绝
+    // [v1.0.9 站点化] 已清空主题作者的图床域名（内容图片已全部本地化，无需远程白名单）；
+    // 使用远程图床时再填入自己的域名
+    imageHostURL: '',
     // 自定义 Google Analytics 脚本地址
-    // 用于把统计脚本代理到自己的域名以规避广告拦截；留空则用官方 googletagmanager.com 地址（Head.astro:166）
+    // 用于把统计脚本代理到自己的域名以规避广告拦截；留空则用官方 googletagmanager.com 地址（Head.astro）
     // https://gist.github.com/xiaopc/0602f06ca465d76bd9efd3dda9393738
     customGoogleAnalyticsJS: '',
     // 自定义 Umami 脚本地址
-    // 自建 Umami 或代理脚本到自有域名时填写，需配合上方 umamiAnalyticsID 使用
-    // ⚠️ 当前指向主题作者的自建统计实例
+    // 自建 Umami 或代理脚本到自有域名时填写，需配合上方 umamiAnalyticsID 使用；留空则用官方 cloud.umami.is 地址
+    // [v1.0.9 站点化] 已清空主题作者的自建统计实例地址
     // https://umami.is/docs/bypass-ad-blockers
-    customUmamiAnalyticsJS: 'https://views.radishzz.cc/script.js',
+    customUmamiAnalyticsJS: '',
   },
   // 预加载与资源设置 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
 }
