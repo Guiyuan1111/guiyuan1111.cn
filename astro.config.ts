@@ -1,5 +1,4 @@
 import mdx from '@astrojs/mdx'
-import partytown from '@astrojs/partytown'
 import sitemap from '@astrojs/sitemap'
 import { defineConfig } from 'astro/config'
 import rehypeKatex from 'rehype-katex'
@@ -35,16 +34,16 @@ export default defineConfig({
   // [多语言已永久停用] 本站只有中文，原 i18n 块已于 v1.0.9 删除：<html lang> 在 Layout.astro 硬编码为
   // "zh-CN"（uno.config.ts 的 cjk: 变体只依赖 html lang 属性，与 Astro i18n 配置无关）。
   // 历史代码备份在 i18n-backup/，停用与恢复说明见 note/disabled-features.md
+  //
+  // [v1.0.9 已移除 partytown 集成] 原 Partytown（Web Worker 隔离统计脚本）因 Google Analytics 与
+  // Umami 统计 ID 均已清空而成为死重（每页内联 loader + 构建产物多 ~108K）。
+  // 将来接入统计时：`pnpm add @astrojs/partytown` 并恢复 integrations 中的
+  // `partytown({ config: { forward: ['dataLayer.push', 'gtag'] } })`（Head.astro 的统计代码无需改动）。
   integrations: [
     UnoCSS({
       injectReset: true,
     }),
     mdx(),
-    partytown({
-      config: {
-        forward: ['dataLayer.push', 'gtag'],
-      },
-    }),
     sitemap(),
   ],
   markdown: {

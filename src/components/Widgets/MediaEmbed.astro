@@ -121,7 +121,23 @@ function handleGalleryWheel(e: WheelEvent) {
   e.preventDefault()
 }
 
-document.addEventListener('astro:page-load', setupMediaEmbeds)
+// Attach the wheel listener only on pages that actually contain a gallery:
+// passive:false disables compositor scrolling for the whole document, so other
+// pages must not pay for it (perf report P2-8)
+function setupGalleryWheel() {
+  if (document.querySelector('.gallery-container')) {
+    document.addEventListener('wheel', handleGalleryWheel, { passive: false })
+  }
+}
+
+function cleanupGalleryWheel() {
+  document.removeEventListener('wheel', handleGalleryWheel)
+}
+
+document.addEventListener('astro:page-load', () => {
+  setupMediaEmbeds()
+  setupGalleryWheel()
+})
+document.addEventListener('astro:before-swap', cleanupGalleryWheel)
 document.addEventListener('theme-changed', updateMermaidTheme)
-document.addEventListener('wheel', handleGalleryWheel, { passive: false })
 </script>

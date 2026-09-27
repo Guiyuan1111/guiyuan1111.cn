@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",
-    "@astrojs/partytown": "^2.1.6",
     "@astrojs/sitemap": "^3.7.2",
     "astro": "^6.1.5",
     "astro-og-canvas": "^0.11.0",
@@ -65,9 +64,6 @@
     "unocss-preset-theme": "^0.14.1"
   },
   "pnpm": {
-    "patchedDependencies": {
-      "@qwik.dev/partytown@0.11.2": "patches/@qwik.dev__partytown@0.11.2.patch"
-    },
     "onlyBuiltDependencies": [
       "esbuild",
       "sharp",
