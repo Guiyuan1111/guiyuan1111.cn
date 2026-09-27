@@ -24,3 +24,7 @@ pnpm-debug.log*
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
+
+# skills CLI machine-local symlinks (skill body lives in .agents/skills, restore via skills-lock.json)
+.claude/
+.zcode/
