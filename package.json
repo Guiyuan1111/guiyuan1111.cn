@@ -1,7 +1,7 @@
 {
   "name": "astro-theme-retypeset",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "packageManager": "pnpm@10.33.0",
   "repository": "https://github.com/radishzzz/astro-theme-retypeset",
   "scripts": {
@@ -9,6 +9,7 @@
     "build": "astro build && pnpm apply-lqip",
     "preview": "astro preview",
     "astro": "astro",
+    "check": "astro check",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "new-post": "tsx scripts/new-post.ts",
