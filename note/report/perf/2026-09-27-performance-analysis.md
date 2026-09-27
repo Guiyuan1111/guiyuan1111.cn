@@ -1,6 +1,8 @@
 # 性能优化分析报告（静态分析 + 业界方案对比）
 
-> **实施状态（2026-09-27 更新）**：P0 三项已于 v1.0.2 落地（移字体出 public、拆 astro check、删 astro-compress）；P1 三项已于 v1.0.3 落地（KaTeX 按需、OG 静态化去 apiflash、CI）。P2 项（评论组件懒加载、wheel passive、字体预载精简等）仍待实施。见 [note/release/1.0.2.md](../../release/1.0.2.md)、[note/release/1.0.3.md](../../release/1.0.3.md)。
+> **实施状态（2026-09-27 更新）**：P0 三项已于 v1.0.2 落地（移字体出 public、拆 astro check、删 astro-compress）；P1 三项已于 v1.0.3 落地（KaTeX 按需、OG 静态化去 apiflash、CI）；复查新增的 P1 五项已于 v1.0.4 落地（源图 1600px 收敛 + 远程图本地化、STIX 预载移除、CSS 按页分割、CI 缓存、未启用语言文章归档）。P2 项（OG 图转 JPG、Widget 下沉、feed memoize、评论组件懒加载等）仍待实施。见 [note/release/1.0.2.md](../../release/1.0.2.md)、[note/release/1.0.3.md](../../release/1.0.3.md)、[note/release/1.0.4.md](../../release/1.0.4.md)。
+>
+> **更正**：下方基线数据中"站点未配置统计"有误——复查确认 Umami 处于启用状态且用的是上游作者 ID 残留（`src/config.ts` 的 `umamiAnalyticsID`），待清理。
 
 - **分析对象**：guiyuan1111.cn（astro-theme-retypeset v1.0.0）
 - **分析日期**：2026-09-27
