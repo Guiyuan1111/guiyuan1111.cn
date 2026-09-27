@@ -3,7 +3,8 @@
 ![Cover Image](assets/images/v1/retypeset-en-desktop.webp)
 ![Cover Image](assets/images/v1/retypeset-en-mobile.webp)
 
-[简体中文](assets/docs/README.zh.md)｜[繁体中文](assets/docs/README.zh-tw.md)｜[日本語](assets/docs/README.ja.md)｜[Español](assets/docs/README.es.md)｜[Français](assets/docs/README.fr.md)｜[Русский](assets/docs/README.ru.md)
+<!-- 主题原版的 6 种语言 README 已随多语言停用一并归档至 i18n-backup/docs/，见 note/disabled-features.md -->
+主题原版的[多语言 README](i18n-backup/docs/)已归档，本项目仅维护当前这一份。
 
 Retypeset is a static blog theme based on the [Astro](https://astro.build/) framework. Inspired by [Typography](https://astro-theme-typography.vercel.app/), Retypeset establishes a new visual standard and reimagines the layout of all pages, creating a reading experience reminiscent of paper books, reviving the beauty of typography. Details in every sight, elegance in every space.
 
@@ -36,7 +37,7 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 
 均以注释方式保留原代码，详见 [note/disabled-features.md](note/disabled-features.md)：
 
-- **禁用多语言切换**：仅生成中文页面。实测构建页面数 103 → 18（-83%）、构建时间约 -50%，见 [性能实测报告](note/report/perf/2026-09-27-i18n-sound-disable-verification.md)。
+- **多语言永久停用**（v1.0.6）：站点只生成中文页面，且确定不再开启多语言。语言切换按钮、hreflang、`slugToLangsMap`/`supportedLangs` 传递链均已注释；45 篇外语文章 + 6 份 README 翻译 + 切换按钮图标共 52 个文件已 `git mv` 集中到 [i18n-backup/](i18n-backup/)。`src/i18n/` 四个文件与 `astro.config` 的 i18n 块因有 21 处静态引用**不能删除**，已加「永久停用」横幅说明。实测构建页面数 103 → 18（-83%）、构建时间约 -50%，见 [性能实测报告](note/report/perf/2026-09-27-i18n-sound-disable-verification.md)。
 - **禁用界面音效**：页面加载不再预载 10 个音效 WAV 文件。
 
 ### 构建与部署优化
@@ -50,12 +51,12 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 - **移除无效字体预载**（v1.0.4）：STIX 双字体仅被 markdown 装饰引用且默认 sans 模式用不到，每页 112KB 预载移除（Head.astro 注释保留恢复方法）。
 - **CSS 按页分割**（v1.0.4）：markdown/comment/extension 三个仅文章页需要的样式下沉到 posts/[slug]、about、index，全局 Layout.css 124KB → 95.5KB。
 - **CI 缓存**（v1.0.4）：astro-og-canvas 产物与 Astro 内容层在 Actions 间缓存。
-- **未启用语言文章归档**（v1.0.4）：45 篇 en/es/ja/ru/zh-tw 文章移至 `src/content/_archive/`（git mv 保留历史），不再进入 markdown 构建管线；恢复多语言时需一并移回，见 [note/disabled-features.md](note/disabled-features.md)。
+- **未启用语言文章归档**（v1.0.4，v1.0.6 迁入统一备份目录）：45 篇 en/es/ja/ru/zh-tw 文章先移至 `src/content/_archive/` 脱离构建管线，v1.0.6 进一步连同 README 翻译等一起 `git mv` 到 [i18n-backup/](i18n-backup/)（保留历史），见 [note/disabled-features.md](note/disabled-features.md)。
 
 ### 站点身份
 
 - **首页标题与副标题**（v1.0.5）：`Guiyuan1111的博客` / `百无一用是深情，不屑一顾最相思`，改在 `src/i18n/ui.ts` 的 `zh` 条目（因 `i18nTitle: true`，`src/config.ts` 的 `site.title` 不生效）。改文案须同步重建 EarlySummer 显示字体子集，方法见 [note/font-subset.md](note/font-subset.md)。
-- **其余身份信息尚未站点化**：`site.url`、`author`、Waline 评论地址、Umami 统计 ID、Google/Bing 验证码、页脚链接、图片白名单域名仍指向主题作者，完整清单见 [note/site-identity.md](note/site-identity.md)。
+- **站点身份已部分站点化**：`site.url`（`https://guiyuan1111.cn`）与 `site.author` 已改。仍指向主题作者的有：`site.title/subtitle/description`（因 `i18nTitle: true` 不生效）、Waline 评论地址、Umami 统计 ID 与脚本域名、Google/Bing 验证码、`twitterID`、页脚 GitHub/邮箱链接、图片白名单域名，完整清单见 [note/site-identity.md](note/site-identity.md)。
 
 版本履历见 [note/release/](note/release/)；性能分析与优化建议见 [note/report/perf/](note/report/perf/)。
 
