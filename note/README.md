@@ -74,9 +74,9 @@ guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目�
 
 ## 归档目录（仓库根，不参与构建）
 
-| 目录 | 内容 | 数量 |
+| 目录 | 内容 | 归档文件数 |
 | --- | --- | --- |
-| [../i18n-backup/](../i18n-backup/) | 外语文章与关于页、主题 README 翻译、语言切换图标 | 52 |
-| [../comment-backup/](../comment-backup/) | 评论组件 4 个、`comment.css`、giscus 主题资源 | 7 |
+| [../i18n-backup/](../i18n-backup/) | 外语文章与关于页、主题 README 翻译、语言切换图标 | 52（目录共 53，含其 README） |
+| [../comment-backup/](../comment-backup/) | 评论组件 4 个、`comment.css`、giscus 主题资源 | 7（目录共 8，含其 README） |
 
 两处均含 README：清单、原位置、恢复步骤。
