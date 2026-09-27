@@ -3,6 +3,7 @@ title: KaTeX 數學演示
 published: 2025-04-01
 lang: zh-tw
 abbrlink: katex-mathematical-demo
+math: true
 ---
 
 KaTeX 是一套跨瀏覽器的 JavaScript 函式庫，專為網頁瀏覽器設計以顯示數學符號。開發時特別強調執行效率與操作簡便性，最初由可汗學院開發，現已躋身 GitHub 最受關注的前五大專案之列。

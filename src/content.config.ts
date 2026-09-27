@@ -23,6 +23,8 @@ const posts = defineCollection({
     draft: z.boolean().optional().default(false),
     pin: z.number().int().min(0).max(99).optional().default(0),
     toc: z.boolean().optional().default(themeConfig.global.toc),
+    // per-post opt-in: only posts with math: true load the KaTeX stylesheet
+    math: z.boolean().optional().default(false),
     // [暂时禁用多语言切换] 校验放宽为主题支持的全部语言，未启用语言的文章仍不会被生成页面
     // lang: z.enum(['', ...allLocales]).optional().default(''),
     lang: z.enum(['', ...Object.keys(langMap)]).optional().default(''),

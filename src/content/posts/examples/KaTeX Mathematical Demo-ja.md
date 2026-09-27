@@ -3,6 +3,7 @@ title: KaTeX 数学デモ
 published: 2025-04-01
 lang: ja
 abbrlink: katex-mathematical-demo
+math: true
 ---
 
 KaTeX はクロスブラウザ対応の JavaScript ライブラリで、ウェブブラウザ上で数式を表示します。高速性と使いやすさに重点を置き、カーンアカデミーによって開発され、GitHub で最も注目を集める上位 5 プロジェクトの一つとなりました。
