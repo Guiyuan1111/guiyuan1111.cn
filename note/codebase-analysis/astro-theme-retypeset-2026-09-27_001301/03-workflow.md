@@ -3,23 +3,32 @@
 > 分析对象：`D:\Guiyuan1111\guiyuan1111.cn`
 > 前置阅读：[01-architecture.md](./01-architecture.md)、[02-operation-principles.md](./02-operation-principles.md)
 > 本报告回答：围绕这个站点，开发者/作者实际执行哪些流程，每步发生什么，失败怎么办。
+>
+> ⚠️ **本报告是全文中过时最严重的一份（当前 v1.0.8）**，详见 [总览的变更对照表](./index.md)。
+> **1.1 节的命令语义表、1.3 节、第 3 节构建失败语义、第 7 节小结均已就地更正**（见各处「后续更正」标注）；
+> 第 4 节主题更新与第 5 节补丁管理仍然有效；第 2 节内容工作流（`new-post`/`format-posts`）仍然有效，
+> 但外语文章已不在 `src/content/` 下，`format-posts` 的 glob 不再覆盖它们（现位于 `i18n-backup/`，见 [note/disabled-features.md](../../disabled-features.md)）。
 
 ---
 
 ## 1. 开发工作流（dev → lint → build → preview）
 
-### 1.1 命令语义表（package.json:7-18）
+### 1.1 命令语义表〔已按 v1.0.8 更新〕
+
+> **〔2026-09-27 后续更正〕** v1.0.2 把 `astro check` 从 `dev`/`build` 拆出为独立命令，并移除了
+> `astro-compress`，原「三段式」已不成立。下表为当前 `package.json` 实际内容：
 
 | 命令 | 实际执行 | 说明 |
 | --- | --- | --- |
-| `pnpm dev` | `astro check && astro dev` | 先类型检查再启 dev server（`:8`） |
-| `pnpm build` | `astro check && astro build && pnpm apply-lqip` | 三段式，`&&` 短路（`:9`） |
+| `pnpm dev` | `astro dev` | 直接启动 dev server，不再串类型检查 |
+| `pnpm build` | `astro build && pnpm apply-lqip` | 两段式：构建 + LQIP 注入（`:9`） |
+| `pnpm check` | `astro check` | 类型与内容集合校验，**在 CI 中执行**（v1.0.3） |
 | `pnpm preview` | `astro preview` | 预览 dist 产物（注意：看不到 apply-lqip 之外的差异） |
-| `pnpm lint` / `lint:fix` | `eslint .` / `--fix` | antfu 预设，忽略 `src/content/**`（`eslint.config.mjs:6`） |
+| `pnpm lint` / `lint:fix` | `eslint .` / `--fix` | antfu 预设，忽略 `src/content/**`、`note/**`、`i18n-backup/**`、`comment-backup/**` |
 | `pnpm new-post <标题>` | `tsx scripts/new-post.ts` | 内容创作入口（`:14`） |
 | `pnpm apply-lqip` | `tsx scripts/apply-lqip.ts` | 可单独执行（幂等，见 02 报告第 3 节） |
 | `pnpm format-posts` | `tsx scripts/format-posts.ts` | CJK 排版整理 |
-| `pnpm update-theme` | `tsx scripts/update-theme.ts` | 上游主题同步 |
+| `pnpm update-theme` | `tsx scripts/update-theme.ts` | 上游主题同步（依赖 git，现已可用） |
 
 ### 1.2 pre-commit 流程（simple-git-hooks + lint-staged）
 
@@ -44,10 +53,17 @@ flowchart LR
 
 注意：Markdown 内容文件不在 lint-staged 匹配内（内容质量靠 `format-posts` 手动触发，`eslint.config.mjs:6` 也显式忽略 `src/content/**`）。`onlyBuiltDependencies` 含 `simple-git-hooks`（`package.json:73-77`），保证 pnpm 安装时自动激活 hook。
 
-### 1.3 本项目的特殊性：无版本控制、无 CI/CD
+### 1.3 本项目的特殊性：〔已修正〕版本控制与 CI 现已具备
 
-- 未发现 `.git` 目录——`update-theme.ts` 依赖 git 的流程在本目录当前不可直接运行（详见第 5 节）；
-- 未发现 `.github/workflows`——构建发布完全依赖本地手动 `pnpm build` + 手动部署（README.md:63 建议部署到 Netlify/Vercel 等平台的 Git 集成）。
+> **〔2026-09-27 后续更正〕** 本节分析时项目无 `.git`、无 CI，**这两处缺口已于 v1.0.3 补齐**：
+>
+> - **版本控制**：已 `git init` 并推送到 `github.com/Guiyuan1111/guiyuan1111.cn`，主分支 `main`；
+>   `update-theme.ts` 依赖的 upstream 同步、格式化回滚、细粒度提交均可用。
+> - **CI/CD**：`.github/workflows/ci.yml` 双 job（`lint + typecheck` / `build`），push 与 PR 触发，
+>   build job 缓存 astro-og-canvas 产物与 Astro 内容层（v1.0.4）。
+> - **构建命令**：三段式已变为 `astro build && pnpm apply-lqip`，类型检查独立为 `pnpm check`（v1.0.2），
+>   详见下方 1.1 节的更正说明。
+> - **版本发布**：每版 tag + GitHub Release，正文即 `note/release/<版本>.md`，当前 **v1.0.8**。
 
 ---
 
@@ -113,13 +129,15 @@ flowchart TD
 
 ---
 
-## 3. 构建产物工作流（三段式的失败语义）
+## 3. 构建产物工作流（两段式的失败语义）
+
+> **〔2026-09-27 后续更正〕** v1.0.2 起 `astro check` 已从 `pnpm build` 链中拆出（改由 `pnpm check` 与 CI 承担），
+> 原「三段式」变为下图的**两段式**。原「check 短路 build」这层门禁现在由 CI 提供（v1.0.3）——
+> 注意本地直接 `pnpm build` 时**不再有类型检查前置**。
 
 ```mermaid
 flowchart TD
-    A["pnpm build"] --> B["astro check"]
-    B -->|"类型/schema 错误"| X1["❌ 短路: build 与<br/>apply-lqip 均不执行"]
-    B -->|"通过"| C["astro build"]
+    A["pnpm build"] --> C["astro build"]
     C -->|"渲染错误/slug 重复 throw"| X2["❌ 产物不完整<br/>dist 处于中间态"]
     C -->|"成功"| D["dist/: HTML+CSS+JS+XML+OG png<br/>(已压缩, 无 LQIP)"]
     D --> E["pnpm apply-lqip"]
@@ -127,7 +145,7 @@ flowchart TD
     E -->|"完成"| G["✅ dist 注入 --lqip 占位<br/>lqip-map.json 更新(可入库)"]
 ```
 
-失败语义不对称是本设计的关键：前两段（check、build）fail-fast 保证产物可信；第三段（apply-lqip）宽容降级保证"占位样式缺失不阻塞发布"。`dist/` 中间态风险：若 build 成功而 apply-lqip 失败（exit 1，`apply-lqip.ts:273-276`），发布脚本若只看整体退出码会放弃一个本可用的产物——决策点在于部署侧如何消费退出码。
+失败语义不对称仍是本设计的关键：build fail-fast 保证产物可信；apply-lqip 宽容降级保证"占位样式缺失不阻塞发布"。类型与 schema 错误现由 `pnpm check` 和 CI 在 build 之前拦截。`dist/` 中间态风险：若 build 成功而 apply-lqip 失败（exit 1，`apply-lqip.ts:273-276`），发布脚本若只看整体退出码会放弃一个本可用的产物——决策点在于部署侧如何消费退出码。
 
 ---
 
@@ -186,4 +204,8 @@ flowchart TD
 
 ## 7. 小结
 
-本项目工作流的特点是"内容优先、零 ceremony"：创作只需 `new-post` + 编辑 Markdown；质量保障只有 pre-commit 的 eslint（不含内容文件）与手动的 `format-posts`；发布是一条本地三段式命令。最大的流程缺口有两处：无 CI/CD（构建与部署完全手动、无自动化检查门禁）与无版本控制（本目录 `.git` 缺失，使 `update-theme`、格式化回滚、细粒度提交等既有设计全部失效）——修复这两处的建议见 index.md。
+本项目工作流的特点是"内容优先、零 ceremony"：创作只需 `new-post` + 编辑 Markdown；质量保障只有 pre-commit 的 eslint（不含内容文件）与手动的 `format-posts`；发布是一条本地构建命令。
+
+> **〔2026-09-27 后续更正〕** 原结论中的两处缺口**均已修复**：版本控制与 CI/CD 已具备（见 1.3 节更正），
+> 构建命令也不再是三段式。当前发布流程为 `pnpm build` → `git commit` → `git push` → CI 门禁 → tag + GitHub Release，
+> 版本履历见 [note/release/](../../release/)，功能停用与恢复见 [note/disabled-features.md](../../disabled-features.md)。

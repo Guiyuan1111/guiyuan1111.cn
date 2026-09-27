@@ -3,6 +3,13 @@
 > 分析对象：`D:\Guiyuan1111\guiyuan1111.cn`
 > 前置阅读：[01-architecture.md](./01-architecture.md)（架构分层与调用链）
 > 本报告回答：站点从一条命令到一份 HTML 产物之间到底发生了什么。
+>
+> ⚠️ **本报告已部分过时（当前 v1.0.8）**：详见 [总览的变更对照表](./index.md)。主要失效点：
+> 第 1.1/1.2 节的**三段式构建链**（`astro check` 已拆为独立 `pnpm check`、`astro-compress` 已移除）；
+> 第 2 节与第 4 节中所有 `src/pages/[...lang]/...` 路径（**目录已改名**）；
+> 第 7 节 i18n 机制（多语言已永久停用）。
+> **仍然准确**：Markdown→HTML 变换流水线 21 步、LQIP 位打包与增量缓存、OG 生成、状态持久化、
+> 错误处理分层、Partytown 隔离。
 
 ---
 
@@ -10,11 +17,18 @@
 
 ### 1.1 命令到产物的完整序列
 
-`package.json:7-18` 定义了全部命令。核心构建链为三段式（`package.json:9`）：
+`package.json:7-18` 定义了全部命令。
 
-```bash
-pnpm build  ==  astro check  &&  astro build  &&  pnpm apply-lqip
-```
+> **〔2026-09-27 后续更正〕** 分析时核心构建链为三段式，**v1.0.2 起已改为两段式**，
+> 类型检查独立为 `pnpm check`（v1.0.3 起由 CI 执行）：
+>
+> ```bash
+> pnpm build  ==  astro build  &&  pnpm apply-lqip
+> pnpm check  ==  astro check        # 独立门禁，不在 build 链内
+> ```
+>
+> 下方时序图与 1.2 节「阶段 1：`astro check`」按原三段式绘制，**阶段 1 现不随 `pnpm build` 执行**；
+> `astro-compress` 也已于 v1.0.2 移除，1.2 节收尾描述中的 Compress 步骤已不存在。
 
 ```mermaid
 sequenceDiagram
@@ -45,16 +59,17 @@ sequenceDiagram
 
 ### 1.2 各阶段详解
 
-**阶段 1：`astro check`**。使用 `@astrojs/check`（`package.json:49`）对 `.astro` 组件与内容集合 schema 做静态诊断。任何 zod schema 校验错误（如 `published` 缺失）在此暴露。它是三段链的第一道闸门：失败即短路，`apply-lqip` 不会执行。
+**阶段 1：`astro check`**〔已更正〕。使用 `@astrojs/check`（`package.json:49`）对 `.astro` 组件与内容集合 schema 做静态诊断。任何 zod schema 校验错误（如 `published` 缺失）在此暴露。
+**v1.0.2 起它已不在 `pnpm build` 链内**，改为独立命令 `pnpm check`，由 CI 在 build 之前执行（v1.0.3）——本地直接 `pnpm build` 不再有这道前置闸门。
 
-**阶段 2：`astro build`**（默认 SSG 输出到 `dist/`）：
+**阶段 2：`astro build`**（默认 SSG 输出到 `dist/`；原「阶段 2」现为 `pnpm build` 的第一段）：
 
-1. 加载 `astro.config.ts:44-62` 的 5 个 integration；
-2. 内容层扫描：`src/content.config.ts:7` 的 `glob({ pattern: '**/*.{md,mdx}', base: './src/content/posts' })` 建立 posts 集合，`:32` 同理建立 about 集合；
-3. 对每个动态路由执行 `getStaticPaths` 展开全部页面（文章页还会执行 slug 查重 fail-fast，`src/pages/[...lang]/posts/[slug].astro:20-23`）；
+1. 加载 `astro.config.ts` 的 integration（UnoCSS、mdx、partytown、sitemap，共 4 个 —— `astro-compress` 已于 v1.0.2 移除）；
+2. 内容层扫描：`src/content.config.ts:7` 的 `glob({ pattern: '**/*.{md,mdx}', base: './src/content/posts' })` 建立 posts 集合，about 集合同理；
+3. 对每个动态路由执行 `getStaticPaths` 展开全部页面（文章页还会执行 slug 查重 fail-fast，`src/pages/posts/[slug].astro` —— 路由目录原为 `[...lang]/`，v1.0.7 已改名）；
 4. 每个页面渲染时按第 2 节的数据流走 markdown 管道；
 5. `astro-og-canvas` 在 `src/pages/og/[...image].ts:22` 为每篇文章渲染 PNG（canvaskit-wasm 绘制）；
-6. 收尾：`sitemap()` 写 sitemap-index.xml；`Compress` 对 HTML/CSS/JS 压缩但跳过图片/SVG（`astro.config.ts:55-61`）。
+6. 收尾：`sitemap()` 写 sitemap-index.xml。**原 `Compress` 压缩步骤已不存在**——HTML 由 Astro 的 `compressHTML` 默认压缩、JS/CSS 由 Vite 的 esbuild 默认压缩。
 
 **阶段 3：`apply-lqip`**：详见第 3 节。
 
@@ -93,13 +108,22 @@ sequenceDiagram
 | 16. 复制按钮 | `pre>code` | pre 包进 div.code-block-wrapper 并前置 button | 包装块 | `rehype-code-copy-button.mjs:49-79` |
 | 17. 语法高亮 | code 文本 | Shiki github-light/github-dark 双主题（排除 mermaid） | 带 CSS 变量的 span 树 | `astro.config.ts:80-90` |
 | 18. 组件消费 | `{Content, headings, remarkPluginFrontmatter}` | render(post) 返回值解构 | 页面骨架填充 | `[slug].astro:80` |
-| 19. HTML 写盘 | 组件树 | 序列化 | `dist/<lang>/posts/<slug>/index.html` | Astro SSG |
-| 20. 压缩 | HTML/CSS/JS | astro-compress | 减产物 | `astro.config.ts:55-61` |
+| 19. HTML 写盘 | 组件树 | 序列化 | `dist/posts/<slug>/index.html`（v1.0.7 起无语言前缀段） | Astro SSG |
+| 20. 压缩〔已更正〕 | HTML/CSS/JS | **不再有独立压缩步骤**：HTML 由 Astro 的 `compressHTML` 在写盘时默认压缩，JS/CSS 由 Vite 的 esbuild 默认压缩 | 减产物 | v1.0.2 移除 `astro-compress` |
 | 21. LQIP 注入 | img[src] 命中映射表 | style 追加 `--lqip:#hex` | 带占位渐变的最终 HTML | `scripts/apply-lqip.ts:197-231` |
 
-### 2.2 语言变体的并行流
+### 2.2 语言变体的并行流〔已作废〕
 
-同一篇《故乡》存在 6 个语言文件（`-en/-es/-ja/-ru/-zh-tw/-zh`），各自独立走完上述管道。`[slug].astro:28-54` 在 getStaticPaths 阶段用 `slugToLangsMap` 把同 slug 的所有语言版本聚合为一个语言集合（universal 文章展开为 `allLocales` 全集，`:44`），供页面上的语言切换按钮循环跳转（经 `supportedLangs` prop 传给 `Layout:30` → `Button` 组件）。
+> **〔2026-09-27 后续更正〕** 多语言已永久停用，本小节描述的机制已全部移除：
+> 同 slug 多语言文件已归档至 `i18n-backup/`；`slugToLangsMap` 与 `supportedLangs` 传递链已删除；
+> `[...lang]` 路由目录已改名。当前同一篇《故乡》只有一个 `*-zh.md`，`posts/[slug].astro` 的
+> `getStaticPaths` 直接按 `defaultLocale` 单层筛选，不再有任何语言聚合。
+> 详见 [note/disabled-features.md](../../disabled-features.md) 第 1 节。
+
+（原文存档：同一篇《故乡》存在 6 个语言文件（`-en/-es/-ja/-ru/-zh-tw/-zh`），各自独立走完上述管道。
+`[slug].astro:28-54` 在 getStaticPaths 阶段用 `slugToLangsMap` 把同 slug 的所有语言版本聚合为一个语言集合
+（universal 文章展开为 `allLocales` 全集），供页面上的语言切换按钮循环跳转
+（经 `supportedLangs` prop 传给 `Layout` → `Button` 组件）。）
 
 ---
 
@@ -184,7 +208,19 @@ scanAndAnalyzeImages()  统计 {total, cached, new}          apply-lqip.ts:105-1
 
 ---
 
-## 7. i18n 运行机制
+## 7. i18n 运行机制〔已作废〕
+
+> **〔2026-09-27 后续更正〕本节 7.1–7.4 描述的机制已随多语言永久停用而移除，仅作历史存档：**
+>
+> - **7.1** 启用子集现为 `moreLocales: []`（只有 `zh`），`src/i18n/lang.ts` 的 `getLangRouteParam`、
+>   `getLangFromLocale` 已注释；`[...lang]` 路由目录已改名为普通路径，**语言前缀 URL 不再生成**。
+> - **7.2** 页面与内容的语言匹配现恒为 `post.data.lang === 'zh' || post.data.lang === ''`，
+>   `currentLang` 直接取 `defaultLocale`，不再经 `Astro.currentLocale` 换算。
+> - **7.3** 语言切换按钮、`getNextSupportedLangPath` 及 `supportedLangs` 传递链已全部注释/删除。
+> - **7.4** 评论系统已永久停用，三套 locale map 与评论组件一并注释/归档。
+>
+> `astro.config.ts` 的 `i18n` 块**仍保留**（`<html lang>` 与 `uno.config` 的 `cjk:` 变体依赖它）。
+> 完整停用清单与恢复方法见 [note/disabled-features.md](../../disabled-features.md)。
 
 ### 7.1 语言注册与路由生成
 
@@ -213,9 +249,11 @@ lang 属性:            <html lang={Astro.currentLocale}>（Layout.astro:39）
 
 文章页的 `supportedLangs` 来自 slugToLangsMap（同 slug 的语言版本集合），标签页来自 `getTagSupportedLangs`（该标签在各语言下是否有文章，`src/utils/content.ts:223-238`）——保证"切过去必有内容"。
 
-### 7.4 评论系统 i18n
+### 7.4 评论系统 i18n〔已作废〕
 
-三套评论系统各有语言映射表并带降级：giscus 一一对应（`src/i18n/config.ts:21-33`）；twikoo 不支持的语言回退 en（`:37-49`）；waline 同样带 en-US 回退（`:53-65`）。
+**评论系统已于 v1.0.8 永久停用**，组件与样式归档至 `comment-backup/`，三套 locale map 已整块注释，依赖已移除。
+
+（原文存档：三套评论系统各有语言映射表并带降级：giscus 一一对应；twikoo 不支持的语言回退 en；waline 同样带 en-US 回退。）
 
 ---
 

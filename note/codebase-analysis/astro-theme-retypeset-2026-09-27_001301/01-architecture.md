@@ -2,7 +2,12 @@
 
 > 分析对象：`D:\Guiyuan1111\guiyuan1111.cn`（astro-theme-retypeset v1.0.0，基于 Astro 6 的静态博客主题）
 > 分析时间：2026-09-27 00:13
-> 说明：本项目为开源主题 [radishzzz/astro-theme-retypeset](https://github.com/radishzzz/astro-theme-retypeset) 的实例站点，未发现 `.git` 目录与 `.github/workflows` 目录（无版本控制元数据、无 CI/CD）。
+> 说明：本项目为开源主题 [radishzzz/astro-theme-retypeset](https://github.com/radishzzz/astro-theme-retypeset) 的实例站点。
+> **〔2026-09-27 后续更正〕** 当时未发现 `.git` 与 `.github/workflows`；**现已建立仓库与 GitHub Actions 双 job 门禁（v1.0.3）**。
+>
+> ⚠️ **本报告已部分过时（当前 v1.0.8）**：详见 [总览的变更对照表](./index.md)。本文受影响最大的是
+> 第 5 节路由表与第 6 节依赖图 —— **`[...lang]/` 目录已改名为普通路径**，评论组件已归档，
+> `astro-compress` 已移除。与版本无关的分层架构、remark/rehype 管道、LQIP 协议、memoize 缓存仍准确。
 
 ---
 
@@ -235,8 +240,12 @@ graph TD
 2. **指令扩展模式（remark-directive）**：`remark-container-directives.mjs:65-109` 处理容器指令 `:::note[标题]`/`:::fold[标题]`/`:::gallery`，并兼容 GitHub 风格 `> [!NOTE]`（`:112-133`）；`remark-leaf-directives.mjs:163-184` 处理叶子指令 `::github{repo="..."}` 等 6 种嵌入，策略表 `embedHandlers`（`:3-161`）实现开闭原则——新增嵌入类型只需加一个 handler。
 3. **备忘录模式（memoize）**：`src/utils/cache.ts:7-32` 实现 Promise 级 memoize（缓存 promise 本身、失败自动出列允许重试），`content.ts` 中 8 个查询函数与 `feed.ts:60` 的 `getAbsoluteImageUrl` 全部套用，保证单次构建内同一查询只执行一次。
 4. **策略模式 + 回退链（i18n）**：路由参数换算 `getLangRouteParam`（`src/i18n/lang.ts:11-13`）、路径本地化 `getLocalizedPath`（`src/i18n/path.ts:42-52`）、语言循环切换 `getNextSupportedLangPath`（`src/i18n/path.ts:93-112`，按全局优先级排序后循环）；内容回退：指定语言缺失时回退 universal 文章（`about.astro:16-17`）。
-5. **构建后处理管道**：`astro build` 产物再经 `astro-compress` 压缩（`astro.config.ts:55-61`）与 `apply-lqip` 图片占位注入（`package.json:9`），形成"框架构建 → 通用压缩 → 专用增强"三段后处理。
-6. **配置驱动开关**：评论系统三选一由配置非空判断决定（`src/components/Comment/Index.astro:15-24`）；KaTeX/Partytown/字体 preload 均由 `themeConfig` 布尔值/非空字符串控制（`src/layouts/Head.astro:63,160,195`）。
+5. **构建后处理管道**〔已更正〕：当前只有 `apply-lqip` 图片占位注入一段（`astro build && pnpm apply-lqip`）。
+   `astro-compress` 已于 v1.0.2 移除（HTML/JS/CSS 压缩由 Astro 的 `compressHTML` 与 Vite 的 esbuild 默认覆盖），
+   原"框架构建 → 通用压缩 → 专用增强"三段后处理不再存在。
+6. **配置驱动开关**〔已更正〕：KaTeX/Partytown/字体 preload 仍由 `themeConfig` 布尔值/非空字符串控制
+   （`src/layouts/Head.astro`）；**评论系统三选一已于 v1.0.8 永久停用**，`config.ts` 的 comment 块与
+   `src/components/Comment/` 组件均已注释/归档，见 [note/disabled-features.md](../../disabled-features.md) 第 3 节。
 
 ---
 

@@ -2,6 +2,16 @@
 
 > 隶属分析：[astro-theme-retypeset 深度分析总览](../index.md)
 > 评级依据：[04-ai-substitution.md](../04-ai-substitution.md) 的 6 维度评分与 ROI 矩阵。
+>
+> ⚠️ **本索引已部分作废（当前 v1.0.8）**：详见 [总览的变更对照表](../index.md)。
+>
+> | Blueprint | 状态 |
+> | --- | --- |
+> | [01 new-post](./01-new-post-skill.md)、[02 format-posts](./02-format-posts-skill.md)、[03 apply-lqip](./03-apply-lqip-skill.md) | ✅ 仍可参考（脚本未变），行号需核对 |
+> | [04 i18n-translate](./04-i18n-translate-skill.md) | ❌ **作废**：多语言已永久停用，路由与 `slugToLangsMap` 均已移除 |
+> | [05 og-image-tuner](./05-og-image-tuner-skill.md) | ✅ 仍可参考，但 og 图静态化后（v1.0.3）调参需求已减弱 |
+>
+> 下方「实施路线图」中的 **Phase 0（git + CI）已于 v1.0.3 完成**，**Phase 2 的 i18n 翻译项已作废**。
 
 ## Blueprint 清单
 

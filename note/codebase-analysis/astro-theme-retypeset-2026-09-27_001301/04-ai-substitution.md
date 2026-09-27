@@ -4,6 +4,12 @@
 > 前置阅读：[01-architecture.md](./01-architecture.md)、[02-operation-principles.md](./02-operation-principles.md)、[03-workflow.md](./03-workflow.md)
 > 评分体系：确定性 / 输入结构化 / 安全风险（分越高越安全）/ 领域复杂度（分越高越简单）/ 上下文需求（分越高依赖越少）/ 重复性，各 1-5 分，满分 30。
 > 分档：24-30 = 🤖 完全 AI 化；15-23 = 🧑‍💻 AI 辅助；6-14 = 👤 人工主导。
+>
+> ⚠️ **本报告与所属 Skill Blueprint 已部分过时（当前 v1.0.8）**：详见 [总览的变更对照表](./index.md)。
+> **M4「i18n 内容翻译/多语言同步」与 [blueprints/04-i18n-translate-skill.md](./blueprints/04-i18n-translate-skill.md)
+> 已整体作废** —— 多语言已永久停用，蓝图依赖的 `[...lang]` 路由与 `slugToLangsMap` 聚合机制均已移除。
+> M8「评论/统计集成配置」中的评论部分同样作废（评论系统已永久停用，见 [note/disabled-features.md](../../disabled-features.md) 第 3 节）。
+> M1/M2/M3/M5 仍可参考，但涉及文件行号需按当前代码核对。
 
 ---
 
