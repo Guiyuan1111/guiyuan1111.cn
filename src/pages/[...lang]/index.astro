@@ -4,6 +4,8 @@ import { allLocales } from '@/config'
 import { getLangFromLocale, getLangRouteParam } from '@/i18n/lang'
 import Layout from '@/layouts/Layout.astro'
 import { getPinnedPosts, getPostsByYear } from '@/utils/content'
+// [CSS 按页分割] 首页文章摘要列表使用 .heti 排版（PostList.astro 中的描述块）
+import '@/styles/markdown.css'
 
 export async function getStaticPaths() {
   return allLocales.map(lang => ({

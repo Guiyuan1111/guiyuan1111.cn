@@ -12,6 +12,10 @@ import { getLangFromLocale, getLangRouteParam } from '@/i18n/lang'
 import Layout from '@/layouts/Layout.astro'
 import { checkPostSlugDuplication } from '@/utils/content'
 import { getPostDescription } from '@/utils/description'
+// [CSS 按页分割] 正文排版、扩展容器与评论定制样式仅文章页需要（原在 Layout.astro 全局加载）
+import '@/styles/comment.css'
+import '@/styles/extension.css'
+import '@/styles/markdown.css'
 
 export async function getStaticPaths() {
   const posts: CollectionEntry<'posts'>[] = await getCollection('posts')

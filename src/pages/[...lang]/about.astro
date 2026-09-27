@@ -3,6 +3,9 @@ import { getCollection, render } from 'astro:content'
 import { allLocales } from '@/config'
 import { getLangFromLocale, getLangRouteParam } from '@/i18n/lang'
 import Layout from '@/layouts/Layout.astro'
+// [CSS 按页分割] 关于页正文走与文章页相同的 markdown 插件管线（.heti 排版、admonition/fold/github-card 等扩展容器均可能出现）
+import '@/styles/extension.css'
+import '@/styles/markdown.css'
 
 export async function getStaticPaths() {
   return allLocales.map(lang => ({

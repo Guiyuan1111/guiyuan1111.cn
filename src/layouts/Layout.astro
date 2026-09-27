@@ -13,12 +13,11 @@ import MediaEmbed from '@/components/Widgets/MediaEmbed.astro'
 import { themeConfig } from '@/config'
 import Head from '@/layouts/Head.astro'
 import { getPageInfo } from '@/utils/page'
-import '@/styles/comment.css'
-import '@/styles/extension.css'
+// [CSS 按页分割以优化性能] comment/extension/markdown 三个样式仅文章页、关于页与首页文章摘要使用，
+// 已移至对应页面按需加载：posts/[slug].astro（comment + extension + markdown）、about.astro（extension + markdown）、index.astro（markdown）
 import '@/styles/font.css'
 import '@/styles/global.css'
 import '@/styles/lqip.css'
-import '@/styles/markdown.css'
 import '@/styles/transition.css'
 
 interface Props {

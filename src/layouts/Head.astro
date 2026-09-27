@@ -55,8 +55,12 @@ const pageImage = new URL(`${base}/og/${postSlug ?? 'home'}.png`, Astro.url.orig
 <link rel="preload" href={`${base}/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2`} as="font" type="font/woff2" crossorigin />
 <link rel="preload" href={`${base}/fonts/Snell-Black-SF.woff2`} as="font" type="font/woff2" crossorigin />
 <link rel="preload" href={`${base}/fonts/Snell-Bold-SF.woff2`} as="font" type="font/woff2" crossorigin />
+<!-- [暂时移除 STIX 字体 preload 以优化性能] STIX-VF/STIX-Italic-VF 仅被 markdown.css 的少量装饰元素（hr、脚注回链）引用，
+     而站点默认 fontStyle 为 sans，每页 preload 约 112KB 属于浪费；字体样式与主题均为 font-display:swap 按需加载，无需预载。
+     恢复方法：serif 模式如需预载，取消下面两行注释即可
 <link rel="preload" href={`${base}/fonts/STIX-VF.woff2`} as="font" type="font/woff2" crossorigin />
 <link rel="preload" href={`${base}/fonts/STIX-Italic-VF.woff2`} as="font" type="font/woff2" crossorigin />
+-->
 {katexEnabled && postMath && <link rel="stylesheet" href={katexCSS} media="print" onload={`this.media='all'`} />}
 
 <!-- Site Links -->
