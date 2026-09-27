@@ -46,6 +46,11 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 - **KaTeX 样式按需加载**（v1.0.3）：数学样式表仅注入带 `math: true` frontmatter 的文章页。**写作须知：含数学公式的文章需在 frontmatter 中加 `math: true`**。
 - **og:image 静态化**（v1.0.3）：非文章页分享图统一使用构建期生成的 `/og/home.png`，已移除 apiflash 第三方截图回退（含上游主题遗留的硬编码 key）。
 - **CI 门禁**（v1.0.3）：GitHub Actions 双 job（lint + typecheck / build），见 `.github/workflows/ci.yml`。
+- **图片管线收敛**（v1.0.4）：14 张内容源图统一收敛到 1600px（原 3000-5088px 直出），远程图床大图本地化至 `src/content/posts/_images/`，`remotePatterns` 收紧 hostname 白名单；产物内容图片 10.44MB → 2.81MB（-73%）。
+- **移除无效字体预载**（v1.0.4）：STIX 双字体仅被 markdown 装饰引用且默认 sans 模式用不到，每页 112KB 预载移除（Head.astro 注释保留恢复方法）。
+- **CSS 按页分割**（v1.0.4）：markdown/comment/extension 三个仅文章页需要的样式下沉到 posts/[slug]、about、index，全局 Layout.css 124KB → 95.5KB。
+- **CI 缓存**（v1.0.4）：astro-og-canvas 产物与 Astro 内容层在 Actions 间缓存。
+- **未启用语言文章归档**（v1.0.4）：45 篇 en/es/ja/ru/zh-tw 文章移至 `src/content/_archive/`（git mv 保留历史），不再进入 markdown 构建管线；恢复多语言时需一并移回，见 [note/disabled-features.md](note/disabled-features.md)。
 
 版本履历见 [note/release/](note/release/)；性能分析与优化建议见 [note/report/perf/](note/report/perf/)。
 
