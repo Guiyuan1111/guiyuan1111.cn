@@ -25,8 +25,8 @@
 | `src/config.ts` | `moreLocales` 原值 `['en', 'es', 'ja', 'ru', 'zh-tw']` 已注释，当前为 `[]`（核心开关，全站页面/RSS/hreflang 均由它驱动） |
 | `src/components/Button.astro` | 语言切换按钮渲染块 + `Props.supportedLangs` + `Language` 类型导入均已注释 |
 | `src/layouts/Layout.astro` | `supportedLangs` 声明、解构与向 `<Button>` 的传参均已注释 |
-| `src/pages/[...lang]/posts/[slug].astro` | `slugToLangsMap` 同 slug 多语言聚合整块注释（约 27 行）、`supportedLangs` 的 props 与 Layout 传参注释、`Language` 类型导入注释 |
-| `src/pages/[...lang]/tags/[tag].astro` | `getTagSupportedLangs` 调用与导入、`<Layout supportedLangs>` 传参注释 |
+| `src/pages/posts/[slug].astro`（原 `[...lang]/posts/[slug].astro`） | v1.0.6 先注释 `slugToLangsMap` 聚合与 `supportedLangs` 传递链；v1.0.7 路由改名时该注释块连同 `Language` 导入**已彻底删除**，只留一行指向本文件的说明。`getStaticPaths` 现按 `defaultLocale` 单层筛选 |
+| `src/pages/tags/[tag].astro`（原 `[...lang]/tags/[tag].astro`） | `getTagSupportedLangs` 调用与导入注释（v1.0.6），改名后 `getStaticPaths` 只按 `defaultLocale` 取标签（v1.0.7） |
 | `src/layouts/Head.astro` | hreflang 备选链接块注释；`allLocales`/`defaultLocale` 导入移除 |
 | `src/content.config.ts` | 内容 schema 的 `lang` 校验从 `allLocales` 放宽为 `langMap` 全部已知语言，避免残留多语言文章报错；原行已注释 |
 | `src/i18n/*.ts`（4 个文件） | 顶部各加「多语言已永久停用」横幅，说明为何不能删除 |
@@ -50,7 +50,7 @@
 | 保留项 | 原因 |
 | --- | --- |
 | `astro.config.ts` 的 `i18n` 块 | `Layout.astro` 的 `<html lang>` 依赖它；注释掉会丢失 lang 属性，导致 `uno.config.ts` 的 `cjk:` 变体（`:lang(zh)` 等）失效、Header/Navbar 中文排版样式掉。它不参与页面生成，无性能开销 |
-| `src/i18n/` 全部工具代码 | 仍有 **16 处静态值引用**（astro.config、content.config、Footer、utils/page、utils/description、PostList/TagList、3 个评论组件、Navbar/Header/TOC/Head、feed、types）。`src/pages/` 已完全不引用 i18n，但组件与工具层仍依赖，删除必然构建失败 |
+| `src/i18n/` 全部工具代码 | 仍有 **13 处静态值引用**（astro.config、content.config、Footer×2、utils/page×2、feed、PostList/TagList、Navbar/Header/TOC/Head、i18n/path 内部）。`src/pages/` 已完全不引用 i18n，评论组件那 3 处也已随 v1.0.8 移除，但组件与工具层仍依赖，删除必然构建失败 |
 | `src/i18n/ui.ts` 的 11 语言文案 | 被 Navbar/Header/TOC/Head/feed 5 处静态引用；只有 zh 条目被读取，其余为死数据但无害 |
 | `src/pages/` 中的 `currentLang` | 各路由取 `defaultLocale` 后传给内容查询与 `PostList`/`TagList` 的 `lang` prop，是正文筛选条件的一部分，与 i18n 机制本身无关 |
 

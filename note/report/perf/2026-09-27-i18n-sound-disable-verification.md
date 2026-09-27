@@ -1,5 +1,10 @@
 # 禁用多语言与界面音效的性能实测报告
 
+> **〔状态说明，现为 v1.0.8〕** 本文是 v1.0.1 阶段的**实测基线记录，数据仍然有效且被后续版本引用**。
+> - 测试命令 `pnpm build` 现为**两段式** `astro build && pnpm apply-lqip`（`astro check` 已于 v1.0.2 拆为独立 `pnpm check`）。
+> - 多语言已于 v1.0.6–v1.0.7 **升级为永久停用**（文件归档 `i18n-backup/`、路由去 i18n），下方「可随时恢复」在技术上仍成立，但项目已决定不再恢复，见 [note/disabled-features.md](../../disabled-features.md)。
+> - 界面音效仍为暂时禁用。
+
 - **测试对象**：guiyuan1111.cn（astro-theme-retypeset，v1.0.0 → v1.0.1）
 - **测试日期**：2026-09-27
 - **测试方式**：同一台机器、同一条命令（`pnpm build`，即 `astro check && astro build && pnpm apply-lqip`），分别构建初始提交 `3aae85e`（多语言 + 音效启用）与当前提交 `51de7f6`（两者禁用），对比构建产物。页面数与 dist 体积为确定性指标，构建时间为单次采样（受 LQIP/压缩增量缓存影响，仅供参考）。

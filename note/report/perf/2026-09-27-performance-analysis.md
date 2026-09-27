@@ -3,11 +3,17 @@
 > **实施状态（2026-09-27 更新）**：P0 三项已于 v1.0.2 落地（移字体出 public、拆 astro check、删 astro-compress）；P1 三项已于 v1.0.3 落地（KaTeX 按需、OG 静态化去 apiflash、CI）；复查新增的 P1 五项已于 v1.0.4 落地（源图 1600px 收敛 + 远程图本地化、STIX 预载移除、CSS 按页分割、CI 缓存、未启用语言文章归档）。P2 项（OG 图转 JPG、Widget 下沉、feed memoize、评论组件懒加载等）仍待实施。见 [note/release/1.0.2.md](../../release/1.0.2.md)、[note/release/1.0.3.md](../../release/1.0.3.md)、[note/release/1.0.4.md](../../release/1.0.4.md)。
 >
 > **更正**：下方基线数据中"站点未配置统计"有误——复查确认 Umami 处于启用状态且用的是上游作者 ID 残留（`src/config.ts` 的 `umamiAnalyticsID`），待清理。
+>
+> **〔2026-09-27 第二次更新，现为 v1.0.8〕**
+> - **P2 中的评论类条目（#6 Twikoo 懒加载、#7 Waline `/full` 入口）与 P1-5 apiflash 已全部作废**：评论系统于 v1.0.8 永久停用（组件归档 `comment-backup/`、依赖移除），apiflash 回退已于 v1.0.3 移除。见 [note/disabled-features.md](../../disabled-features.md)。
+> - **P1-6「补最小 CI」已完成**（v1.0.3 + v1.0.4 缓存）；文中「本项目无 `.git`、无 CI」均为分析时基线，**现已不成立**，正文中相关处已就地标注。
+> - 其余 P2 项（wheel passive、字体预载、partytown、chunkSizeWarningLimit）仍待实施——其中字体预载已由 v1.0.4 的 STIX 预载移除部分解决。
+> - 本文其余为只读静态分析存档，行号以分析时快照为准。
 
 - **分析对象**：guiyuan1111.cn（astro-theme-retypeset v1.0.0）
 - **分析日期**：2026-09-27
 - **分析方式**：只读静态分析，所有优化建议均先查询互联网已有实现，择优选取；未改动任何源码
-- **基线数据**：49 篇文章 × 6 种语言 ≈ 300+ 构建页面；`public/` 共 21MB（100% 为字体）；站点未配置评论与统计（`src/config.ts` 中 giscus/twikoo/waline 均为空）
+- **基线数据**：49 篇文章 × 6 种语言 ≈ 300+ 构建页面；`public/` 共 21MB（100% 为字体）；〔更正〕统计已启用（见下方更正），且 **Waline 当时并非空配置**（`serverURL` 指向主题作者服务器）——评论系统已于 v1.0.8 永久停用
 
 ---
 
@@ -127,8 +133,8 @@
 
 | # | 发现 | 证据 | 建议 |
 |---|------|------|------|
-| 7 | Waline 用 `/full` 全量入口 | `Waline.astro:2` | 换 [`@waline/client/component` 等更小入口](https://waline.js.org/en/guide/get-started/client.html)；本站未配置 Waline，主题层改进 |
-| 6 | Twikoo 脚本 eager 加载 | `Twikoo.astro`（`<script is:inline src>` 直接引入 ~100KB JS，初始化虽是 IntersectionObserver 懒的，脚本本体不是） | 对齐 Waline.astro 的模式：进入视口再动态注入脚本；本站未配置评论，主题层改进 |
+| 7 | ~~Waline 用 `/full` 全量入口~~ **〔已作废 v1.0.8〕** | ~~`Waline.astro:2`~~ 组件已归档至 `comment-backup/components/`，依赖已移除 | 评论系统永久停用，无需优化 |
+| 6 | ~~Twikoo 脚本 eager 加载~~ **〔已作废 v1.0.8〕** | ~~`Twikoo.astro`~~ 同上 | 同上 |
 | 8 | 全局 non-passive wheel 监听 | `MediaEmbed.astro:126`（每页挂 `{ passive: false }` wheel 监听，仅为图库横向滚动服务） | 仅在页面存在 `.gallery-container` 时挂载，其余页面保持合成器滚动 |
 | 9 | 每页预加载 5 个字体（~280KB） | `Head.astro:58-62` | 只预加载首屏真实使用的 1-2 个（标题字体 + 正文衬线），其余靠 `unicode-range` 按需；浏览器对未使用 preload 会在控制台告警 |
 | 10 | 未配置统计仍集成 partytown | `astro.config.ts:49-53` | 若确定不用 GA/Umami 可移除（每页省几 KB）；将来要接统计则保留（Partytown 本身是业界最佳实践） |
@@ -154,8 +160,9 @@
 
 ## 建议实施顺序
 
-1. **一次提交完成 P0 三项**（移字体出 public、拆 check、删 astro-compress）——均为配置/路径级改动，风险低、收益立现
-2. **P1 随功能迭代做**：OG 静态化回退（顺带解决密钥遗留）、CI 最小模板、KaTeX 按需
-3. **P2 主题层项**回报上游（Twikoo 懒加载、Waline 入口、wheel passive），或等启用评论时一并处理
+1. ✅ **P0 三项已完成**（v1.0.2）：移字体出 public、拆 check、删 astro-compress
+2. ✅ **P1 已全部完成**（v1.0.3 + v1.0.4）：OG 静态化回退、CI 最小模板 + 缓存、KaTeX 按需、图片管线收敛、STIX 预载移除、CSS 按页分割
+3. ⚠️ **P2 现状**：评论类两项（Twikoo 懒加载、Waline 入口）**已随评论系统永久停用而作废**；
+   仍值得做的是 wheel passive 化与字体预载精简。主题层改进若要回报上游，走 `pnpm update-theme` 的 upstream 流程
 
 > 本报告为只读分析，未改动任何源码。所有文件行号以 2026-09-27 的代码快照为准。
