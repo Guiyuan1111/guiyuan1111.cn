@@ -11,6 +11,13 @@
 //    woff2 → woff → ttf src chains. Every browser that can run KaTeX speaks
 //    woff2, so the woff/ttf copies (≈0.8MB) are dead weight — drop the src
 //    entries and delete files that no dist asset references anymore.
+// 3. Unreachable-asset sweep: with rehype-katex/rehype-mermaid both rendering
+//    at build time, a build whose pages carry no math spans leaves katex css +
+//    fonts (~0.27MB) referenced by nothing. benchmark/reachability.mjs does a
+//    text-level reference closure over every emitted asset; closure-external
+//    files are deleted. Vite always emits literal chunk paths, so text search
+//    is a safe upper bound. Self-healing: a future math post renders the katex
+//    <link>, making css+fonts reachable again and the sweep keeps them.
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
@@ -107,10 +114,41 @@ async function trimKatexLegacyFonts() {
   console.log(`[optimize-dist] katex: removed ${removed} legacy woff/ttf files (-${(saved / 1048576).toFixed(2)}MB)`)
 }
 
+async function sweepUnreachableAssets() {
+  const { analyze } = await import('../benchmark/reachability.mjs')
+  // belt & suspenders: pages that actually carry feature markup keep everything
+  // (attribute-anchored so prose merely mentioning the word never disables it)
+  for (const p of walk(DIST)) {
+    if (!p.endsWith('.html')) {
+      continue
+    }
+    const html = fs.readFileSync(p, 'utf8')
+    if (/class="mermaid"|class="katex/.test(html)) {
+      console.log('[optimize-dist] sweep: skipped — pages carry mermaid/katex feature markup')
+      return
+    }
+  }
+  const { unreachable, bytes } = analyze(DIST)
+  let saved = 0
+  for (const f of unreachable) {
+    saved += bytes(f)
+    fs.unlinkSync(f)
+  }
+  console.log(`[optimize-dist] sweep: removed ${unreachable.length} unreachable _astro assets (-${(saved / 1048576).toFixed(2)}MB)`)
+}
+
 const results = await Promise.allSettled([optimizeOg(), trimKatexLegacyFonts()])
 for (const r of results) {
   if (r.status === 'rejected') {
     console.warn(`[optimize-dist] step failed (non-fatal, deploy size unaffected): ${r.reason}`)
     process.exitCode = 0
   }
+}
+// sweep runs last and alone: it must see the dist the steps above finished with
+try {
+  await sweepUnreachableAssets()
+}
+catch (err) {
+  console.warn(`[optimize-dist] sweep failed (non-fatal, deploy-weight probe will flag it): ${err}`)
+  process.exitCode = 0
 }
