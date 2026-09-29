@@ -20,7 +20,8 @@ node benchmark/font-cascade-check.mjs        # 真浏览器红线门禁（本地
 |---|---|---|
 | `page-weight.mjs` | 每页 HTML/CSS/JS/预加载资源的原始与 gzip 传输体积 | 从 HTML 里解析 `<link>`/`<script src>`/`<img>` 实际引用，gzip(9) 近似线上 brotli |
 | `font-traffic.mjs` | 每页按 `unicode-range` 会命中的字体分片数与字节数 | 解析 `src/styles/font.css` + `src/styles/earlysummer-shards.css` 的全部 `@font-face`，提取页面可见文本的字符集逐片匹配 |
-| `deploy-weight.mjs` | dist 部署足迹：总量/分类型/最大文件 + 死重探针 | 只读遍历 dist；死重探针（earlysummerPages/originalUiFonts/katexLegacyFonts/mermaidChunks/sounds）统计「存在于 dist 但任何页面都不会请求」的字节，模式感知（sans 下页面字体算死重） |
+| `deploy-weight.mjs` | dist 部署足迹：总量/分类型/最大文件 + 死重探针 | 只读遍历 dist；死重探针（earlysummerPages/originalUiFonts/katexLegacyFonts/orphanAstroAssets/mermaidChunks/sounds）统计「存在于 dist 但任何页面都不会请求」的字节，模式感知（sans 下页面字体算死重）；orphanAstroAssets 由 `reachability.mjs` 引用闭包判定，构建清扫后必须为 0 |
+| `reachability.mjs` | dist/_astro 资产的文本级引用闭包 | 对每个候选 basename 做全产物文本包含检查（覆盖静态/动态导入、css url()、preload），从 HTML 等非候选引用根传播闭包；optimize-dist 清扫与 deploy-weight 探针共用 |
 | `font-cascade-check.mjs` | 真实浏览器中的字体请求级联 | 无头 Chromium/Edge + CDP：逐页加载 dist，断言字体网络请求与渲染来源 |
 
 ## 字体口径与 fontStyle 模式（重要）
@@ -62,6 +63,7 @@ node benchmark/font-cascade-check.mjs        # 真浏览器红线门禁（本地
 - **绝对红线（零容忍，与内容增长无关，CI 长期可用）**：无页面产出；sans 构建
   出现 `fonts/earlysummer-pages/`（apply-page-fonts 清理被跳过）；dist 出现
   Snell/STIX 源字体（回流 public）；dist 出现 KaTeX woff/ttf（遗留裁剪被跳过）；
+  dist 出现引用闭包外不可达的 `_astro` 资产（optimize-dist 清扫被跳过/失败）；
   font-traffic 最小页覆盖率 < 95%（可见字符无 face 覆盖）。
 - **基线漂移（`--assert=<label>`，可选）**：对比 `results/<label>.json`——每页
   中位数 > ×1.15、最大值 > ×1.25、部署总量 > ×1.5 即失败。容差刻意宽松，
@@ -74,6 +76,7 @@ node benchmark/font-cascade-check.mjs        # 真浏览器红线门禁（本地
 
 - `run-all.mjs` — 编排器，汇总写入 `results/<label>.json`
 - `page-weight.mjs` / `font-traffic.mjs` / `deploy-weight.mjs` — 三个独立可跑的基准（支持 `--json=path` 单独导出）
+- `reachability.mjs` — dist/_astro 引用闭包分析（optimize-dist 清扫与 deploy-weight 探针共用）
 - `font-cascade-check.mjs` — 真浏览器级联门禁（CDP 驱动本地无头 Chrome/Edge，
   内置一次性静态服务器与桌面视口——主题在窄视口下正文走 sans 栈，serif 级联只在宽视口存在）
 - `results/*.json` — 历次测量留档（入库作为证据）

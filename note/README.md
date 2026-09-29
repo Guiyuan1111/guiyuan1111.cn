@@ -2,7 +2,7 @@
 
 guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目笔记入口。
 
-> **当前版本：v1.0.19**（2026-09-30）。版本详情见 [release/](./release/)；
+> **当前版本：v1.0.20**（2026-09-30）。版本详情见 [release/](./release/)；
 > **多语言与评论系统已永久停用且代码已删除**（恢复需从 git 历史取回，见
 > [disabled-features.md](./disabled-features.md)），界面音效暂时禁用；
 > `src/config.ts` 已是全站唯一配置源，站点化已收尾。
@@ -60,6 +60,7 @@ guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目�
 | [1.0.17](./release/1.0.17.md) | **部署体积清理 R6**：sans 清理页面字体、og PNG 调色板重编码、katex 遗留裁剪、源字体移出 public；dist 20.31→10.64MB（-47.6%），访客侧零回归；新增 deploy-weight 基准 |
 | [1.0.18](./release/1.0.18.md) | **剩余固定串字集收窄 R7**：Snell-Bold 12.6→2.2KB、STIX-Italic 18.8→5.0KB；webfont 46.1→21.8KB/页（三轮累计 -72.4%），每页引用资产中位数累计 -49.7% |
 | [1.0.19](./release/1.0.19.md) | **基准回归门禁 R8 + 字集 used 采集修复**：`--assert` 绝对红线+基线漂移门禁入 CI；修复 class_chars str/int 类型错误（v1.0.16 起标题/页脚/"min" 字形静默回退）；端到端字集漂移演练验证 |
+| [1.0.20](./release/1.0.20.md) | **不可达资产清扫 R9**：文本级引用闭包分析（reachability.mjs），构建尾自动删除无引用产物（KaTeX CSS+字体 276KB），自愈式保留未来特性路径；探针+CI 红线固化；部署 10.62→10.35MB，访客侧零变化 |
 
 ## 分析报告
 
@@ -67,6 +68,7 @@ guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目�
 
 | 文件 | 状态 |
 | --- | --- |
+| [2026-09-30-unreachable-sweep-r9.md](./report/perf/2026-09-30-unreachable-sweep-r9.md) | **v1.0.20 不可达清扫 R9 实测**：引用闭包清扫 KaTeX 死重 -0.27MB（自愈式），部署累计 -49.1%；含 HTML 压缩无潜力与 mermaid 图谱可达两项排查否决记录 |
 | [2026-09-30-benchmark-assert-r8.md](./report/perf/2026-09-30-benchmark-assert-r8.md) | **v1.0.19 断言门禁 R8 实测**：`--assert` 绝对红线+基线漂移设计与三类缺陷负向演练；揪出并修复 class_chars 字集静默丢弃（三处文本回退三个版本）；端到端字集漂移演练 |
 | [2026-09-30-webfont-charset-r7.md](./report/perf/2026-09-30-webfont-charset-r7.md) | **v1.0.18 字集收窄 R7 实测**：Snell-Bold/STIX-Italic 收窄，webfont -52.7%；含 R5–R7 三轮累计（每页资产 -49.7%、webfont -72.4%、部署 -47.6%） |
 | [2026-09-30-deploy-weight-r6.md](./report/perf/2026-09-30-deploy-weight-r6.md) | **v1.0.17 部署体积 R6 实测**：dist 20.31→10.64MB（-47.6%），死重探针逐项归零（mermaid/sounds 有意保留），访客侧零回归；含放弃项记录 |
