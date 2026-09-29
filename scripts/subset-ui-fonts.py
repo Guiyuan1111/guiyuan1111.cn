@@ -88,7 +88,8 @@ def class_chars(src: str, cls: str) -> set[int]:
         re.S | re.I,
     )
     for m in pat.finditer(src):
-        chars.update(H.unescape(TAG_RE.sub('', m.group(2))))
+        # int codepoints — build_charset intersects with the int-keyed cmap
+        chars.update(ord(c) for c in H.unescape(TAG_RE.sub('', m.group(2))))
     return chars
 
 
