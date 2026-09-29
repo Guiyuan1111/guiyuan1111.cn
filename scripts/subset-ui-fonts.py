@@ -50,6 +50,7 @@ from fontTools.ttLib import TTFont
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
 FONTS = ROOT / 'public' / 'fonts'
+SOURCES = ROOT / 'src' / 'assets' / 'fonts'  # v1.0.17: source fonts live outside public/ (build-time only, never deployed)
 FONT_CSS = ROOT / 'src' / 'styles' / 'font.css'
 HEAD_ASTRO = ROOT / 'src' / 'layouts' / 'Head.astro'
 
@@ -145,7 +146,7 @@ def main() -> None:
     changed_head = False
 
     for family, source, cls, policy in TARGETS:
-        src_path = FONTS / source
+        src_path = SOURCES / source
         src_font = TTFont(src_path)
         cmap = set(src_font.getBestCmap())
         had_fvar = 'fvar' in src_font
