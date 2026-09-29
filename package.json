@@ -15,7 +15,8 @@
     "new-post": "tsx scripts/new-post.ts",
     "apply-lqip": "tsx scripts/apply-lqip.ts",
     "format-posts": "tsx scripts/format-posts.ts",
-    "update-theme": "tsx scripts/update-theme.ts"
+    "update-theme": "tsx scripts/update-theme.ts",
+    "bench": "node benchmark/run-all.mjs --label=latest"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",
