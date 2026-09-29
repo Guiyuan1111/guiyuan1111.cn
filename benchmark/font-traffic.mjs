@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Per-page webfont shard traffic benchmark (read-only, zero-dep).
-// Parses every @font-face unicode-range from font.css, extracts the visible text
+// Parses every @font-face unicode-range from font.css + earlysummer-shards.css,
+// extracts the visible text
 // of each built page, and reports exactly which shard files a browser would
 // fetch for that page — the honest cost of "on-demand" CJK font loading.
 //
@@ -85,9 +86,13 @@ function median(arr) {
 
 export function run(cfg = {}) {
   const dist = cfg.dist ?? 'dist'
-  const cssPath = cfg.css ?? 'src/styles/font.css'
-  const css = fs.readFileSync(cssPath, 'utf8')
-  const faces = parseFaces(css)
+  // Shard faces live in their own stylesheet since R4 (serif-mode-only <link>);
+  // font.css keeps the UI faces + the Subset preload. Union both so the
+  // serif-hypothetical shard metric keeps counting what the cascade could touch.
+  const cssPaths = cfg.css
+    ? [cfg.css]
+    : ['src/styles/font.css', 'src/styles/earlysummer-shards.css'].filter(p => fs.existsSync(p))
+  const faces = cssPaths.flatMap(p => parseFaces(fs.readFileSync(p, 'utf8')))
   const resolveFile = url => (url.startsWith('/') ? path.join(dist, url) : path.join('.', url))
   const sizeOf = new Map()
   for (const f of faces) {
@@ -204,7 +209,7 @@ export function run(cfg = {}) {
     minPageCoveragePct: pages.length ? Math.min(...pages.map(r => r.coveragePct ?? 100)) : null,
   }
   return {
-    meta: { dist, css: cssPath },
+    meta: { dist, css: cssPaths },
     summary,
     pages,
     shardPopularity: [...pop.entries()]
@@ -220,7 +225,7 @@ if (invokedDirectly) {
   const arg = k => process.argv.find(a => a.startsWith(`--${k}=`))?.split('=').slice(1).join('=')
   const cfg = {
     dist: arg('dist') ?? 'dist',
-    css: arg('css') ?? 'src/styles/font.css',
+    css: arg('css'),
     pagesManifest: arg('pages-manifest'),
   }
   const r = run(cfg)
