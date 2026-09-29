@@ -48,6 +48,11 @@
   --at-apply: 'mb-4 text-pretty cjk:text-justify';
 }
 
+/* First-line indent for post body paragraphs (top-level only: blockquotes, lists and captions stay flush) */
+#post-content > :where(p:not(.no-heti):not(.no-heti *)) {
+  text-indent: 2em;
+}
+
 /* Links */
 .heti :where(a:not(.no-heti):not(.no-heti *)) {
   --at-apply: 'font-semibold tracking-normal underline underline-0.075em decoration-secondary/80 underline-offset-0.1em cjk:break-all';
