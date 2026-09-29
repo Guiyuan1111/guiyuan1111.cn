@@ -17,7 +17,7 @@ node benchmark/font-cascade-check.mjs        # 真浏览器红线门禁（本地
 | 脚本 | 指标 | 口径 |
 |---|---|---|
 | `page-weight.mjs` | 每页 HTML/CSS/JS/预加载资源的原始与 gzip 传输体积 | 从 HTML 里解析 `<link>`/`<script src>`/`<img>` 实际引用，gzip(9) 近似线上 brotli |
-| `font-traffic.mjs` | 每页按 `unicode-range` 会命中的字体分片数与字节数 | 解析 `src/styles/font.css` 的全部 `@font-face`，提取页面可见文本的字符集逐片匹配 |
+| `font-traffic.mjs` | 每页按 `unicode-range` 会命中的字体分片数与字节数 | 解析 `src/styles/font.css` + `src/styles/earlysummer-shards.css` 的全部 `@font-face`，提取页面可见文本的字符集逐片匹配 |
 | `font-cascade-check.mjs` | 真实浏览器中的字体请求级联 | 无头 Chromium/Edge + CDP：逐页加载 dist，断言字体网络请求与渲染来源 |
 
 ## 字体口径与 fontStyle 模式（重要）
