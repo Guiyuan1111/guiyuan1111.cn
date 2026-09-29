@@ -1,0 +1,1454 @@
+{
+  "dist": "dist",
+  "date": "2026-09-29T19:37:47.642Z",
+  "summary": {
+    "pages": 44,
+    "medianFcpMs": 36,
+    "medianLcpMs": 36,
+    "medianDclMs": 33,
+    "medianLoadMs": 34,
+    "medianTransferKB": 134.9,
+    "worstLcp": {
+      "page": "posts/optimism-and-pessimism-are-both-human-self-deception/index.html",
+      "fcpMs": 224,
+      "lcpMs": 224,
+      "dclMs": 222,
+      "loadMs": 222,
+      "transferKB": 176.6,
+      "requests": 12,
+      "wireWithPrefetchKB": 332.2,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/posts/optimism-and-pessimism-are-both-human-self-deception/index.html",
+          "kb": 69.5
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    }
+  },
+  "pages": [
+    {
+      "page": "about/index.html",
+      "fcpMs": 68,
+      "lcpMs": 68,
+      "dclMs": 68,
+      "loadMs": 69,
+      "transferKB": 204.7,
+      "requests": 14,
+      "wireWithPrefetchKB": 404.3,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "chrome://theme/colors.css?sets=ui%2Cchrome&version=1790710596439",
+          "kb": 79
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/tags/",
+          "kb": 24.2
+        },
+        {
+          "url": "/about/index.html",
+          "kb": 16.8
+        }
+      ]
+    },
+    {
+      "page": "index.html",
+      "fcpMs": 52,
+      "lcpMs": 52,
+      "dclMs": 51,
+      "loadMs": 52,
+      "transferKB": 250.8,
+      "requests": 11,
+      "wireWithPrefetchKB": 557.2,
+      "topUrls": [
+        {
+          "url": "/index.html",
+          "kb": 155.6
+        },
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/posts/%E6%88%91%E4%BA%8C%E5%8D%81%E4%B8%80%E5%B2%81%E9%82%A3%E5%B9%B4/",
+          "kb": 51.7
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/posts/%E5%90%88%E6%AC%A2%E6%A0%91/",
+          "kb": 30.2
+        }
+      ]
+    },
+    {
+      "page": "posts/optimism-and-pessimism-are-both-human-self-deception/index.html",
+      "fcpMs": 224,
+      "lcpMs": 224,
+      "dclMs": 222,
+      "loadMs": 222,
+      "transferKB": 176.6,
+      "requests": 12,
+      "wireWithPrefetchKB": 332.2,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/posts/optimism-and-pessimism-are-both-human-self-deception/index.html",
+          "kb": 69.5
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/一个陌生女人的来信/index.html",
+      "fcpMs": 100,
+      "lcpMs": 100,
+      "dclMs": 97,
+      "loadMs": 97,
+      "transferKB": 219,
+      "requests": 12,
+      "wireWithPrefetchKB": 374.7,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/posts/%E4%B8%80%E4%B8%AA%E9%99%8C%E7%94%9F%E5%A5%B3%E4%BA%BA%E7%9A%84%E6%9D%A5%E4%BF%A1/index.html",
+          "kb": 111.9
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/加缪的日记/index.html",
+      "fcpMs": 188,
+      "lcpMs": 188,
+      "dclMs": 176,
+      "loadMs": 176,
+      "transferKB": 150.6,
+      "requests": 12,
+      "wireWithPrefetchKB": 306.2,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/posts/%E5%8A%A0%E7%BC%AA%E7%9A%84%E6%97%A5%E8%AE%B0/index.html",
+          "kb": 43.4
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/匆匆/index.html",
+      "fcpMs": 40,
+      "lcpMs": 40,
+      "dclMs": 36,
+      "loadMs": 36,
+      "transferKB": 133.5,
+      "requests": 12,
+      "wireWithPrefetchKB": 289.1,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/posts/%E5%8C%86%E5%8C%86/index.html",
+          "kb": 26.3
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/合欢树/index.html",
+      "fcpMs": 40,
+      "lcpMs": 40,
+      "dclMs": 30,
+      "loadMs": 31,
+      "transferKB": 137.4,
+      "requests": 12,
+      "wireWithPrefetchKB": 293,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/posts/%E5%90%88%E6%AC%A2%E6%A0%91/index.html",
+          "kb": 30.2
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/在黑暗中并肩行走/index.html",
+      "fcpMs": 32,
+      "lcpMs": 32,
+      "dclMs": 31,
+      "loadMs": 31,
+      "transferKB": 135.1,
+      "requests": 12,
+      "wireWithPrefetchKB": 290.8,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/posts/%E5%9C%A8%E9%BB%91%E6%9A%97%E4%B8%AD%E5%B9%B6%E8%82%A9%E8%A1%8C%E8%B5%B0/index.html",
+          "kb": 28
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/墓碣文/index.html",
+      "fcpMs": 44,
+      "lcpMs": 44,
+      "dclMs": 31,
+      "loadMs": 31,
+      "transferKB": 132.9,
+      "requests": 12,
+      "wireWithPrefetchKB": 288.5,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/posts/%E5%A2%93%E7%A2%A3%E6%96%87/index.html",
+          "kb": 25.7
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/多余的话/index.html",
+      "fcpMs": 48,
+      "lcpMs": 48,
+      "dclMs": 46,
+      "loadMs": 46,
+      "transferKB": 182,
+      "requests": 12,
+      "wireWithPrefetchKB": 337.7,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/posts/%E5%A4%9A%E4%BD%99%E7%9A%84%E8%AF%9D/index.html",
+          "kb": 74.9
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/大卫科波菲尔节选/index.html",
+      "fcpMs": 40,
+      "lcpMs": 40,
+      "dclMs": 39,
+      "loadMs": 39,
+      "transferKB": 158,
+      "requests": 12,
+      "wireWithPrefetchKB": 313.7,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/posts/%E5%A4%A7%E5%8D%AB%E7%A7%91%E6%B3%A2%E8%8F%B2%E5%B0%94%E8%8A%82%E9%80%89/index.html",
+          "kb": 50.9
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/大学里绝对精致的利己主义者/index.html",
+      "fcpMs": 44,
+      "lcpMs": 44,
+      "dclMs": 43,
+      "loadMs": 43,
+      "transferKB": 146.8,
+      "requests": 12,
+      "wireWithPrefetchKB": 302.4,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/posts/%E5%A4%A7%E5%AD%A6%E9%87%8C%E7%BB%9D%E5%AF%B9%E7%B2%BE%E8%87%B4%E7%9A%84%E5%88%A9%E5%B7%B1%E4%B8%BB%E4%B9%89%E8%80%85/index.html",
+          "kb": 39.6
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/大暑/index.html",
+      "fcpMs": 44,
+      "lcpMs": 44,
+      "dclMs": 45,
+      "loadMs": 46,
+      "transferKB": 141,
+      "requests": 12,
+      "wireWithPrefetchKB": 296.6,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/posts/%E5%A4%A7%E6%9A%91/index.html",
+          "kb": 33.9
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/怎么能一辈子保持赤子之心/index.html",
+      "fcpMs": 32,
+      "lcpMs": 32,
+      "dclMs": 36,
+      "loadMs": 37,
+      "transferKB": 143.3,
+      "requests": 12,
+      "wireWithPrefetchKB": 298.9,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/posts/%E6%80%8E%E4%B9%88%E8%83%BD%E4%B8%80%E8%BE%88%E5%AD%90%E4%BF%9D%E6%8C%81%E8%B5%A4%E5%AD%90%E4%B9%8B%E5%BF%83/index.html",
+          "kb": 36.1
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/我二十一岁那年/index.html",
+      "fcpMs": 160,
+      "lcpMs": 160,
+      "dclMs": 146,
+      "loadMs": 147,
+      "transferKB": 158.8,
+      "requests": 12,
+      "wireWithPrefetchKB": 314.5,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/posts/%E6%88%91%E4%BA%8C%E5%8D%81%E4%B8%80%E5%B2%81%E9%82%A3%E5%B9%B4/index.html",
+          "kb": 51.7
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/故都的秋/index.html",
+      "fcpMs": 36,
+      "lcpMs": 36,
+      "dclMs": 37,
+      "loadMs": 37,
+      "transferKB": 137.3,
+      "requests": 12,
+      "wireWithPrefetchKB": 292.9,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/posts/%E6%95%85%E9%83%BD%E7%9A%84%E7%A7%8B/index.html",
+          "kb": 30.1
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/热妮娅鲁勉采娃/index.html",
+      "fcpMs": 52,
+      "lcpMs": 52,
+      "dclMs": 52,
+      "loadMs": 52,
+      "transferKB": 147.3,
+      "requests": 12,
+      "wireWithPrefetchKB": 302.9,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/posts/%E7%83%AD%E5%A6%AE%E5%A8%85%E9%B2%81%E5%8B%89%E9%87%87%E5%A8%83/index.html",
+          "kb": 40.1
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/百无一用是深情不屑一顾最相思/index.html",
+      "fcpMs": 108,
+      "lcpMs": 108,
+      "dclMs": 98,
+      "loadMs": 99,
+      "transferKB": 169.3,
+      "requests": 12,
+      "wireWithPrefetchKB": 324.9,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/posts/%E7%99%BE%E6%97%A0%E4%B8%80%E7%94%A8%E6%98%AF%E6%B7%B1%E6%83%85%E4%B8%8D%E5%B1%91%E4%B8%80%E9%A1%BE%E6%9C%80%E7%9B%B8%E6%80%9D/index.html",
+          "kb": 62.1
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/秋天的怀念/index.html",
+      "fcpMs": 36,
+      "lcpMs": 36,
+      "dclMs": 30,
+      "loadMs": 30,
+      "transferKB": 134.9,
+      "requests": 12,
+      "wireWithPrefetchKB": 290.6,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/posts/%E7%A7%8B%E5%A4%A9%E7%9A%84%E6%80%80%E5%BF%B5/index.html",
+          "kb": 27.8
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/红玫瑰与白玫瑰/index.html",
+      "fcpMs": 124,
+      "lcpMs": 124,
+      "dclMs": 121,
+      "loadMs": 121,
+      "transferKB": 219.1,
+      "requests": 12,
+      "wireWithPrefetchKB": 374.8,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/posts/%E7%BA%A2%E7%8E%AB%E7%91%B0%E4%B8%8E%E7%99%BD%E7%8E%AB%E7%91%B0/index.html",
+          "kb": 112
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/背影/index.html",
+      "fcpMs": 44,
+      "lcpMs": 44,
+      "dclMs": 35,
+      "loadMs": 36,
+      "transferKB": 135.6,
+      "requests": 12,
+      "wireWithPrefetchKB": 291.2,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/posts/%E8%83%8C%E5%BD%B1/index.html",
+          "kb": 28.4
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/致恰达耶夫/index.html",
+      "fcpMs": 28,
+      "lcpMs": 28,
+      "dclMs": 29,
+      "loadMs": 29,
+      "transferKB": 132.7,
+      "requests": 12,
+      "wireWithPrefetchKB": 288.3,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/posts/%E8%87%B4%E6%81%B0%E8%BE%BE%E8%80%B6%E5%A4%AB/index.html",
+          "kb": 25.5
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/苦难的精神价值/index.html",
+      "fcpMs": 40,
+      "lcpMs": 40,
+      "dclMs": 27,
+      "loadMs": 28,
+      "transferKB": 136.4,
+      "requests": 12,
+      "wireWithPrefetchKB": 292.1,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/posts/%E8%8B%A6%E9%9A%BE%E7%9A%84%E7%B2%BE%E7%A5%9E%E4%BB%B7%E5%80%BC/index.html",
+          "kb": 29.3
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/送东阳马生序/index.html",
+      "fcpMs": 36,
+      "lcpMs": 36,
+      "dclMs": 33,
+      "loadMs": 34,
+      "transferKB": 134,
+      "requests": 12,
+      "wireWithPrefetchKB": 289.6,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/posts/%E9%80%81%E4%B8%9C%E9%98%B3%E9%A9%AC%E7%94%9F%E5%BA%8F/index.html",
+          "kb": 26.9
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "posts/遥远的高三八/index.html",
+      "fcpMs": 48,
+      "lcpMs": 48,
+      "dclMs": 50,
+      "loadMs": 50,
+      "transferKB": 173.6,
+      "requests": 12,
+      "wireWithPrefetchKB": 329.2,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/posts/%E9%81%A5%E8%BF%9C%E7%9A%84%E9%AB%98%E4%B8%89%E5%85%AB/index.html",
+          "kb": 66.4
+        },
+        {
+          "url": "/_astro/Layout.gb21DA08.css",
+          "kb": 35.2
+        },
+        {
+          "url": "/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BOHegxVA.js",
+          "kb": 13.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "kb": 13
+        }
+      ]
+    },
+    {
+      "page": "tags/index.html",
+      "fcpMs": 28,
+      "lcpMs": 28,
+      "dclMs": 30,
+      "loadMs": 31,
+      "transferKB": 110.3,
+      "requests": 10,
+      "wireWithPrefetchKB": 1003.7,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E9%92%B1%E7%90%86%E7%BE%A4/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/史蒂芬·茨威格/index.html",
+      "fcpMs": 28,
+      "lcpMs": 28,
+      "dclMs": 27,
+      "loadMs": 27,
+      "transferKB": 116.3,
+      "requests": 10,
+      "wireWithPrefetchKB": 1009.7,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E9%92%B1%E7%90%86%E7%BE%A4/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/史铁生/index.html",
+      "fcpMs": 28,
+      "lcpMs": 28,
+      "dclMs": 28,
+      "loadMs": 28,
+      "transferKB": 127,
+      "requests": 10,
+      "wireWithPrefetchKB": 1020.4,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/index.html",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/周国平/index.html",
+      "fcpMs": 28,
+      "lcpMs": 28,
+      "dclMs": 29,
+      "loadMs": 29,
+      "transferKB": 121.8,
+      "requests": 10,
+      "wireWithPrefetchKB": 1015.2,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E9%92%B1%E7%90%86%E7%BE%A4/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/孔庆东/index.html",
+      "fcpMs": 28,
+      "lcpMs": 28,
+      "dclMs": 32,
+      "loadMs": 32,
+      "transferKB": 116,
+      "requests": 10,
+      "wireWithPrefetchKB": 1009.4,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E9%92%B1%E7%90%86%E7%BE%A4/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/宋濂/index.html",
+      "fcpMs": 28,
+      "lcpMs": 28,
+      "dclMs": 26,
+      "loadMs": 27,
+      "transferKB": 116,
+      "requests": 10,
+      "wireWithPrefetchKB": 1009.4,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E9%92%B1%E7%90%86%E7%BE%A4/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/尤里·纳吉宾/index.html",
+      "fcpMs": 28,
+      "lcpMs": 28,
+      "dclMs": 35,
+      "loadMs": 35,
+      "transferKB": 116.1,
+      "requests": 10,
+      "wireWithPrefetchKB": 1009.5,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E9%92%B1%E7%90%86%E7%BE%A4/",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/张爱玲/index.html",
+      "fcpMs": 36,
+      "lcpMs": 36,
+      "dclMs": 25,
+      "loadMs": 25,
+      "transferKB": 116.1,
+      "requests": 10,
+      "wireWithPrefetchKB": 1009.5,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E9%92%B1%E7%90%86%E7%BE%A4/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/徐可加/index.html",
+      "fcpMs": 28,
+      "lcpMs": 28,
+      "dclMs": 28,
+      "loadMs": 28,
+      "transferKB": 115.8,
+      "requests": 10,
+      "wireWithPrefetchKB": 1009.2,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E9%92%B1%E7%90%86%E7%BE%A4/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/摘抄/index.html",
+      "fcpMs": 32,
+      "lcpMs": 32,
+      "dclMs": 30,
+      "loadMs": 31,
+      "transferKB": 122.3,
+      "requests": 10,
+      "wireWithPrefetchKB": 1015.7,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/index.html",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/文哲/index.html",
+      "fcpMs": 32,
+      "lcpMs": 32,
+      "dclMs": 31,
+      "loadMs": 32,
+      "transferKB": 239.8,
+      "requests": 10,
+      "wireWithPrefetchKB": 1133.2,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/index.html",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/普希金/index.html",
+      "fcpMs": 36,
+      "lcpMs": 36,
+      "dclMs": 36,
+      "loadMs": 37,
+      "transferKB": 116,
+      "requests": 10,
+      "wireWithPrefetchKB": 1009.4,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E9%92%B1%E7%90%86%E7%BE%A4/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/朱自清/index.html",
+      "fcpMs": 36,
+      "lcpMs": 36,
+      "dclMs": 41,
+      "loadMs": 41,
+      "transferKB": 121.2,
+      "requests": 10,
+      "wireWithPrefetchKB": 1014.6,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E9%92%B1%E7%90%86%E7%BE%A4/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/查尔斯·狄更斯/index.html",
+      "fcpMs": 32,
+      "lcpMs": 32,
+      "dclMs": 24,
+      "loadMs": 24,
+      "transferKB": 116.2,
+      "requests": 10,
+      "wireWithPrefetchKB": 1009.6,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E9%92%B1%E7%90%86%E7%BE%A4/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/瞿秋白/index.html",
+      "fcpMs": 28,
+      "lcpMs": 28,
+      "dclMs": 25,
+      "loadMs": 25,
+      "transferKB": 115.9,
+      "requests": 10,
+      "wireWithPrefetchKB": 1009.3,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E9%92%B1%E7%90%86%E7%BE%A4/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/苏珊·桑塔格/index.html",
+      "fcpMs": 28,
+      "lcpMs": 28,
+      "dclMs": 27,
+      "loadMs": 27,
+      "transferKB": 116,
+      "requests": 10,
+      "wireWithPrefetchKB": 1009.4,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E9%92%B1%E7%90%86%E7%BE%A4/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/郁达夫/index.html",
+      "fcpMs": 24,
+      "lcpMs": 24,
+      "dclMs": 24,
+      "loadMs": 25,
+      "transferKB": 115.9,
+      "requests": 10,
+      "wireWithPrefetchKB": 1009.3,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E9%92%B1%E7%90%86%E7%BE%A4/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/钱理群/index.html",
+      "fcpMs": 40,
+      "lcpMs": 40,
+      "dclMs": 32,
+      "loadMs": 33,
+      "transferKB": 122.3,
+      "requests": 10,
+      "wireWithPrefetchKB": 1015.7,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E9%92%B1%E7%90%86%E7%BE%A4/index.html",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        }
+      ]
+    },
+    {
+      "page": "tags/鲁迅/index.html",
+      "fcpMs": 24,
+      "lcpMs": 24,
+      "dclMs": 26,
+      "loadMs": 26,
+      "transferKB": 115.8,
+      "requests": 10,
+      "wireWithPrefetchKB": 1009.3,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 155.6
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 153.7
+        },
+        {
+          "url": "/tags/%E5%8F%B2%E9%93%81%E7%94%9F/",
+          "kb": 40.9
+        },
+        {
+          "url": "/tags/%E6%91%98%E6%8A%84/",
+          "kb": 36.2
+        },
+        {
+          "url": "/tags/%E9%92%B1%E7%90%86%E7%BE%A4/",
+          "kb": 36.2
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "sharedPages": 41,
+  "oldSnapshot": "r10-timing-v1014.json",
+  "newSnapshot": "r10-timing-current.json",
+  "medians": {
+    "wireKb": {
+      "old": 348,
+      "new": 134,
+      "deltaPct": 61.5
+    },
+    "fcpLocalMs": {
+      "old": 44,
+      "new": 36
+    },
+    "lcpLocalMs": {
+      "old": 44,
+      "new": 36
+    },
+    "loadLocalMs": {
+      "old": 37,
+      "new": 33
+    }
+  },
+  "estimatedFcpMs": {
+    "congested ~400kbps": {
+      "old": 7171,
+      "new": 2780,
+      "deltaPct": 61.2
+    },
+    "Slow 4G ~1.6Mbps": {
+      "old": 1826,
+      "new": 722,
+      "deltaPct": 60.5
+    },
+    "regular 4G ~8Mbps": {
+      "old": 400,
+      "new": 173,
+      "deltaPct": 56.8
+    }
+  },
+  "worstNewLcp": [
+    {
+      "page": "posts/加缪的日记/index.html",
+      "lcpMs": 188
+    },
+    {
+      "page": "posts/我二十一岁那年/index.html",
+      "lcpMs": 160
+    },
+    {
+      "page": "posts/红玫瑰与白玫瑰/index.html",
+      "lcpMs": 124
+    }
+  ]
+}

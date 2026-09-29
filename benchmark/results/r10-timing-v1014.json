@@ -1,0 +1,1358 @@
+{
+  "dist": "TEMP/v1014/dist",
+  "date": "2026-09-29T19:36:31.606Z",
+  "summary": {
+    "pages": 41,
+    "medianFcpMs": 44,
+    "medianLcpMs": 44,
+    "medianDclMs": 37,
+    "medianLoadMs": 37,
+    "medianTransferKB": 348,
+    "worstLcp": {
+      "page": "posts/一个陌生女人的来信/index.html",
+      "fcpMs": 224,
+      "lcpMs": 224,
+      "dclMs": 210,
+      "loadMs": 210,
+      "transferKB": 433,
+      "requests": 12,
+      "wireWithPrefetchKB": 575.5,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/posts/%E4%B8%80%E4%B8%AA%E9%99%8C%E7%94%9F%E5%A5%B3%E4%BA%BA%E7%9A%84%E6%9D%A5%E4%BF%A1/index.html",
+          "kb": 111.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    }
+  },
+  "pages": [
+    {
+      "page": "about/index.html",
+      "fcpMs": 80,
+      "lcpMs": 80,
+      "dclMs": 81,
+      "loadMs": 82,
+      "transferKB": 573,
+      "requests": 14,
+      "wireWithPrefetchKB": 758.4,
+      "topUrls": [
+        {
+          "url": "?",
+          "kb": 230.5
+        },
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "index.html",
+      "fcpMs": 40,
+      "lcpMs": 40,
+      "dclMs": 38,
+      "loadMs": 39,
+      "transferKB": 452.1,
+      "requests": 11,
+      "wireWithPrefetchKB": 743,
+      "topUrls": [
+        {
+          "url": "/index.html",
+          "kb": 142.5
+        },
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "posts/一个陌生女人的来信/index.html",
+      "fcpMs": 224,
+      "lcpMs": 224,
+      "dclMs": 210,
+      "loadMs": 210,
+      "transferKB": 433,
+      "requests": 12,
+      "wireWithPrefetchKB": 575.5,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/posts/%E4%B8%80%E4%B8%AA%E9%99%8C%E7%94%9F%E5%A5%B3%E4%BA%BA%E7%9A%84%E6%9D%A5%E4%BF%A1/index.html",
+          "kb": 111.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "posts/加缪的日记/index.html",
+      "fcpMs": 52,
+      "lcpMs": 52,
+      "dclMs": 48,
+      "loadMs": 48,
+      "transferKB": 364.6,
+      "requests": 12,
+      "wireWithPrefetchKB": 507.1,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.woff2",
+          "kb": 48
+        }
+      ]
+    },
+    {
+      "page": "posts/匆匆/index.html",
+      "fcpMs": 36,
+      "lcpMs": 36,
+      "dclMs": 34,
+      "loadMs": 34,
+      "transferKB": 347.5,
+      "requests": 12,
+      "wireWithPrefetchKB": 490,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.woff2",
+          "kb": 48
+        }
+      ]
+    },
+    {
+      "page": "posts/合欢树/index.html",
+      "fcpMs": 40,
+      "lcpMs": 40,
+      "dclMs": 37,
+      "loadMs": 37,
+      "transferKB": 351.3,
+      "requests": 12,
+      "wireWithPrefetchKB": 493.9,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.woff2",
+          "kb": 48
+        }
+      ]
+    },
+    {
+      "page": "posts/在黑暗中并肩行走/index.html",
+      "fcpMs": 48,
+      "lcpMs": 48,
+      "dclMs": 42,
+      "loadMs": 43,
+      "transferKB": 349.1,
+      "requests": 12,
+      "wireWithPrefetchKB": 491.6,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.woff2",
+          "kb": 48
+        }
+      ]
+    },
+    {
+      "page": "posts/墓碣文/index.html",
+      "fcpMs": 44,
+      "lcpMs": 44,
+      "dclMs": 34,
+      "loadMs": 35,
+      "transferKB": 346.8,
+      "requests": 12,
+      "wireWithPrefetchKB": 489.4,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.woff2",
+          "kb": 48
+        }
+      ]
+    },
+    {
+      "page": "posts/多余的话/index.html",
+      "fcpMs": 60,
+      "lcpMs": 60,
+      "dclMs": 60,
+      "loadMs": 60,
+      "transferKB": 396,
+      "requests": 12,
+      "wireWithPrefetchKB": 538.5,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/posts/%E5%A4%9A%E4%BD%99%E7%9A%84%E8%AF%9D/index.html",
+          "kb": 74.5
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "posts/大卫科波菲尔节选/index.html",
+      "fcpMs": 52,
+      "lcpMs": 52,
+      "dclMs": 52,
+      "loadMs": 53,
+      "transferKB": 372,
+      "requests": 12,
+      "wireWithPrefetchKB": 514.5,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/posts/%E5%A4%A7%E5%8D%AB%E7%A7%91%E6%B3%A2%E8%8F%B2%E5%B0%94%E8%8A%82%E9%80%89/index.html",
+          "kb": 50.5
+        }
+      ]
+    },
+    {
+      "page": "posts/大学里绝对精致的利己主义者/index.html",
+      "fcpMs": 44,
+      "lcpMs": 44,
+      "dclMs": 43,
+      "loadMs": 44,
+      "transferKB": 360.7,
+      "requests": 12,
+      "wireWithPrefetchKB": 503.3,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.woff2",
+          "kb": 48
+        }
+      ]
+    },
+    {
+      "page": "posts/大暑/index.html",
+      "fcpMs": 40,
+      "lcpMs": 40,
+      "dclMs": 37,
+      "loadMs": 37,
+      "transferKB": 355,
+      "requests": 12,
+      "wireWithPrefetchKB": 497.5,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.woff2",
+          "kb": 48
+        }
+      ]
+    },
+    {
+      "page": "posts/怎么能一辈子保持赤子之心/index.html",
+      "fcpMs": 40,
+      "lcpMs": 40,
+      "dclMs": 41,
+      "loadMs": 41,
+      "transferKB": 357.2,
+      "requests": 12,
+      "wireWithPrefetchKB": 499.8,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.woff2",
+          "kb": 48
+        }
+      ]
+    },
+    {
+      "page": "posts/我二十一岁那年/index.html",
+      "fcpMs": 52,
+      "lcpMs": 52,
+      "dclMs": 47,
+      "loadMs": 47,
+      "transferKB": 372.8,
+      "requests": 12,
+      "wireWithPrefetchKB": 515.3,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/posts/%E6%88%91%E4%BA%8C%E5%8D%81%E4%B8%80%E5%B2%81%E9%82%A3%E5%B9%B4/index.html",
+          "kb": 51.3
+        }
+      ]
+    },
+    {
+      "page": "posts/故都的秋/index.html",
+      "fcpMs": 36,
+      "lcpMs": 36,
+      "dclMs": 37,
+      "loadMs": 37,
+      "transferKB": 351.2,
+      "requests": 12,
+      "wireWithPrefetchKB": 493.8,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.woff2",
+          "kb": 48
+        }
+      ]
+    },
+    {
+      "page": "posts/热妮娅鲁勉采娃/index.html",
+      "fcpMs": 76,
+      "lcpMs": 76,
+      "dclMs": 71,
+      "loadMs": 72,
+      "transferKB": 361.3,
+      "requests": 12,
+      "wireWithPrefetchKB": 503.8,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.woff2",
+          "kb": 48
+        }
+      ]
+    },
+    {
+      "page": "posts/秋天的怀念/index.html",
+      "fcpMs": 48,
+      "lcpMs": 48,
+      "dclMs": 30,
+      "loadMs": 31,
+      "transferKB": 348.9,
+      "requests": 12,
+      "wireWithPrefetchKB": 491.4,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.woff2",
+          "kb": 48
+        }
+      ]
+    },
+    {
+      "page": "posts/红玫瑰与白玫瑰/index.html",
+      "fcpMs": 92,
+      "lcpMs": 92,
+      "dclMs": 84,
+      "loadMs": 84,
+      "transferKB": 433.1,
+      "requests": 12,
+      "wireWithPrefetchKB": 575.6,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/posts/%E7%BA%A2%E7%8E%AB%E7%91%B0%E4%B8%8E%E7%99%BD%E7%8E%AB%E7%91%B0/index.html",
+          "kb": 111.6
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "posts/背影/index.html",
+      "fcpMs": 44,
+      "lcpMs": 44,
+      "dclMs": 42,
+      "loadMs": 42,
+      "transferKB": 349.5,
+      "requests": 12,
+      "wireWithPrefetchKB": 492.1,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.woff2",
+          "kb": 48
+        }
+      ]
+    },
+    {
+      "page": "posts/致恰达耶夫/index.html",
+      "fcpMs": 36,
+      "lcpMs": 36,
+      "dclMs": 33,
+      "loadMs": 34,
+      "transferKB": 346.6,
+      "requests": 12,
+      "wireWithPrefetchKB": 489.2,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.woff2",
+          "kb": 48
+        }
+      ]
+    },
+    {
+      "page": "posts/苦难的精神价值/index.html",
+      "fcpMs": 44,
+      "lcpMs": 44,
+      "dclMs": 32,
+      "loadMs": 34,
+      "transferKB": 350.4,
+      "requests": 12,
+      "wireWithPrefetchKB": 492.9,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.woff2",
+          "kb": 48
+        }
+      ]
+    },
+    {
+      "page": "posts/送东阳马生序/index.html",
+      "fcpMs": 48,
+      "lcpMs": 48,
+      "dclMs": 39,
+      "loadMs": 40,
+      "transferKB": 348,
+      "requests": 12,
+      "wireWithPrefetchKB": 490.5,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.woff2",
+          "kb": 48
+        }
+      ]
+    },
+    {
+      "page": "posts/遥远的高三八/index.html",
+      "fcpMs": 64,
+      "lcpMs": 64,
+      "dclMs": 56,
+      "loadMs": 57,
+      "transferKB": 387.5,
+      "requests": 12,
+      "wireWithPrefetchKB": 530.1,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/posts/%E9%81%A5%E8%BF%9C%E7%9A%84%E9%AB%98%E4%B8%89%E5%85%AB/index.html",
+          "kb": 66.1
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/index.html",
+      "fcpMs": 44,
+      "lcpMs": 44,
+      "dclMs": 44,
+      "loadMs": 44,
+      "transferKB": 323.8,
+      "requests": 10,
+      "wireWithPrefetchKB": 1140.9,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/史蒂芬·茨威格/index.html",
+      "fcpMs": 32,
+      "lcpMs": 32,
+      "dclMs": 33,
+      "loadMs": 34,
+      "transferKB": 329.8,
+      "requests": 10,
+      "wireWithPrefetchKB": 1146.9,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/史铁生/index.html",
+      "fcpMs": 44,
+      "lcpMs": 44,
+      "dclMs": 32,
+      "loadMs": 34,
+      "transferKB": 340.5,
+      "requests": 10,
+      "wireWithPrefetchKB": 1157.6,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/周国平/index.html",
+      "fcpMs": 36,
+      "lcpMs": 36,
+      "dclMs": 34,
+      "loadMs": 36,
+      "transferKB": 335.3,
+      "requests": 10,
+      "wireWithPrefetchKB": 1152.4,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/孔庆东/index.html",
+      "fcpMs": 36,
+      "lcpMs": 36,
+      "dclMs": 35,
+      "loadMs": 36,
+      "transferKB": 329.5,
+      "requests": 10,
+      "wireWithPrefetchKB": 1146.6,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/宋濂/index.html",
+      "fcpMs": 56,
+      "lcpMs": 56,
+      "dclMs": 53,
+      "loadMs": 53,
+      "transferKB": 329.5,
+      "requests": 10,
+      "wireWithPrefetchKB": 1146.6,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/尤里·纳吉宾/index.html",
+      "fcpMs": 32,
+      "lcpMs": 32,
+      "dclMs": 35,
+      "loadMs": 36,
+      "transferKB": 329.6,
+      "requests": 10,
+      "wireWithPrefetchKB": 1146.7,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/张爱玲/index.html",
+      "fcpMs": 40,
+      "lcpMs": 40,
+      "dclMs": 30,
+      "loadMs": 32,
+      "transferKB": 329.6,
+      "requests": 10,
+      "wireWithPrefetchKB": 1146.7,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/徐可加/index.html",
+      "fcpMs": 44,
+      "lcpMs": 44,
+      "dclMs": 37,
+      "loadMs": 37,
+      "transferKB": 329.3,
+      "requests": 10,
+      "wireWithPrefetchKB": 1146.4,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/文哲/index.html",
+      "fcpMs": 36,
+      "lcpMs": 36,
+      "dclMs": 37,
+      "loadMs": 38,
+      "transferKB": 441.4,
+      "requests": 10,
+      "wireWithPrefetchKB": 1258.5,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/index.html",
+          "kb": 141
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        }
+      ]
+    },
+    {
+      "page": "tags/普希金/index.html",
+      "fcpMs": 44,
+      "lcpMs": 44,
+      "dclMs": 32,
+      "loadMs": 34,
+      "transferKB": 329.5,
+      "requests": 10,
+      "wireWithPrefetchKB": 1146.6,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/朱自清/index.html",
+      "fcpMs": 72,
+      "lcpMs": 72,
+      "dclMs": 30,
+      "loadMs": 33,
+      "transferKB": 334.7,
+      "requests": 10,
+      "wireWithPrefetchKB": 1151.8,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/查尔斯·狄更斯/index.html",
+      "fcpMs": 36,
+      "lcpMs": 36,
+      "dclMs": 34,
+      "loadMs": 34,
+      "transferKB": 329.7,
+      "requests": 10,
+      "wireWithPrefetchKB": 1146.8,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/瞿秋白/index.html",
+      "fcpMs": 44,
+      "lcpMs": 44,
+      "dclMs": 29,
+      "loadMs": 30,
+      "transferKB": 329.4,
+      "requests": 10,
+      "wireWithPrefetchKB": 1146.5,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/苏珊·桑塔格/index.html",
+      "fcpMs": 40,
+      "lcpMs": 40,
+      "dclMs": 32,
+      "loadMs": 34,
+      "transferKB": 329.5,
+      "requests": 10,
+      "wireWithPrefetchKB": 1146.6,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/郁达夫/index.html",
+      "fcpMs": 40,
+      "lcpMs": 40,
+      "dclMs": 31,
+      "loadMs": 33,
+      "transferKB": 329.4,
+      "requests": 10,
+      "wireWithPrefetchKB": 1146.5,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/钱理群/index.html",
+      "fcpMs": 32,
+      "lcpMs": 32,
+      "dclMs": 32,
+      "loadMs": 32,
+      "transferKB": 335.8,
+      "requests": 10,
+      "wireWithPrefetchKB": 1152.9,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    },
+    {
+      "page": "tags/鲁迅/index.html",
+      "fcpMs": 124,
+      "lcpMs": 124,
+      "dclMs": 111,
+      "loadMs": 112,
+      "transferKB": 329.4,
+      "requests": 10,
+      "wireWithPrefetchKB": 1146.5,
+      "topUrls": [
+        {
+          "url": "/",
+          "kb": 142.5
+        },
+        {
+          "url": "/tags/%E6%96%87%E5%93%B2/",
+          "kb": 141
+        },
+        {
+          "url": "/_astro/Layout.BKh_4a1U.css",
+          "kb": 94.2
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.woff2",
+          "kb": 57.4
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.woff2",
+          "kb": 56.9
+        }
+      ]
+    }
+  ]
+}
