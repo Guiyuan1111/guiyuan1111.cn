@@ -4,18 +4,20 @@ characters the built site actually renders, plus a per-family safety margin
 so future title/date/footer edits keep rendering in the same face.
 
 Why: in the default sans body mode the preloaded subset of these faces is the
-single largest per-page asset (~59KB of an ~84KB median page), yet they render
-just the header Latin, the dates and the navbar/footer line — a few dozen
-glyphs each. Since v1.0.16 each family gets the smallest charset that its
-rendering role can ever need:
+single largest per-page asset (~59KB of an ~84KB median page before this
+script's tightening began), yet they render just the header Latin, the dates
+and the navbar/footer line — a few dozen glyphs each. Each family gets the
+smallest charset that its rendering role can ever need:
 
   - Snell-Black (font-title: the site header title only, a fixed config
     string): used ∪ digits ∪ title punctuation — no blanket ASCII.
-  - Snell-Bold (font-time: dates; dateFormat variants may spell English
-    months): used ∪ A-Za-z0-9 ∪ date punctuation.
-  - STIX / STIX-Italic (serif-mode body Latin / navbar): used ∪ printable
-    ASCII ∪ typographic extras — kept broad on purpose, serif body text may
-    contain any ASCII.
+  - Snell-Bold (font-time: dates, rendered in the config dateFormat): used ∪
+    digits ∪ date punctuation. Switching dateFormat to a variant that spells
+    English months requires rerunning this script (note/font-subset.md).
+  - STIX-Italic (font-navbar: navbar labels / footer line / 404 — fixed
+    component and config strings): used ∪ digits ∪ title punctuation.
+  - STIX (serif-mode body Latin): used ∪ printable ASCII ∪ typographic extras
+    — kept broad on purpose, serif body text may contain any ASCII.
 
 After any config copy change, rerun this script (documented in
 note/font-subset.md); characters outside the rebuilt subset fall back down
@@ -55,13 +57,16 @@ FONT_CSS = ROOT / 'src' / 'styles' / 'font.css'
 HEAD_ASTRO = ROOT / 'src' / 'layouts' / 'Head.astro'
 
 # family -> (source file, dist class whose text reaches it, charset policy)
-# policy 'title':   used ∪ digits ∪ title punctuation (header title is a fixed config string)
-# policy 'date':    used ∪ A-Za-z0-9 ∪ date punctuation (dateFormat may spell English months)
-# policy 'ascii':   used ∪ printable ASCII ∪ typographic extras (serif-mode body / navbar safety)
+# policy 'title': used ∪ digits ∪ title punctuation (header title / navbar / footer / 404
+#                 are fixed config or component strings)
+# policy 'date':  used ∪ digits ∪ date punctuation (dates render the config dateFormat —
+#                 switching to a variant that spells English months requires rerunning
+#                 gen:uifonts, documented in note/font-subset.md)
+# policy 'ascii': used ∪ printable ASCII ∪ typographic extras (serif-mode body safety)
 TARGETS = [
     ('Snell-Bold', 'Snell-Bold-SF.woff2', 'font-time', 'date'),
     ('Snell-Black', 'Snell-Black-SF.woff2', 'font-title', 'title'),
-    ('STIX-Italic', 'STIX-Italic-VF.woff2', 'font-navbar', 'ascii'),
+    ('STIX-Italic', 'STIX-Italic-VF.woff2', 'font-navbar', 'title'),
     ('STIX', 'STIX-VF.woff2', None, 'ascii'),  # serif-mode Latin: every page char counts
 ]
 
@@ -69,7 +74,6 @@ ASCII = set(range(0x20, 0x7F))
 EXTRAS = '©·–—‘’“”„‹›«»•…€™№−°'
 # all charsets are int codepoint sets (cmap keys are ints)
 DIGITS = {ord(c) for c in '0123456789'}
-LETTERS = {ord(c) for c in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'}
 TITLE_PUNCT = {ord(c) for c in "-.,:;!?''\"()&%+·–—"}
 DATE_PUNCT = {ord(c) for c in "-.,: /'’"}
 TAG_RE = re.compile(r'<[^>]+>')
@@ -115,7 +119,7 @@ def build_charset(policy: str, used: set[int], cmap: set[int]) -> set[int]:
     if policy == 'title':
         safety = DIGITS | TITLE_PUNCT
     elif policy == 'date':
-        safety = LETTERS | DIGITS | DATE_PUNCT
+        safety = DIGITS | DATE_PUNCT
     elif policy == 'ascii':
         safety = ASCII | {ord(c) for c in EXTRAS}
     else:
