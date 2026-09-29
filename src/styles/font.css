@@ -4,14 +4,14 @@
   src: url("/fonts/Snell-Bold-SF.subset.woff2") format("woff2");
   font-display: swap;
   font-weight: 600;
-  unicode-range:U+0020-007E,U+00A9,U+00AB,U+00B0,U+00B7,U+00BB,U+2013-2014,U+2018-2019,U+201C-201E,U+2022,U+2026,U+2039-203A,U+20AC,U+2122,U+2212;
+  unicode-range:U+0020,U+0027,U+002C-003A,U+0041-005A,U+0061-007A,U+2019;
 }
 @font-face {
   font-family: "Snell-Black";
   src: url("/fonts/Snell-Black-SF.subset.woff2") format("woff2");
   font-display: swap;
   font-weight: 700;
-  unicode-range:U+0020-007E,U+00A9,U+00AB,U+00B0,U+00B7,U+00BB,U+2013-2014,U+2018-2019,U+201C-201E,U+2022,U+2026,U+2039-203A,U+20AC,U+2122,U+2212;
+  unicode-range:U+0021-0022,U+0025-0029,U+002B-002E,U+0030-003B,U+003F,U+00B7,U+2013-2014;
 }
 
 /* STIXTwoText Variable Font */
@@ -36,7 +36,7 @@
   src: url("/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2") format("woff2-variations");
   font-display: swap;
   font-weight: 400 700;
-  unicode-range: U+305B,U+306E,U+3089,U+308B,U+3092,U+30B0,U+30BF,U+4E00,U+4E0D,U+4E4B,U+4E8B,U+4E8E,U+5173,U+518D,U+5237,U+535A,U+5370,U+5BA2,U+5C51,U+5F0F,U+601D,U+60C5,U+6392,U+6587,U+65B0,U+65BC,U+65E0,U+662F,U+6700,U+6807,U+6982,U+6A19,U+6DF1,U+7248,U+73B0,U+73FE,U+7526,U+7528,U+767E,U+7684,U+76F8,U+7AE0,U+7B7E,U+7C64,U+7D44,U+7DE8,U+7F16,U+7F8E,U+8981,U+8A18,U+91CD,U+95DC,U+987E,U+FF0C;
+  unicode-range:U+00B7,U+2014,U+2026,U+3001-3002,U+4E00,U+4E0D,U+4E8E,U+5173,U+535A,U+5BA2,U+5C51,U+601D,U+60C5,U+6587,U+65E0,U+662F,U+6700,U+6807,U+6DF1,U+7528,U+767E,U+7684,U+76F8,U+7AE0,U+7B7E,U+987E,U+FF01,U+FF08-FF09,U+FF0C,U+FF1A-FF1B,U+FF1F;
 }
 
 /* EarlySummerSerif Variable Font */

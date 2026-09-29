@@ -1,19 +1,32 @@
 #!/usr/bin/env python3
 """Subset the four UI webfonts (Snell-Bold/Black, STIX, STIX-Italic) to the
-characters the built site actually renders, plus a printable-ASCII safety
-margin so future title/date/footer edits keep rendering in the same face.
+characters the built site actually renders, plus a per-family safety margin
+so future title/date/footer edits keep rendering in the same face.
 
-Why: in the default sans body mode these four faces are the ONLY webfonts a
-page downloads (measured 186.7KB/page: STIX-Italic 57.4 + Snell-Black 56.9 +
-Snell-Bold 48.0 + EarlySummer-Subset 24.3), yet they render just the header
-Latin, the dates and the navbar/footer line — a few dozen glyphs each.
+Why: in the default sans body mode the preloaded subset of these faces is the
+single largest per-page asset (~59KB of an ~84KB median page), yet they render
+just the header Latin, the dates and the navbar/footer line — a few dozen
+glyphs each. Since v1.0.16 each family gets the smallest charset that its
+rendering role can ever need:
+
+  - Snell-Black (font-title: the site header title only, a fixed config
+    string): used ∪ digits ∪ title punctuation — no blanket ASCII.
+  - Snell-Bold (font-time: dates; dateFormat variants may spell English
+    months): used ∪ A-Za-z0-9 ∪ date punctuation.
+  - STIX / STIX-Italic (serif-mode body Latin / navbar): used ∪ printable
+    ASCII ∪ typographic extras — kept broad on purpose, serif body text may
+    contain any ASCII.
+
+After any config copy change, rerun this script (documented in
+note/font-subset.md); characters outside the rebuilt subset fall back down
+the font chain, and the font-cascade gate probes header rendering.
 
 What it does:
   1. scans dist/**/*.html for text rendered with font-title / font-time /
      font-navbar classes (family → Snell-Black / Snell-Bold / STIX-Italic),
      plus every visible character for the STIX serif-mode face;
-  2. charsets = used ∪ printable ASCII ∪ typographic extras, intersected with
-     each source font's cmap (nothing outside the source can be kept);
+  2. charsets follow the per-family policy above, intersected with each
+     source font's cmap (nothing outside the source can be kept);
   3. writes public/fonts/<stem>.subset.woff2 (originals stay untouched for
      provenance and regeneration) with red-line gates: fvar must survive iff
      the source had it, and every wanted codepoint must remain mapped;
@@ -40,16 +53,24 @@ FONTS = ROOT / 'public' / 'fonts'
 FONT_CSS = ROOT / 'src' / 'styles' / 'font.css'
 HEAD_ASTRO = ROOT / 'src' / 'layouts' / 'Head.astro'
 
-# family -> (source file, dist class whose text reaches it)
+# family -> (source file, dist class whose text reaches it, charset policy)
+# policy 'title':   used ∪ digits ∪ title punctuation (header title is a fixed config string)
+# policy 'date':    used ∪ A-Za-z0-9 ∪ date punctuation (dateFormat may spell English months)
+# policy 'ascii':   used ∪ printable ASCII ∪ typographic extras (serif-mode body / navbar safety)
 TARGETS = [
-    ('Snell-Bold', 'Snell-Bold-SF.woff2', 'font-time'),
-    ('Snell-Black', 'Snell-Black-SF.woff2', 'font-title'),
-    ('STIX-Italic', 'STIX-Italic-VF.woff2', 'font-navbar'),
-    ('STIX', 'STIX-VF.woff2', None),  # serif-mode Latin: every page char counts
+    ('Snell-Bold', 'Snell-Bold-SF.woff2', 'font-time', 'date'),
+    ('Snell-Black', 'Snell-Black-SF.woff2', 'font-title', 'title'),
+    ('STIX-Italic', 'STIX-Italic-VF.woff2', 'font-navbar', 'ascii'),
+    ('STIX', 'STIX-VF.woff2', None, 'ascii'),  # serif-mode Latin: every page char counts
 ]
 
 ASCII = set(range(0x20, 0x7F))
 EXTRAS = '©·–—‘’“”„‹›«»•…€™№−°'
+# all charsets are int codepoint sets (cmap keys are ints)
+DIGITS = {ord(c) for c in '0123456789'}
+LETTERS = {ord(c) for c in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'}
+TITLE_PUNCT = {ord(c) for c in "-.,:;!?''\"()&%+·–—"}
+DATE_PUNCT = {ord(c) for c in "-.,: /'’"}
 TAG_RE = re.compile(r'<[^>]+>')
 COMMENT_RE = re.compile(r'<!--.*?-->', re.S)
 SCRIPT_RE = re.compile(r'<(script|style)\b[^>]*>.*?</\1>', re.S | re.I)
@@ -89,8 +110,16 @@ def ranges_css(cps: set[int]) -> str:
     return ','.join(parts)
 
 
-def build_charset(used: set[int], cmap: set[int]) -> set[int]:
-    want = (used | ASCII | {ord(c) for c in EXTRAS}) & cmap
+def build_charset(policy: str, used: set[int], cmap: set[int]) -> set[int]:
+    if policy == 'title':
+        safety = DIGITS | TITLE_PUNCT
+    elif policy == 'date':
+        safety = LETTERS | DIGITS | DATE_PUNCT
+    elif policy == 'ascii':
+        safety = ASCII | {ord(c) for c in EXTRAS}
+    else:
+        raise SystemExit(f'unknown charset policy: {policy}')
+    want = (used | safety) & cmap
     if not want:
         raise SystemExit('empty charset — refusing to write a useless font')
     return want
@@ -106,7 +135,7 @@ def main() -> None:
     for hp in pages:
         src = hp.read_text(encoding='utf-8')
         all_text |= visible_chars(src)
-        for _, _, cls in TARGETS:
+        for _, _, cls, _ in TARGETS:
             if cls:
                 per_class.setdefault(cls, set()).update(class_chars(src, cls))
 
@@ -115,13 +144,13 @@ def main() -> None:
     changed_css = False
     changed_head = False
 
-    for family, source, cls in TARGETS:
+    for family, source, cls, policy in TARGETS:
         src_path = FONTS / source
         src_font = TTFont(src_path)
         cmap = set(src_font.getBestCmap())
         had_fvar = 'fvar' in src_font
         used = per_class.get(cls, set()) if cls else all_text
-        want = build_charset(used, cmap)
+        want = build_charset(policy, used, cmap)
 
         opts = subset.Options()
         opts.flavor = 'woff2'
