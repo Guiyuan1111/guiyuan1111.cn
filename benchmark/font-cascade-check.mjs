@@ -154,6 +154,8 @@ class Cdp {
 
 async function loadPage(cdp, pageUrl, mode) {
   const fontRequests = []
+  const fontBytes = new Map()
+  const requestUrls = new Map()
   const errors = []
   let loadedResolve
   const loadedPromise = new Promise((resolve) => {
@@ -162,6 +164,10 @@ async function loadPage(cdp, pageUrl, mode) {
   const listener = (msg) => {
     if (msg.method === 'Network.requestWillBeSent' && msg.params.request.url.endsWith('.woff2')) {
       fontRequests.push(msg.params.request.url)
+      requestUrls.set(msg.params.requestId, msg.params.request.url)
+    }
+    if (msg.method === 'Network.loadingFinished' && requestUrls.has(msg.params.requestId)) {
+      fontBytes.set(requestUrls.get(msg.params.requestId), msg.params.encodedDataLength)
     }
     if (msg.method === 'Runtime.consoleAPICalled' && msg.params.type === 'error') {
       errors.push(`console.error: ${msg.params.args.map(a => a.value ?? a.description ?? '').join(' ')}`)
@@ -180,33 +186,42 @@ async function loadPage(cdp, pageUrl, mode) {
   // document.fonts.check() is useless for a family with many unicode-range
   // faces (it stays false while any unloaded shard claims coverage), and
   // hanzi advance is exactly 1em in every CJK font so hanzi widths cannot
-  // discriminate either. Probe with Latin text instead: the header string
-  // "Guiyuan1111" ships in every page subset, and the webfont's Latin
-  // metrics differ from the system serif fallback. Equal widths mean the
-  // text fell back to the system font. Serif mode only — in sans mode the
-  // probe itself would force shard downloads for its Latin text.
-  const serifProbe = mode === 'serif'
-    ? `const chars = "Guiyuan1111";
-       const probe = (fam) => {
-         const s = document.createElement("span");
-         s.style.cssText = "font-family:" + fam + ";font-size:32px;position:absolute;visibility:hidden;white-space:nowrap";
-         s.textContent = chars;
-         document.body.appendChild(s);
-         const w = s.getBoundingClientRect().width;
-         s.remove();
-         return w;
-       };
-       const webW = probe('"__sysprobe__", serif');`
-    : 'const chars = ""; const webW = 0;'
+  // discriminate either. Probe with Latin text instead and compare against a
+  // bogus family + generic serif fallback: equal widths mean the text fell
+  // back to the system font. The resource list is captured BEFORE the probes
+  // run — the EarlySummer probe itself would otherwise force a page-font
+  // download and make its own assertion pass vacuously. The UI fonts are
+  // probed in both modes (the page itself loads them, so no extra request);
+  // the EarlySummer probe is serif-mode only — in sans mode it would force
+  // shard downloads for its Latin text.
+  const earlySummerProbe = mode === 'serif' ? '["EarlySummer", "Guiyuan1111"],' : ''
   const expression = `document.fonts.ready.then(() => {
-    ${serifProbe}
+    const res = performance.getEntriesByType("resource").filter(r => r.name.endsWith(".woff2")).map(r => r.name);
+    const probe = (fam, text) => {
+      const s = document.createElement("span");
+      s.style.cssText = "font-family:" + fam + ";font-size:32px;position:absolute;visibility:hidden;white-space:nowrap";
+      s.textContent = text;
+      document.body.appendChild(s);
+      const w = s.getBoundingClientRect().width;
+      s.remove();
+      return w;
+    };
+    const probes = [
+      ${earlySummerProbe}
+      ["Snell-Black", "Guiyuan1111"],
+      ["STIX-Italic", "RSS / GitHub"],
+    ];
+    const out = {};
+    for (const entry of probes) {
+      const fam = entry[0];
+      const text = entry[1];
+      out[fam] = { web: probe(fam, text), sys: probe('"__sysprobe__", serif', text) };
+    }
     return {
       title: document.title,
       status: document.fonts.status,
-      chars,
-      webWidth: chars ? probe("EarlySummer") : 0,
-      sysWidth: webW,
-      res: performance.getEntriesByType("resource").filter(r => r.name.endsWith(".woff2")).map(r => r.name)
+      probes: out,
+      res
     };
   })`
   const evalRes = await cdp.send('Runtime.evaluate', {
@@ -218,8 +233,11 @@ async function loadPage(cdp, pageUrl, mode) {
   if (!info || typeof info.title !== 'string') {
     throw new Error(`page never settled for ${pageUrl}`)
   }
-  const renderedFromWebfont = mode !== 'serif' || (info.chars.length > 0 && info.webWidth !== info.sysWidth)
-  return { fontRequests, errors, info, renderedFromWebfont }
+  const probeResults = {}
+  for (const [fam, w] of Object.entries(info.probes)) {
+    probeResults[fam] = { ...w, ok: w.web !== w.sys }
+  }
+  return { fontRequests, fontBytes, errors, info, probeResults }
 }
 
 async function main() {
@@ -261,6 +279,7 @@ async function main() {
   let cdp = null
   let targetId = null
   const failures = []
+  const record = []
   try {
     await waitForCdp()
     let target
@@ -289,22 +308,30 @@ async function main() {
     for (const page of pages) {
       const urlPath = page.replace(/\/index\.html$/, '/')
       const url = `http://127.0.0.1:${HTTP_PORT}/${encodeURI(urlPath).replace(/^\/+/, '')}`
-      const { fontRequests, errors, info, renderedFromWebfont } = await loadPage(cdp, url, mode)
+      const { fontRequests, fontBytes, errors, info, probeResults } = await loadPage(cdp, url, mode)
       const pageFont = fontRequests.filter(u => u.includes('earlysummer-pages'))
       // EarlySummer-VF-Subset.woff2 sits inside the split dir but is the tiny
       // preloaded UI-chrome font, not a shard — exclude it from the leak check.
       const shards = fontRequests.filter(u => u.includes('EarlySummer-VF-Split/') && !u.endsWith('EarlySummer-VF-Subset.woff2'))
       const problems = []
       if (mode === 'serif') {
-        if (pageFont.length !== 1) {
-          problems.push(`serif: expected exactly 1 page-font request, got ${pageFont.length}`)
+        // 1 when the page has serif-stack prose (its exact subset), 0 when it
+        // doesn't (e.g. 404: only UI chrome, served by the tiny Subset font).
+        if (pageFont.length > 1) {
+          problems.push(`serif: expected at most 1 page-font request, got ${pageFont.length}`)
         }
-        if (!renderedFromWebfont) {
-          problems.push(`serif: title "${info.chars}" renders at system-fallback width (${info.webWidth}px === ${info.sysWidth}px) — webfont not used`)
+        if (!probeResults.EarlySummer?.ok) {
+          problems.push(`serif: EarlySummer probe renders at system-fallback width ${probeResults.EarlySummer?.web} === ${probeResults.EarlySummer?.sys}`)
         }
       }
       else if (pageFont.length > 0) {
         problems.push(`sans: page fonts must not be requested, got ${pageFont.length}`)
+      }
+      if (!probeResults['Snell-Black']?.ok) {
+        problems.push(`Snell-Black probe renders at system-fallback width ${probeResults['Snell-Black']?.web} === ${probeResults['Snell-Black']?.sys}`)
+      }
+      if (!probeResults['STIX-Italic']?.ok) {
+        problems.push(`STIX-Italic probe renders at system-fallback width ${probeResults['STIX-Italic']?.web} === ${probeResults['STIX-Italic']?.sys}`)
       }
       if (shards.length > 0) {
         problems.push(`${shards.length} shard requests leaked: ${shards.map(s => s.split('/').pop()).slice(0, 3).join(', ')}`)
@@ -312,8 +339,14 @@ async function main() {
       if (errors.length > 0) {
         problems.push(errors.slice(0, 3).join(' | '))
       }
+      const totalBytes = fontRequests.reduce((sum, u) => sum + (fontBytes.get(u) ?? 0), 0)
+      record.push({
+        page: urlPath,
+        fonts: fontRequests.map(u => ({ url: u.replace(`http://127.0.0.1:${HTTP_PORT}`, ''), bytes: fontBytes.get(u) ?? 0 })),
+        totalFontBytes: totalBytes,
+      })
       const status = problems.length === 0 ? 'PASS' : 'FAIL'
-      console.log(`[${status}] ${urlPath} fonts=${fontRequests.length} pageFont=${pageFont.length} shards=${shards.length} title="${info.title.slice(0, 24)}"`)
+      console.log(`[${status}] ${urlPath} fonts=${fontRequests.length} ${(totalBytes / 1024).toFixed(1)}KB pageFont=${pageFont.length} shards=${shards.length} title="${info.title.slice(0, 24)}"`)
       if (problems.length > 0) {
         failures.push({ page: urlPath, problems })
         for (const p of problems) {
@@ -359,6 +392,39 @@ async function main() {
       ? '(page font wins cascade, no shard downloads, glyphs render)'
       : '(no EarlySummer family traffic in sans mode, glyphs render)'
     console.log(`[font-cascade-check] mode=${mode}: all ${pages.length} pages passed ${why}`)
+  }
+
+  // Real per-page webfont transfer (what the CDN actually ships to visitors):
+  // every woff2 the browser requested, with wire bytes per response.
+  const sizes = new Map()
+  for (const p of record) {
+    for (const f of p.fonts) {
+      sizes.set(f.url, Math.max(sizes.get(f.url) ?? 0, f.bytes))
+    }
+  }
+  const totals = record.map(p => p.totalFontBytes).sort((a, b) => a - b)
+  const median = totals[Math.floor(totals.length / 2)] ?? 0
+  console.log(`[font-cascade-check] webfont transfer: worst=${((totals.at(-1) ?? 0) / 1024).toFixed(1)}KB median=${(median / 1024).toFixed(1)}KB`)
+  for (const [url, bytes] of [...sizes.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8)) {
+    console.log(`    ${(bytes / 1024).toFixed(1)}KB  ${url}`)
+  }
+
+  const jsonOut = arg('json', '')
+  if (jsonOut) {
+    fs.writeFileSync(jsonOut, JSON.stringify({
+      mode,
+      dist,
+      date: new Date().toISOString(),
+      summary: {
+        pages: record.length,
+        failed: failures.length,
+        worstFontBytes: totals.at(-1) ?? 0,
+        medianFontBytes: median,
+      },
+      perFont: Object.fromEntries([...sizes.entries()].map(([u, b]) => [u.split('/').pop(), b])),
+      pages: record,
+    }, null, 2))
+    console.log(`[font-cascade-check] snapshot → ${jsonOut}`)
   }
 }
 
