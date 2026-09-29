@@ -44,3 +44,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-astro-
       - run: pnpm build
+      - name: Perf red-line gate
+        run: node benchmark/run-all.mjs --assert
