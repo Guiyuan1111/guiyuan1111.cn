@@ -45,4 +45,6 @@
 
 ## 4. 改动后需要重新生成的资源
 
-**改标题/副标题/UI 文案会牵动显示字体子集**：CJK 部分走 EarlySummer-Subset 重建流程，Latin/UI 显示字体跑 `pnpm gen:uifonts`（v1.0.15 起 Snell/STIX 均为按站点用字的 `*.subset.woff2`），见 [font-subset.md](./font-subset.md)。
+**改标题/副标题/UI 文案会牵动显示字体子集**：CJK 部分走 EarlySummer-Subset 重建流程
+（v1.0.16 起字集数据驱动、11.2KB/34 码位），Latin/UI 显示字体跑 `pnpm gen:uifonts`
+（v1.0.16 起按渲染角色分字集策略：Snell-Black 仅 3.1KB），见 [font-subset.md](./font-subset.md)。
