@@ -65,19 +65,20 @@ v1.0.5 实测需额外拉取 **11 个分片、376KB**，且首屏标题字体闪
 ## UI 显示字体子集（v1.0.15 起，与上面独立）
 
 Snell-Black / Snell-Bold / STIX-Italic / STIX 四个 UI 字体按**分字体字集策略**子集化
-（`scripts/subset-ui-fonts.py`，`pnpm gen:uifonts`；v1.0.16 起不再一刀切全 ASCII）：
+（`scripts/subset-ui-fonts.py`，`pnpm gen:uifonts`；v1.0.16/R5 与 v1.0.18/R7 两轮收窄定型）：
 
-| 字体 | 渲染角色 | 字集策略 |
-| --- | --- | --- |
-| Snell-Black | `font-title`（站点标题，config 固定串） | 用字 ∪ 数字 ∪ 标题标点 |
-| Snell-Bold | `font-time`（日期） | 用字 ∪ A-Za-z0-9 ∪ 日期标点 |
-| STIX / STIX-Italic | serif 正文 / 导航页脚 | 用字 ∪ ASCII ∪ 排版符号（保守不动） |
+| 字体 | 渲染角色 | 字集策略 | v1.0.18 体积 |
+| --- | --- | --- | --- |
+| Snell-Black | `font-title`（站点标题，config 固定串） | 用字 ∪ 数字 ∪ 标题标点 | 3.1KB |
+| Snell-Bold | `font-time`（日期，config dateFormat 固定格式） | 用字 ∪ 数字 ∪ 日期标点 | 2.2KB |
+| STIX-Italic | `font-navbar`（导航/页脚/404，固定串） | 用字 ∪ 数字 ∪ 标题标点 | 5.0KB |
+| STIX | serif 正文 Latin | 用字 ∪ ASCII ∪ 排版符号（保守不动） | 17.1KB |
 
-**改了标题、副标题、导航/页脚文案后同样要跑一次**，脚本会自动扫描 `dist/**/*.html`
-收集用字并改写 font.css 的 unicode-range（含 fvar 存活与 cmap 覆盖校验）。日期格式
-`dateFormat` 若切换为含英文月份的变体，也需重跑（Snell-Bold 已保留全字母，通常无需）。
-详细体积对比见 [report/perf/2026-09-29-font-performance-r1-r4.md](./report/perf/2026-09-29-font-performance-r1-r4.md)
-与 [report/perf/2026-09-30-font-preload-slimming-r5.md](./report/perf/2026-09-30-font-preload-slimming-r5.md)。
+**改了标题、副标题、导航/页脚文案或 `dateFormat` 后必须重跑一次**（脚本自动扫描
+`dist/**/*.html` 收集用字并改写 font.css 的 unicode-range，含 fvar 存活与 cmap
+覆盖校验）；未重跑时缺字沿字体链回退系统衬线（优雅降级），门禁的标题宽度探针会拦截
+站点标题缺字。体积对比见
+[report/perf/2026-09-30-webfont-charset-r7.md](./report/perf/2026-09-30-webfont-charset-r7.md)。
 
 ## 注意
 

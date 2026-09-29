@@ -2,7 +2,7 @@
 
 guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目笔记入口。
 
-> **当前版本：v1.0.17**（2026-09-30）。版本详情见 [release/](./release/)；
+> **当前版本：v1.0.18**（2026-09-30）。版本详情见 [release/](./release/)；
 > **多语言与评论系统已永久停用且代码已删除**（恢复需从 git 历史取回，见
 > [disabled-features.md](./disabled-features.md)），界面音效暂时禁用；
 > `src/config.ts` 已是全站唯一配置源，站点化已收尾。
@@ -58,6 +58,7 @@ guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目�
 | [1.0.15](./release/1.0.15.md) | **字体性能专项 R1–R4**：分片重切分、页面级子集、UI 字体子集、分片 CSS 条件加载；每页引用资产 -52%，真实 webfont -59%；基准与真浏览器门禁套件入库 |
 | [1.0.16](./release/1.0.16.md) | **字体预载收窄 R5**：UI 子集按渲染角色分策略、EarlySummer-Subset 剔除多语言遗留、修复 serif 页面字体再生回归；预载 59.2→27.2KB，每页引用资产中位数再 -37% |
 | [1.0.17](./release/1.0.17.md) | **部署体积清理 R6**：sans 清理页面字体、og PNG 调色板重编码、katex 遗留裁剪、源字体移出 public；dist 20.31→10.64MB（-47.6%），访客侧零回归；新增 deploy-weight 基准 |
+| [1.0.18](./release/1.0.18.md) | **剩余固定串字集收窄 R7**：Snell-Bold 12.6→2.2KB、STIX-Italic 18.8→5.0KB；webfont 46.1→21.8KB/页（三轮累计 -72.4%），每页引用资产中位数累计 -49.7% |
 
 ## 分析报告
 
@@ -65,6 +66,7 @@ guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目�
 
 | 文件 | 状态 |
 | --- | --- |
+| [2026-09-30-webfont-charset-r7.md](./report/perf/2026-09-30-webfont-charset-r7.md) | **v1.0.18 字集收窄 R7 实测**：Snell-Bold/STIX-Italic 收窄，webfont -52.7%；含 R5–R7 三轮累计（每页资产 -49.7%、webfont -72.4%、部署 -47.6%） |
 | [2026-09-30-deploy-weight-r6.md](./report/perf/2026-09-30-deploy-weight-r6.md) | **v1.0.17 部署体积 R6 实测**：dist 20.31→10.64MB（-47.6%），死重探针逐项归零（mermaid/sounds 有意保留），访客侧零回归；含放弃项记录 |
 | [2026-09-30-font-preload-slimming-r5.md](./report/perf/2026-09-30-font-preload-slimming-r5.md) | **v1.0.16 预载收窄 R5 实测**：Snell-Black 17.9→3.1KB、EarlySummer-Subset 24.8→11.2KB，预载 -54%、每页资产中位数 -37.3%、webfont -41.7%；含 gen-page-fonts R4 回归修复记录 |
 | [2026-09-29-font-performance-r1-r4.md](./report/perf/2026-09-29-font-performance-r1-r4.md) | **v1.0.15 字体专项四轮实测对比**（R1 分片重切 → R2 页面级子集 → R3 UI 子集 → R4 条件加载）：每页引用资产 -52.2%、真实 webfont -58.6%，双模式口径与门禁判据，快照 JSON 见 `benchmark/results/` |
