@@ -55,6 +55,8 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 - **CSS 按页分割**（v1.0.4）：markdown/comment/extension 三个仅文章页需要的样式下沉到 posts/[slug]、about、index，全局 Layout.css 124KB → 95.5KB。
 - **CI 缓存**（v1.0.4）：astro-og-canvas 产物与 Astro 内容层在 Actions 间缓存。
 - **gallery wheel 监听条件挂载 + 移除 partytown**（v1.0.9）：`passive:false` wheel 监听仅在存在 `.gallery-container` 的页面挂载；统计 ID 清空后 Partytown 运行时（每页 loader + 产物 ~108K）连同依赖、补丁一并移除。
+- **字体加载四轮优化**（v1.0.15，R1–R4）：① EarlySummer 47 个分片按文章语料共现频率重切（`scripts/split-earlysummer.py`，移除 cn-font-split 依赖）；② serif 模式页面级精确子集（`scripts/gen-page-fonts.py` 每页一个 woff2，`scripts/apply-page-fonts.mjs` 构建后注入，缺字自动回退分片；仅 serif 模式注入，默认 sans 零成本）；③ 四个 UI 显示字体按站点实际用量子集为 `*.subset.woff2`（`scripts/subset-ui-fonts.py`，保留变量轴）；④ 47 个分片 `@font-face` 拆入 `src/styles/earlysummer-shards.css`，仅 serif 构建产出，sans 生产构建 Layout.css gzip 33.9KB→7.6KB。每页引用资产 gzip 中位数 179.6KB→85.7KB（-52.2%），真实浏览器每页 webfont 传输 191.1KB→79.1KB（-58.6%），实测对比见 [note/report/perf/2026-09-29-font-performance-r1-r4.md](note/report/perf/2026-09-29-font-performance-r1-r4.md)。
+- **访客性能基准与字体门禁**（v1.0.15）：`benchmark/` 零依赖基准套件（page-weight / font-traffic / run-all）+ CDP 真实浏览器红线门禁 `font-cascade-check.mjs`（本地无头 Chrome/Edge 逐页断言字体请求级联与渲染来源，双模式 42/42 页），历次快照 JSON 入库 `benchmark/results/` 作为证据；用法见 [benchmark/README.md](benchmark/README.md)。
 
 ### 站点身份（v1.0.9 已收尾）
 
@@ -62,7 +64,7 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 - **作者遗留已清理**：Umami 统计 ID 与自建脚本域名、Google/Bing 验证码、`twitterID` 已清空（留空即不输出/不加载），页脚 GitHub 链接指向本仓库、作者 Email 链接已移除，图床白名单域名已清空，关于页已重写。完整清单见 [note/site-identity.md](note/site-identity.md)。
 - 保留的致谢：页脚 "Powered by Astro and Retypeset"、feed generator 字符串与 `pnpm update-theme` 上游地址。
 
-**全部笔记入口见 [note/README.md](note/README.md)**（按场景速查）；版本履历见 [note/release/](note/release/)；性能分析与优化建议见 [note/report/perf/](note/report/perf/)。
+**全部笔记入口见 [note/README.md](note/README.md)**（按场景速查）；版本履历见 [note/release/](note/release/)；性能分析与实测报告见 [note/report/perf/](note/report/perf/)；基准与门禁用法见 [benchmark/README.md](benchmark/README.md)。
 
 主题本身的完整功能说明与使用文档见上方各语言 README 及上游仓库。
 
