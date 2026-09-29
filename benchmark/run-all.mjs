@@ -78,6 +78,9 @@ if (assertArg) {
   if (dw.katexLegacyFonts.bytes > 0) {
     violations.push(`katex woff/ttf legacy fonts deployed: ${kb(dw.katexLegacyFonts.bytes)}KB (optimize-dist strip skipped?)`)
   }
+  if (dw.orphanAstroAssets.bytes > 0) {
+    violations.push(`${dw.orphanAstroAssets.files} unreachable _astro assets deployed: ${kb(dw.orphanAstroAssets.bytes)}KB (optimize-dist sweep skipped or failed)`)
+  }
   const minCoverageFloor = 95
   if (fontTraffic.summary.minPageCoveragePct < minCoverageFloor) {
     violations.push(`font-traffic min page coverage ${fontTraffic.summary.minPageCoveragePct}% < ${minCoverageFloor}% floor (some page's visible chars are not covered by any declared face)`)

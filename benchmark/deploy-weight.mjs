@@ -13,9 +13,12 @@
 //   - mermaidChunks     mermaid lazy chunks; fetched only if a page embeds a
 //                       diagram, so dead weight unless such content exists
 //   - sounds            disabled SoundEffect WAVs (kept: documented restore path)
+//   - orphanAstroAssets unreachable-by-reference-closure _astro files (must be 0
+//                       after the optimize-dist sweep; >0 means sweep skipped)
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
+import { summarize as reachabilitySummary } from './reachability.mjs'
 
 const FONT_EXT = new Set(['.woff2', '.woff', '.ttf', '.otf'])
 const IMAGE_EXT = new Set(['.png', '.webp', '.jpg', '.jpeg', '.svg', '.gif', '.avif'])
@@ -76,6 +79,7 @@ export function run({ dist = 'dist' } = {}) {
   }
   const totalBytes = files.reduce((a, f) => a + f.bytes, 0)
   const top = [...files].sort((a, b) => b.bytes - a.bytes).slice(0, 12)
+  const reach = reachabilitySummary(dist)
 
   const sans = mode !== 'serif'
   const sumMatch = (re) => {
@@ -95,6 +99,14 @@ export function run({ dist = 'dist' } = {}) {
     mermaidChunks: { ...sumMatch(/mermaid/i), dead: true },
     // disabled SoundEffect WAVs are intentionally kept (documented restore path)
     sounds: { ...sumDir('sounds', false), dead: false },
+    // text-level reference closure over _astro: anything here is fetched by no
+    // page and imported by no chunk — the optimize-dist sweep must have removed it
+    orphanAstroAssets: {
+      present: reach.orphans > 0,
+      dead: true,
+      bytes: reach.orphanBytes,
+      files: reach.orphanFiles,
+    },
   }
 
   return { totalBytes, fileCount: files.length, byType, top, probes }
