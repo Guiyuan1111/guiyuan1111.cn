@@ -3,6 +3,12 @@
 > 日期：2026-09-30 · 快照与门禁 JSON 见 [`benchmark/results/`](../../benchmark/results/)（`r5-*.json`）。
 > 红线：安全性 / 稳定性 / 兼容性（视觉与行为零回归），改动后以真实浏览器门禁
 > （sans 45/45 + serif 45/45）验证。基线门禁证据沿用 v1.0.15 留档的 `r4-gate-sans.json`。
+>
+> **⚠ 更正（v1.0.19）**：本报告所述「按站点实际用字做子集」在实现上存在类型错误——
+> `subset-ui-fonts.py` 的 `class_chars` 返回 str 字符与 int 码点 cmap 求交为空，
+> `used` 全部被静默丢弃，Snell-Black/Snell-Bold/STIX-Italic 实际只装了数字+标点。
+> 站点标题拉丁字母、页脚整段、阅读时长 "min" 自本版（v1.0.16）起静默回退，
+> v1.0.19 修复，详见 [R8 报告](2026-09-30-benchmark-assert-r8.md)。
 
 ## TL;DR
 

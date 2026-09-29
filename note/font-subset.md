@@ -10,7 +10,7 @@ Snell-Black → EarlySummer-Subset → EarlySummer → ui-serif/Georgia/…/seri
 ```
 
 - **Latin 部分**（如 `Guiyuan1111`）由 `Snell-Black` 承担——v1.0.15 起使用按站点用字
-  子集化的 `public/fonts/Snell-Black-SF.subset.woff2`（约 18 KB，原字体约 68 KB）。
+  子集化的 `public/fonts/Snell-Black-SF.subset.woff2`（v1.0.19 时 4.3KB，原字体约 57 KB）。
 - **CJK 部分** 由 `EarlySummer-Subset`（`public/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2`）
   承担——这是一个**只装了固定 UI 用字**的极小子集（预加载，v1.0.16 时 11.2KB / 34 码位：
   dist 实测 `font-title`/`font-navbar` 的 CJK 18 字 ∪ 常用 CJK 标点边距；上游多语言遗留
@@ -67,17 +67,24 @@ v1.0.5 实测需额外拉取 **11 个分片、376KB**，且首屏标题字体闪
 Snell-Black / Snell-Bold / STIX-Italic / STIX 四个 UI 字体按**分字体字集策略**子集化
 （`scripts/subset-ui-fonts.py`，`pnpm gen:uifonts`；v1.0.16/R5 与 v1.0.18/R7 两轮收窄定型）：
 
-| 字体 | 渲染角色 | 字集策略 | v1.0.18 体积 |
+| 字体 | 渲染角色 | 字集策略 | v1.0.19 体积 |
 | --- | --- | --- | --- |
-| Snell-Black | `font-title`（站点标题，config 固定串） | 用字 ∪ 数字 ∪ 标题标点 | 3.1KB |
-| Snell-Bold | `font-time`（日期，config dateFormat 固定格式） | 用字 ∪ 数字 ∪ 日期标点 | 2.2KB |
-| STIX-Italic | `font-navbar`（导航/页脚/404，固定串） | 用字 ∪ 数字 ∪ 标题标点 | 5.0KB |
-| STIX | serif 正文 Latin | 用字 ∪ ASCII ∪ 排版符号（保守不动） | 17.1KB |
+| Snell-Black | `font-title`（站点标题，config 固定串） | 用字 ∪ 数字 ∪ 标题标点 | 4.3KB（34 码位） |
+| Snell-Bold | `font-time`（日期+阅读时长，config dateFormat 固定格式） | 用字 ∪ 数字 ∪ 日期标点 | 2.6KB（21 码位） |
+| STIX-Italic | `font-navbar`（导航/页脚/404，固定串） | 用字 ∪ 数字 ∪ 标题标点 | 12.8KB（66 码位） |
+| STIX | serif 正文 Latin | 用字 ∪ ASCII ∪ 排版符号（保守不动） | 17.1KB（116 码位） |
 
-**改了标题、副标题、导航/页脚文案或 `dateFormat` 后必须重跑一次**（脚本自动扫描
-`dist/**/*.html` 收集用字并改写 font.css 的 unicode-range，含 fvar 存活与 cmap
-覆盖校验）；未重跑时缺字沿字体链回退系统衬线（优雅降级），门禁的标题宽度探针会拦截
-站点标题缺字。体积对比见
+**历史教训（v1.0.19 修复）**：v1.0.16–v1.0.18 的 `class_chars` 返回 str 字符，
+与 int 码点 cmap 求交为空，`used` 被**静默丢弃**（字集只剩数字+标点），站点标题
+拉丁字母、页脚整段、阅读时长 "min" 回退了三个版本才被 R8 演练揪出——参见
+[report/perf/2026-09-30-benchmark-assert-r8.md](./report/perf/2026-09-30-benchmark-assert-r8.md)。
+
+**改了标题、副标题、导航/页脚文案或 `dateFormat` 后必须重跑一次**，且顺序是
+**先 `pnpm build` 再 `pnpm gen:uifonts`**——脚本扫描的是 `dist/**/*.html` 的用字
+（先改 font.css 后 build 会让旧 range 进产物），生成后需**再 build 一次**让新
+unicode-range 落进 dist。脚本自动改写 font.css 的 unicode-range，含 fvar 存活与
+cmap 覆盖校验；未重跑时缺字沿字体链回退系统衬线（优雅降级），`--assert` 的覆盖率
+红线与 CDP 门禁会拦截异常。体积对比见
 [report/perf/2026-09-30-webfont-charset-r7.md](./report/perf/2026-09-30-webfont-charset-r7.md)。
 
 ## 注意
