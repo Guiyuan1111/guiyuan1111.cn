@@ -2,7 +2,7 @@
 
 guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目笔记入口。
 
-> **当前版本：v1.0.10**（2026-09-28）。版本详情见 [release/](./release/)；
+> **当前版本：v1.0.11**（2026-09-29）。版本详情见 [release/](./release/)；
 > **多语言与评论系统已永久停用且代码已删除**（恢复需从 git 历史取回，见
 > [disabled-features.md](./disabled-features.md)），界面音效暂时禁用；
 > `src/config.ts` 已是全站唯一配置源，站点化已收尾。
@@ -34,7 +34,7 @@ guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目�
 
 ## 版本履历
 
-[release/](./release/) 共 9 版，每版一份变更与实测记录：
+[release/](./release/) 共 10 版，每版一份变更与实测记录：
 
 | 版本 | 主题 |
 | --- | --- |
@@ -48,6 +48,7 @@ guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目�
 | [1.0.8](./release/1.0.8.md) | 评论系统永久停用：归档 `comment-backup/`、移除依赖 |
 | [1.0.9](./release/1.0.9.md) | **配置唯一化重构**：删 `src/i18n/` 与死字段、站点化收尾、清演示文章、wheel passive、移除 partytown |
 | [1.0.10](./release/1.0.10.md) | 补上站长邮箱（页脚 + 关于页） |
+| [1.0.11](./release/1.0.11.md) | 发布首批内容：「文哲」文集 21 篇（docx 转换 + 双标签归档） |
 
 ## 分析报告
 
