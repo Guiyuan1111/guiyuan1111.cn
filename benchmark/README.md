@@ -18,6 +18,7 @@ node benchmark/font-cascade-check.mjs        # 真浏览器红线门禁（本地
 |---|---|---|
 | `page-weight.mjs` | 每页 HTML/CSS/JS/预加载资源的原始与 gzip 传输体积 | 从 HTML 里解析 `<link>`/`<script src>`/`<img>` 实际引用，gzip(9) 近似线上 brotli |
 | `font-traffic.mjs` | 每页按 `unicode-range` 会命中的字体分片数与字节数 | 解析 `src/styles/font.css` + `src/styles/earlysummer-shards.css` 的全部 `@font-face`，提取页面可见文本的字符集逐片匹配 |
+| `deploy-weight.mjs` | dist 部署足迹：总量/分类型/最大文件 + 死重探针 | 只读遍历 dist；死重探针（earlysummerPages/originalUiFonts/katexLegacyFonts/mermaidChunks/sounds）统计「存在于 dist 但任何页面都不会请求」的字节，模式感知（sans 下页面字体算死重） |
 | `font-cascade-check.mjs` | 真实浏览器中的字体请求级联 | 无头 Chromium/Edge + CDP：逐页加载 dist，断言字体网络请求与渲染来源 |
 
 ## 字体口径与 fontStyle 模式（重要）
@@ -54,7 +55,7 @@ node benchmark/font-cascade-check.mjs        # 真浏览器红线门禁（本地
 ## 文件
 
 - `run-all.mjs` — 编排器，汇总写入 `results/<label>.json`
-- `page-weight.mjs` / `font-traffic.mjs` — 两个独立可跑的基准（支持 `--json=path` 单独导出）
+- `page-weight.mjs` / `font-traffic.mjs` / `deploy-weight.mjs` — 三个独立可跑的基准（支持 `--json=path` 单独导出）
 - `font-cascade-check.mjs` — 真浏览器级联门禁（CDP 驱动本地无头 Chrome/Edge，
   内置一次性静态服务器与桌面视口——主题在窄视口下正文走 sans 栈，serif 级联只在宽视口存在）
 - `results/*.json` — 历次测量留档（入库作为证据）

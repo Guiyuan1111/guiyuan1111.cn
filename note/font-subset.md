@@ -52,7 +52,8 @@ v1.0.5 实测需额外拉取 **11 个分片、376KB**，且首屏标题字体闪
    - 覆盖 `public/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2`
    - 用子集 cmap **重新生成** `src/styles/font.css` 里 Subset 块的 `unicode-range`
      （必须与 cmap 逐码位一致）
-   - 更新 `public/fonts/Font Subset List/EarlySummer Subset.txt`
+   - 更新 `scripts/data/font-subset-lists/EarlySummer Subset.txt`
+     （v1.0.17 起该清单随源字体一并移出 `public/`，不再随站部署）
 
 5. 自检：
    ```bash
