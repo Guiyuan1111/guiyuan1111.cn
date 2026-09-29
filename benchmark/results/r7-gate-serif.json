@@ -1,0 +1,1411 @@
+{
+  "mode": "serif",
+  "dist": "dist",
+  "date": "2026-09-29T18:27:10.399Z",
+  "summary": {
+    "pages": 45,
+    "failed": 0,
+    "worstFontBytes": 723943,
+    "medianFontBytes": 112211
+  },
+  "perFont": {
+    "EarlySummer-VF-Subset.woff2": 11354,
+    "Snell-Black-SF.subset.woff2": 3325,
+    "Snell-Bold-SF.subset.woff2": 2381,
+    "d8735469ea224a48.woff2": 17578,
+    "STIX-Italic-VF.subset.woff2": 5314,
+    "STIX-VF.subset.woff2": 17702,
+    "7effc9b75da43087.woff2": 25378,
+    "45ef3caf4c404d10.woff2": 266947,
+    "aa249d38d583c375.woff2": 478035,
+    "33fc86c1e68b1f29.woff2": 613191,
+    "af8638dc202e3a1e.woff2": 317955,
+    "4826920c571d2803.woff2": 84467,
+    "d4f3f9e873f770d9.woff2": 153895,
+    "b405eb4dc27f5c6e.woff2": 107955,
+    "644516c4456c79ca.woff2": 72135,
+    "17b61098faa71f82.woff2": 436015,
+    "7f155c6276a2adbe.woff2": 367483,
+    "d1836cae3513aa26.woff2": 220423,
+    "d4c17ce1f69353fc.woff2": 290855,
+    "67c7a5d644a3f6e4.woff2": 197391,
+    "a1252808dc5befd0.woff2": 381927,
+    "4b4f1a03495ad3ed.woff2": 185971,
+    "afc282f2bd3e2c0d.woff2": 346843,
+    "f6f43ea19e6a603d.woff2": 466275,
+    "f315fd2e9d404e7c.woff2": 131671,
+    "83c0de0504b4e0dd.woff2": 683867,
+    "99954453b598f584.woff2": 138923,
+    "66df59beb54c054c.woff2": 65678,
+    "1a5b40780f5419c8.woff2": 149803,
+    "259f69bc6dacfe2d.woff2": 126399,
+    "be05e7269a96e81b.woff2": 512687,
+    "e065d43a9c0cfc79.woff2": 33726,
+    "5a1bf06c7d6e96e5.woff2": 35154,
+    "99d3d95c28c72e9e.woff2": 37082,
+    "d2518a436ad6eb48.woff2": 37614,
+    "81adec1ae04250af.woff2": 35862,
+    "67f7c9d37ac9d709.woff2": 35346,
+    "1137e35cd526568c.woff2": 36318,
+    "f5866a51bdef8310.woff2": 35306,
+    "6824a76cd73238e3.woff2": 34462,
+    "76838961aa50325a.woff2": 35362,
+    "68e35a5e51c07262.woff2": 64838,
+    "056385e1b49bcc55.woff2": 34950,
+    "1e277802c7d1fcb3.woff2": 35102,
+    "755c63ae800f84d6.woff2": 36474,
+    "06f58d27cfb2fe08.woff2": 35002,
+    "75783eda03c4f410.woff2": 35370,
+    "c23c5637e7500c87.woff2": 34830,
+    "42798a8094f2c622.woff2": 40630,
+    "ee4370e0787846c7.woff2": 34890
+  },
+  "pages": [
+    {
+      "page": "404.html",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/earlysummer-pages/d8735469ea224a48.woff2",
+          "bytes": 17578
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 39952
+    },
+    {
+      "page": "about/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/7effc9b75da43087.woff2",
+          "bytes": 25378
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 65454
+    },
+    {
+      "page": "index.html",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/45ef3caf4c404d10.woff2",
+          "bytes": 266947
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 307023
+    },
+    {
+      "page": "posts/optimism-and-pessimism-are-both-human-self-deception/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/aa249d38d583c375.woff2",
+          "bytes": 478035
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 518111
+    },
+    {
+      "page": "posts/一个陌生女人的来信/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/33fc86c1e68b1f29.woff2",
+          "bytes": 613191
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 653267
+    },
+    {
+      "page": "posts/加缪的日记/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/af8638dc202e3a1e.woff2",
+          "bytes": 317955
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 358031
+    },
+    {
+      "page": "posts/匆匆/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/4826920c571d2803.woff2",
+          "bytes": 84467
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 124543
+    },
+    {
+      "page": "posts/合欢树/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/d4f3f9e873f770d9.woff2",
+          "bytes": 153895
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 193971
+    },
+    {
+      "page": "posts/在黑暗中并肩行走/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/b405eb4dc27f5c6e.woff2",
+          "bytes": 107955
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 148031
+    },
+    {
+      "page": "posts/墓碣文/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/644516c4456c79ca.woff2",
+          "bytes": 72135
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 112211
+    },
+    {
+      "page": "posts/多余的话/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/17b61098faa71f82.woff2",
+          "bytes": 436015
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 476091
+    },
+    {
+      "page": "posts/大卫科波菲尔节选/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/7f155c6276a2adbe.woff2",
+          "bytes": 367483
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 407559
+    },
+    {
+      "page": "posts/大学里绝对精致的利己主义者/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/d1836cae3513aa26.woff2",
+          "bytes": 220423
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 260499
+    },
+    {
+      "page": "posts/大暑/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/d4c17ce1f69353fc.woff2",
+          "bytes": 290855
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 330931
+    },
+    {
+      "page": "posts/怎么能一辈子保持赤子之心/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/67c7a5d644a3f6e4.woff2",
+          "bytes": 197391
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 237467
+    },
+    {
+      "page": "posts/我二十一岁那年/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/a1252808dc5befd0.woff2",
+          "bytes": 381927
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 422003
+    },
+    {
+      "page": "posts/故都的秋/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/4b4f1a03495ad3ed.woff2",
+          "bytes": 185971
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 226047
+    },
+    {
+      "page": "posts/热妮娅鲁勉采娃/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/afc282f2bd3e2c0d.woff2",
+          "bytes": 346843
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 386919
+    },
+    {
+      "page": "posts/百无一用是深情不屑一顾最相思/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/f6f43ea19e6a603d.woff2",
+          "bytes": 466275
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 506351
+    },
+    {
+      "page": "posts/秋天的怀念/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/f315fd2e9d404e7c.woff2",
+          "bytes": 131671
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 171747
+    },
+    {
+      "page": "posts/红玫瑰与白玫瑰/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/83c0de0504b4e0dd.woff2",
+          "bytes": 683867
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 723943
+    },
+    {
+      "page": "posts/背影/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/99954453b598f584.woff2",
+          "bytes": 138923
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 178999
+    },
+    {
+      "page": "posts/致恰达耶夫/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/66df59beb54c054c.woff2",
+          "bytes": 65678
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 105754
+    },
+    {
+      "page": "posts/苦难的精神价值/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/1a5b40780f5419c8.woff2",
+          "bytes": 149803
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 189879
+    },
+    {
+      "page": "posts/送东阳马生序/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/259f69bc6dacfe2d.woff2",
+          "bytes": 126399
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 166475
+    },
+    {
+      "page": "posts/遥远的高三八/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/be05e7269a96e81b.woff2",
+          "bytes": 512687
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 552763
+    },
+    {
+      "page": "tags/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/e065d43a9c0cfc79.woff2",
+          "bytes": 33726
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 73802
+    },
+    {
+      "page": "tags/史蒂芬·茨威格/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/5a1bf06c7d6e96e5.woff2",
+          "bytes": 35154
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 75230
+    },
+    {
+      "page": "tags/史铁生/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/99d3d95c28c72e9e.woff2",
+          "bytes": 37082
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 77158
+    },
+    {
+      "page": "tags/周国平/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/d2518a436ad6eb48.woff2",
+          "bytes": 37614
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 77690
+    },
+    {
+      "page": "tags/孔庆东/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/81adec1ae04250af.woff2",
+          "bytes": 35862
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 75938
+    },
+    {
+      "page": "tags/宋濂/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/67f7c9d37ac9d709.woff2",
+          "bytes": 35346
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 75422
+    },
+    {
+      "page": "tags/尤里·纳吉宾/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/1137e35cd526568c.woff2",
+          "bytes": 36318
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 76394
+    },
+    {
+      "page": "tags/张爱玲/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/f5866a51bdef8310.woff2",
+          "bytes": 35306
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 75382
+    },
+    {
+      "page": "tags/徐可加/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/6824a76cd73238e3.woff2",
+          "bytes": 34462
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 74538
+    },
+    {
+      "page": "tags/摘抄/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/76838961aa50325a.woff2",
+          "bytes": 35362
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 75438
+    },
+    {
+      "page": "tags/文哲/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/68e35a5e51c07262.woff2",
+          "bytes": 64838
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 104914
+    },
+    {
+      "page": "tags/普希金/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/056385e1b49bcc55.woff2",
+          "bytes": 34950
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 75026
+    },
+    {
+      "page": "tags/朱自清/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/1e277802c7d1fcb3.woff2",
+          "bytes": 35102
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 75178
+    },
+    {
+      "page": "tags/查尔斯·狄更斯/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/755c63ae800f84d6.woff2",
+          "bytes": 36474
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 76550
+    },
+    {
+      "page": "tags/瞿秋白/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/06f58d27cfb2fe08.woff2",
+          "bytes": 35002
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 75078
+    },
+    {
+      "page": "tags/苏珊·桑塔格/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/75783eda03c4f410.woff2",
+          "bytes": 35370
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 75446
+    },
+    {
+      "page": "tags/郁达夫/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/c23c5637e7500c87.woff2",
+          "bytes": 34830
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 74906
+    },
+    {
+      "page": "tags/钱理群/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/42798a8094f2c622.woff2",
+          "bytes": 40630
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 80706
+    },
+    {
+      "page": "tags/鲁迅/",
+      "fonts": [
+        {
+          "url": "/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2",
+          "bytes": 11354
+        },
+        {
+          "url": "/fonts/Snell-Black-SF.subset.woff2",
+          "bytes": 3325
+        },
+        {
+          "url": "/fonts/Snell-Bold-SF.subset.woff2",
+          "bytes": 2381
+        },
+        {
+          "url": "/fonts/STIX-VF.subset.woff2",
+          "bytes": 17702
+        },
+        {
+          "url": "/fonts/earlysummer-pages/ee4370e0787846c7.woff2",
+          "bytes": 34890
+        },
+        {
+          "url": "/fonts/STIX-Italic-VF.subset.woff2",
+          "bytes": 5314
+        }
+      ],
+      "totalFontBytes": 74966
+    }
+  ]
+}
