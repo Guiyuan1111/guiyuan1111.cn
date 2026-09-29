@@ -23,7 +23,33 @@ const MARKER = 'data-page-font'
 const configSrc = fs.readFileSync(CONFIG, 'utf8')
 const mode = configSrc.match(/fontStyle:\s*'(sans|serif)'/)?.[1]
 if (mode !== 'serif') {
-  console.log(`[page-fonts] fontStyle=${mode ?? '?'} — page fonts only pay off in serif mode; nothing injected`)
+  // Page fonts in a sans build are dead deploy weight: no page references them,
+  // but Astro still copies public/fonts/earlysummer-pages/ into dist. Remove
+  // them so the deployment doesn't ship megabytes nothing will ever fetch.
+  // (Serif rebuilds regenerate them via `pnpm gen:pagefonts` — see note/font-subset.md.)
+  const distPages = path.join(DIST, 'fonts', 'earlysummer-pages')
+  if (fs.existsSync(distPages)) {
+    let bytes = 0
+    let files = 0
+    const walk = (dir) => {
+      for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+        const p = path.join(dir, e.name)
+        if (e.isDirectory()) {
+          walk(p)
+        }
+        else {
+          bytes += fs.statSync(p).size
+          files++
+        }
+      }
+    }
+    walk(distPages)
+    fs.rmSync(distPages, { recursive: true, force: true })
+    console.log(`[page-fonts] fontStyle=${mode ?? '?'} — removed ${files} unreferenced page fonts from dist (-${(bytes / 1048576).toFixed(2)}MB deploy weight)`)
+  }
+  else {
+    console.log(`[page-fonts] fontStyle=${mode ?? '?'} — page fonts only pay off in serif mode; nothing injected`)
+  }
   process.exit(0)
 }
 
