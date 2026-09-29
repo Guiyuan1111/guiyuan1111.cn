@@ -71,9 +71,9 @@ export const themeConfig: ThemeConfig = {
   // 全局设置 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
 
   // [评论系统永久停用] 本站确定不会使用评论功能（2026-09-27 决定），整块已注释。
-  // 组件：src/components/Comment/（4 个文件、412 行）→ comment-backup/components/
-  // 样式：src/styles/comment.css（208 行）→ comment-backup/
-  // 资源：public/giscus/（2 个主题 css）→ comment-backup/giscus/
+  // 组件：src/components/Comment/（4 个文件、412 行）→ 备份/comment-backup/components/
+  // 样式：src/styles/comment.css（208 行）→ 备份/comment-backup/
+  // 资源：public/giscus/（2 个主题 css）→ 备份/comment-backup/giscus/
   // 依赖：package.json 的 @waline/client 与 twikoo 已移除
   // 恢复方法（5 处）：本块注释、types/index.d.ts 的 comment 字段、Layout.astro 的 MarginBottom、
   // posts/[slug].astro 的 <Comment /> 与 comment.css、以及 git mv 回组件/样式/资源并重装依赖

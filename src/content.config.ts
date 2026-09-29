@@ -4,7 +4,7 @@ import { defineCollection } from 'astro:content'
 import { themeConfig } from '@/config'
 
 // [多语言已永久停用] lang 只允许空字符串（通用内容）与 'zh'（站点唯一语言）。
-// 历史代码备份在 i18n-backup/，停用与恢复说明见 note/disabled-features.md
+// 历史代码备份在 备份/i18n-backup/，停用与恢复说明见 note/disabled-features.md
 const postLang = z.enum(['', 'zh']).optional().default('')
 
 const posts = defineCollection({

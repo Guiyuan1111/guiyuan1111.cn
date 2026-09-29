@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import { getCollection, render } from 'astro:content'
-// [评论系统永久停用] 评论组件已移出构建，见 comment-backup/ 与 note/disabled-features.md 第 3 节
+// [评论系统永久停用] 评论组件已移出构建，见 备份/comment-backup/ 与 note/disabled-features.md 第 3 节
 // import Comment from '@/components/Comment/Index.astro'
 import PostDate from '@/components/PostDate.astro'
 import TagList from '@/components/TagList.astro'
@@ -11,7 +11,7 @@ import Layout from '@/layouts/Layout.astro'
 import { checkPostSlugDuplication } from '@/utils/content'
 import { getPostDescription } from '@/utils/description'
 // [CSS 按页分割] 正文排版与扩展容器样式仅文章页需要（原在 Layout.astro 全局加载）
-// [评论系统永久停用] comment.css（208 行，Twikoo/Waline/Giscus 定制样式）已移至 comment-backup/
+// [评论系统永久停用] comment.css（208 行，Twikoo/Waline/Giscus 定制样式）已移至 备份/comment-backup/
 // import '@/styles/comment.css'
 import '@/styles/extension.css'
 import '@/styles/markdown.css'
@@ -28,7 +28,7 @@ export async function getStaticPaths() {
   // [多语言已永久停用] 本文件原为 [...lang]/posts/[slug].astro，语言版 getStaticPaths、lang 参数、
   // slugToLangsMap 与 supportedLangs 传递链已在 v1.0.6–v1.0.9 全部移除；
   // 内容 schema 的 lang 只允许 ''/'zh'，无需再按语言筛选。
-  // 历史代码备份在 i18n-backup/，见 note/disabled-features.md
+  // 历史代码备份在 备份/i18n-backup/，见 note/disabled-features.md
 
   return posts
     // Show drafts in dev mode only
