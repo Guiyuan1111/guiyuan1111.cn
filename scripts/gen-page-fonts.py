@@ -70,14 +70,18 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--dist', default='dist')
     ap.add_argument('--universe', default='scripts/data/EarlySummer-universe.woff2')
-    ap.add_argument('--css', default='src/styles/font.css')
+    ap.add_argument('--css', default='src/styles/font.css,src/styles/earlysummer-shards.css',
+                    help='comma-separated @font-face sources (v1.0.15 R4 moved shards to their own css)')
     ap.add_argument('--out', default='public/fonts/earlysummer-pages')
     args = ap.parse_args()
 
     dist = Path(args.dist)
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
-    faces = shard_faces(Path(args.css))
+    faces = []
+    for css_path in (Path(p) for p in args.css.split(',') if p.strip()):
+        if css_path.exists():
+            faces += shard_faces(css_path)
     shard_sizes = {}
     for fname, _ in faces:
         p = dist / 'fonts' / 'EarlySummer-VF-Split' / fname
