@@ -23,6 +23,8 @@ node benchmark/font-cascade-check.mjs        # 真浏览器红线门禁（本地
 | `deploy-weight.mjs` | dist 部署足迹：总量/分类型/最大文件 + 死重探针 | 只读遍历 dist；死重探针（earlysummerPages/originalUiFonts/katexLegacyFonts/orphanAstroAssets/mermaidChunks/sounds）统计「存在于 dist 但任何页面都不会请求」的字节，模式感知（sans 下页面字体算死重）；orphanAstroAssets 由 `reachability.mjs` 引用闭包判定，构建清扫后必须为 0 |
 | `reachability.mjs` | dist/_astro 资产的文本级引用闭包 | 对每个候选 basename 做全产物文本包含检查（覆盖静态/动态导入、css url()、preload），从 HTML 等非候选引用根传播闭包；optimize-dist 清扫与 deploy-weight 探针共用 |
 | `font-cascade-check.mjs` | 真实浏览器中的字体请求级联 | 无头 Chromium/Edge + CDP：逐页加载 dist，断言字体网络请求与渲染来源 |
+| `page-timing.mjs` | 每页 FCP / LCP / DCL / load / wire 传输 | CDP 逐页计时（缓存禁用 + 焦点仿真）；wire 双口径区分本页成本与 `prefetchAll` 预取 |
+| `compare-timing.mjs` | 两份时序快照的共享页中位数对比 | 含按参考带宽（400kbps / Slow 4G / 4G）估算的真实网络 FCP |
 
 ## 字体口径与 fontStyle 模式（重要）
 
@@ -77,6 +79,8 @@ node benchmark/font-cascade-check.mjs        # 真浏览器红线门禁（本地
 - `run-all.mjs` — 编排器，汇总写入 `results/<label>.json`
 - `page-weight.mjs` / `font-traffic.mjs` / `deploy-weight.mjs` — 三个独立可跑的基准（支持 `--json=path` 单独导出）
 - `reachability.mjs` — dist/_astro 引用闭包分析（optimize-dist 清扫与 deploy-weight 探针共用）
+- `page-timing.mjs` / `compare-timing.mjs` — 真浏览器加载时序基准与快照对比（用法与 v1.0.14
+  前后对比实例见 [R10 报告](../note/report/perf/2026-09-30-page-timing-r10.md)）
 - `font-cascade-check.mjs` — 真浏览器级联门禁（CDP 驱动本地无头 Chrome/Edge，
   内置一次性静态服务器与桌面视口——主题在窄视口下正文走 sans 栈，serif 级联只在宽视口存在）
 - `results/*.json` — 历次测量留档（入库作为证据）

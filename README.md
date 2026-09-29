@@ -62,6 +62,7 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 - **访客性能基准与字体门禁**（v1.0.15）：`benchmark/` 零依赖基准套件（page-weight / font-traffic / run-all）+ CDP 真实浏览器红线门禁 `font-cascade-check.mjs`（本地无头 Chrome/Edge 逐页断言字体请求级联与渲染来源，双模式 42/42 页），历次快照 JSON 入库 `benchmark/results/` 作为证据；用法见 [benchmark/README.md](benchmark/README.md)。
 - **基准断言门禁入 CI + 字集采集修复**（v1.0.19，R8）：`run-all.mjs --assert` 绝对红线（死重探针零容忍/覆盖率 ≥95%）+ 可选基线漂移（×1.15/×1.25/×1.5）断言，CI build job 合并前拦截结构性倒退；门禁演练揪出 `subset-ui-fonts.py` class_chars str/int 类型错误——v1.0.16 起站点标题拉丁字母、页脚整段、阅读时长 "min" 字形静默回退，本版修复并经端到端字集漂移演练验证。见 [note/report/perf/2026-09-30-benchmark-assert-r8.md](note/report/perf/2026-09-30-benchmark-assert-r8.md)。
 - **不可达资产清扫**（v1.0.20，R9）：文本级引用闭包分析（`benchmark/reachability.mjs`）接入构建尾部，自动删除任何页面不会请求的产物资产（本轮 KaTeX CSS+字体 276KB，未来写数学时自愈式保留）；deploy-weight 新增 `orphanAstroAssets` 探针并纳入 CI 红线。部署产物 10.62→10.35MB（对比 v1.0.15 累计 -49.1%），访客侧逐字节不变。见 [note/report/perf/2026-09-30-unreachable-sweep-r9.md](note/report/perf/2026-09-30-unreachable-sweep-r9.md)。
+- **加载时序基准**（v1.0.21，R10）：`page-timing.mjs`（CDP 逐页 FCP/LCP/wire 双口径，区分本页成本与 prefetchAll 预取）+ `compare-timing.mjs`（共享页中位数对比 + 真实网络带宽估算）；worktree 重建 v1.0.14 完成全战役端到端对比——本页 wire 传输 -61.5%，Slow 4G 预估 FCP 1.8s→0.7s（-60.5%）。见 [note/report/perf/2026-09-30-page-timing-r10.md](note/report/perf/2026-09-30-page-timing-r10.md)。
 
 ### 站点身份（v1.0.9 已收尾）
 
