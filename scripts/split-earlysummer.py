@@ -189,7 +189,7 @@ def main():
     ap.add_argument('--src', required=True, help='EarlySummerSerif-VF.otf (verified source)')
     ap.add_argument('--freq', default='scripts/data/zhihu-char-freq.csv')
     ap.add_argument('--corpus', default='src/content/posts')
-    ap.add_argument('--old-css', default='src/styles/font.css')
+    ap.add_argument('--old-css', default='src/styles/earlysummer-shards.css')
     ap.add_argument('--out', default='public/fonts/EarlySummer-VF-Split')
     ap.add_argument('--css-out', required=True, help='where to write the new @font-face block')
     ap.add_argument('--core-size', type=int, default=1000)
