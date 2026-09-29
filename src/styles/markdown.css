@@ -48,8 +48,9 @@
   --at-apply: 'mb-4 text-pretty cjk:text-justify';
 }
 
-/* First-line indent for post body paragraphs (top-level only: blockquotes, lists and captions stay flush) */
-#post-content > :where(p:not(.no-heti):not(.no-heti *)) {
+/* First-line indent for post body paragraphs (top-level only: blockquotes, lists and captions stay flush).
+   Paragraphs containing hard line breaks (<br>) are verse — keep them flush left. */
+#post-content > :where(p:not(.no-heti):not(.no-heti *)):not(:has(br)) {
   text-indent: 2em;
 }
 
