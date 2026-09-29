@@ -28,3 +28,7 @@ pnpm-debug.log*
 # skills CLI machine-local symlinks (skill body lives in .agents/skills, restore via skills-lock.json)
 .claude/
 .zcode/
+
+# local source material & temp workdir (not for publishing)
+备份/
+TEMP/
