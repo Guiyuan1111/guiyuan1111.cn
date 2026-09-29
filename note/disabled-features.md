@@ -3,7 +3,8 @@
 > ⚠️ **状态（v1.0.9 起）**：多语言（第 1 节）与评论系统（第 3 节）为**永久停用且代码已删除**——
 > v1.0.9 配置唯一化重构后，相关源码不再以注释形式保留，恢复需从 **git 历史（tag `v1.0.8`）** 取回
 > 对应文件。界面音效（第 2 节）仍为注释保留、暂时禁用。
-> 两处内容归档（`i18n-backup/`、`comment-backup/`）不受影响，恢复步骤见各自 README。
+> 两处内容归档（`i18n-backup/`、`comment-backup/`）不受影响，**v1.0.14 起移入本地 `备份/` 文件夹
+> （已 gitignore，不入库；git 历史仍可取回）**，恢复步骤见各自 README。
 
 ---
 
@@ -33,10 +34,10 @@
 | `utils/description.ts` 的 CJK/other 双长度 | 简化 | 站点恒为中文，每场景固定长度（list/meta 120、og/feed 70） |
 | 组件的 `transition:name` 后缀 `-${lang}` | 删除 | 前后端一致去掉后缀，视图过渡名不变效果 |
 
-### 文件备份：`i18n-backup/`（不受 v1.0.9 影响）
+### 文件备份：`备份/i18n-backup/`（v1.0.14 起移入本地 `备份/`，不入库）
 
 52 个内容文件（45 篇外语文章与关于页 + 6 份 README 翻译 + 语言切换图标）已用 `git mv` 归档，
-清单见 [i18n-backup/README.md](../i18n-backup/README.md)。
+清单见 [备份/i18n-backup/README.md](../备份/i18n-backup/README.md)。
 
 ### 恢复方法（仅作记录，不打算执行；工作量较 v1.0.8 显著增大）
 
@@ -47,7 +48,7 @@
 3. `astro.config.ts`：恢复 i18n 块（`langMap` 展开为 locales）。
 4. 路由：把 7 个普通路径移回 `src/pages/[...lang]/`，重建带 `params.lang` 的 `getStaticPaths`
    与 `slugToLangsMap`/`supportedLangs` 传递链（v1.0.7 步骤）。
-5. `i18n-backup/`：按其 README 把内容文件 `git mv` 回 `_archive` 再放回 `src/content/`。
+5. `备份/i18n-backup/`：按其 README 把内容文件 `git mv` 回 `_archive` 再放回 `src/content/`（若本地已删，先从 git 历史取回）。
 6. `content.config.ts`：lang 枚举放开为全部语言。
 7. 重建 EarlySummer 显示字体子集（多语言 UI 文案字符要进子集），见 [font-subset.md](./font-subset.md)。
 
@@ -83,13 +84,14 @@
 
 ## 3. 评论系统（永久停用，2026-09-27 决定；v1.0.9 后恢复需动 git 历史）
 
-站点不会使用评论功能。v1.0.8 将评论组件整套移出构建并归档到 [comment-backup/](../comment-backup/)；
+站点不会使用评论功能。v1.0.8 将评论组件整套移出构建并归档到 `comment-backup/`
+（v1.0.14 起移至 [备份/comment-backup/](../备份/comment-backup/)）；
 v1.0.9 配置唯一化重构删除了 `src/i18n/`，评论组件依赖的三套 locale map 文件随之不存在（见下）。
 
-### 文件备份：`comment-backup/`（不受 v1.0.9 影响）
+### 文件备份：`备份/comment-backup/`（v1.0.14 起移入本地 `备份/`，不入库）
 
 7 个文件（评论组件 4 个 412 行 + `comment.css` 208 行 + giscus 主题 2 个）已用 `git mv` 归档，
-清单与步骤见 [comment-backup/README.md](../comment-backup/README.md)。
+清单与步骤见 [备份/comment-backup/README.md](../备份/comment-backup/README.md)。
 
 ### 接入点状态
 
@@ -103,7 +105,7 @@ v1.0.9 配置唯一化重构删除了 `src/i18n/`，评论组件依赖的三套 
 
 ### 恢复方法（6 步；第 5 步为 v1.0.9 新增）
 
-1. `git mv` 组件/样式/资源回原位（见 comment-backup/README.md）。
+1. `git mv` 组件/样式/资源回原位（见 备份/comment-backup/README.md；若本地已删，先从 git 历史取回）。
 2. 取消 `config.ts`、`types/index.d.ts`、`Layout.astro`、`posts/[slug].astro` 四处注释。
 3. `pnpm add @waline/client@^3.13.0 twikoo@^1.7.7`。
 4. `git checkout v1.0.8 -- src/i18n/config.ts` 取回三套 locale map（或改组件内联语言判断）。

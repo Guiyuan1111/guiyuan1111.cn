@@ -3,8 +3,8 @@
 ![Cover Image](assets/images/v1/retypeset-en-desktop.webp)
 ![Cover Image](assets/images/v1/retypeset-en-mobile.webp)
 
-<!-- 主题原版的 6 种语言 README 已随多语言停用一并归档至 i18n-backup/docs/，见 note/disabled-features.md -->
-主题原版的[多语言 README](i18n-backup/docs/)已归档，本项目仅维护当前这一份。
+<!-- 主题原版的 6 种语言 README 已随多语言停用一并归档，v1.0.14 起存放于本地 备份/i18n-backup/docs/（不入库，git 历史仍可取回），见 note/disabled-features.md -->
+主题原版的多语言 README 已归档（本地 `备份/` 文件夹，不入库），本项目仅维护当前这一份。
 
 Retypeset is a static blog theme based on the [Astro](https://astro.build/) framework. Inspired by [Typography](https://astro-theme-typography.vercel.app/), Retypeset establishes a new visual standard and reimagines the layout of all pages, creating a reading experience reminiscent of paper books, reviving the beauty of typography. Details in every sight, elegance in every space.
 
@@ -37,9 +37,9 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 
 均以注释方式保留原代码，详见 [note/disabled-features.md](note/disabled-features.md)：
 
-- **多语言永久停用**（v1.0.1–v1.0.7，**v1.0.9 删除代码**）：站点只生成中文页面，且确定不再开启多语言。v1.0.6 把 45 篇外语文章 + 6 份 README 翻译 + 切换按钮图标共 52 个文件 `git mv` 集中到 [i18n-backup/](i18n-backup/)；v1.0.7 把 `src/pages/[...lang]/` 7 个路由改名为普通路径；v1.0.9 配置唯一化重构**删除了 `src/i18n/` 四个文件与 `astro.config` 的 i18n 块**（`<html lang="zh-CN">` 硬编码进 Layout），`src/` 中已无任何 i18n 代码引用。实测构建页面数 103 → 18（-83%）、构建时间约 -50%，见 [性能实测报告](note/report/perf/2026-09-27-i18n-sound-disable-verification.md)。
+- **多语言永久停用**（v1.0.1–v1.0.7，**v1.0.9 删除代码**）：站点只生成中文页面，且确定不再开启多语言。v1.0.6 把 45 篇外语文章 + 6 份 README 翻译 + 切换按钮图标共 52 个文件 `git mv` 集中到 `i18n-backup/`（v1.0.14 起移至本地 `备份/` 文件夹，不入库）；v1.0.7 把 `src/pages/[...lang]/` 7 个路由改名为普通路径；v1.0.9 配置唯一化重构**删除了 `src/i18n/` 四个文件与 `astro.config` 的 i18n 块**（`<html lang="zh-CN">` 硬编码进 Layout），`src/` 中已无任何 i18n 代码引用。实测构建页面数 103 → 18（-83%）、构建时间约 -50%，见 [性能实测报告](note/report/perf/2026-09-27-i18n-sound-disable-verification.md)。
 - **禁用界面音效**：页面加载不再预载 10 个音效 WAV 文件（注释保留，可随时恢复）。
-- **评论系统永久停用**（v1.0.8）：站点不使用评论功能。评论组件 4 个（412 行）+ `comment.css`（208 行）+ giscus 主题资源共 7 个文件 `git mv` 到 [comment-backup/](comment-backup/)；`config.ts`/`types`/`Layout`/`posts/[slug]` 的接入点注释保留；依赖 `@waline/client`、`twikoo` 已移除。构建产物不再有任何评论请求。
+- **评论系统永久停用**（v1.0.8）：站点不使用评论功能。评论组件 4 个（412 行）+ `comment.css`（208 行）+ giscus 主题资源共 7 个文件 `git mv` 到 `comment-backup/`（v1.0.14 起移至本地 `备份/` 文件夹，不入库）；`config.ts`/`types`/`Layout`/`posts/[slug]` 的接入点注释保留；依赖 `@waline/client`、`twikoo` 已移除。构建产物不再有任何评论请求。
 - **上游演示内容已删除**（v1.0.9）：`posts/guides/`、`posts/examples/` 与草稿 Universal Post 均为主题示例（含上游 URL、图床与失效的评论说明），已从 git 历史可找回；写新文章用 `pnpm new-post <标题>`。
 
 ### 构建与部署优化

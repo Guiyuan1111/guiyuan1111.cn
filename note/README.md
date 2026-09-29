@@ -19,8 +19,8 @@ guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目�
 | 按版本查改动 | [release/](./release/) |
 | 做性能优化、看历史实测数据 | [report/perf/](./report/perf/) |
 | 了解项目架构与运行原理 | [codebase-analysis/](./codebase-analysis/)（⚠️ 已标注过时，先读其总览横幅） |
-| 找被归档的多语言文件 | [../i18n-backup/README.md](../i18n-backup/README.md) |
-| 找被归档的评论系统 | [../comment-backup/README.md](../comment-backup/README.md) |
+| 找被归档的多语言文件 | [../备份/i18n-backup/README.md](../备份/i18n-backup/README.md) |
+| 找被归档的评论系统 | [../备份/comment-backup/README.md](../备份/comment-backup/README.md) |
 
 ---
 
@@ -80,12 +80,12 @@ guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目�
 
 ---
 
-## 归档目录（仓库根，不参与构建）
+## 归档目录（本地 `备份/` 文件夹，v1.0.14 起移入；已 gitignore 不入库，git 历史仍可取回）
 
 | 目录 | 内容 | 归档文件数 |
 | --- | --- | --- |
-| [../i18n-backup/](../i18n-backup/) | 外语文章与关于页、主题 README 翻译、语言切换图标 | 52（目录共 53，含其 README） |
-| [../comment-backup/](../comment-backup/) | 评论组件 4 个、`comment.css`、giscus 主题资源 | 7（目录共 8，含其 README） |
+| [../备份/i18n-backup/](../备份/i18n-backup/) | 外语文章与关于页、主题 README 翻译、语言切换图标 | 52（目录共 53，含其 README） |
+| [../备份/comment-backup/](../备份/comment-backup/) | 评论组件 4 个、`comment.css`、giscus 主题资源 | 7（目录共 8，含其 README） |
 
 两处均含 README：清单、原位置、恢复步骤。
 注意：v1.0.9 起恢复它们还需先从 git 历史（tag `v1.0.8`）取回 `src/i18n/`，见 [disabled-features.md](./disabled-features.md)。
