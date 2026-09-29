@@ -244,14 +244,39 @@ async function main() {
   const dist = arg('dist', 'dist')
   const sample = Number(arg('sample', '0'))
   const mode = fontStyle()
-  const manifestPath = path.join(dist, 'fonts', 'earlysummer-pages', 'manifest.json')
-  if (!fs.existsSync(manifestPath)) {
-    console.error(`[font-cascade-check] missing ${manifestPath} — run the build first`)
+  // Page enumeration: dist manifest (serif builds keep it), then the public/
+  // source manifest (sans builds strip page fonts from dist since v1.0.17),
+  // else fall back to every dist HTML page.
+  const distManifest = path.join(dist, 'fonts', 'earlysummer-pages', 'manifest.json')
+  const srcManifest = path.join('public', 'fonts', 'earlysummer-pages', 'manifest.json')
+  const manifestPath = fs.existsSync(distManifest) ? distManifest : srcManifest
+  let pages
+  if (fs.existsSync(manifestPath)) {
+    pages = Object.keys(JSON.parse(fs.readFileSync(manifestPath, 'utf8')))
+  }
+  else {
+    pages = []
+    const walkHtml = (dir) => {
+      if (!fs.existsSync(dir)) {
+        return
+      }
+      for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+        const p = path.join(dir, e.name)
+        if (e.isDirectory()) {
+          walkHtml(p)
+        }
+        else if (e.name === 'index.html') {
+          pages.push(path.relative(dist, p).replaceAll('\\', '/'))
+        }
+      }
+    }
+    walkHtml(dist)
+  }
+  if (pages.length === 0) {
+    console.error('[font-cascade-check] no pages found in dist — run the build first')
     process.exitCode = 1
     return
   }
-  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
-  let pages = Object.keys(manifest)
   if (sample > 0) {
     pages = pages.slice(0, sample)
   }
