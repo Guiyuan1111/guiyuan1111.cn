@@ -47,4 +47,7 @@
 
 **改标题/副标题/UI 文案会牵动显示字体子集**：CJK 部分走 EarlySummer-Subset 重建流程
 （v1.0.16 起字集数据驱动、11.2KB/34 码位），Latin/UI 显示字体跑 `pnpm gen:uifonts`
-（v1.0.16 起按渲染角色分字集策略：Snell-Black 仅 3.1KB），见 [font-subset.md](./font-subset.md)。
+（按渲染角色分字集策略，v1.0.19 修复字集采集后：Snell-Black 4.3KB/34 码位、
+Snell-Bold 2.6KB、STIX-Italic 12.8KB/66 码位）。**顺序必须是先 `pnpm build` 再
+`pnpm gen:uifonts`**（脚本扫描 dist 收集用字），生成后再 build 一次让新 unicode-range
+落进产物，见 [font-subset.md](./font-subset.md)。

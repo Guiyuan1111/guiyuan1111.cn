@@ -1,7 +1,7 @@
 # astro-theme-retypeset 深度分析总览
 
 > ⚠️ **本套报告是 2026-09-27 00:13 的分析快照**，当时项目为 v1.0.0、无版本控制、无 CI。
-> 此后已迭代至 **v1.0.15**，下文部分细节已过时。**分析本目录下任意报告前，请先看这张表。**
+> 此后已迭代至 **v1.0.21**，下文部分细节已过时。**分析本目录下任意报告前，请先看这张表。**
 >
 > | 已发生的变化 | 导致本套报告哪些内容失效 |
 > | --- | --- |
@@ -13,6 +13,9 @@
 > | 45 篇外语文章由 `src/content/_archive/` 迁至 `i18n-backup/`（v1.0.6） | 目录树中的内容归档路径 |
 > | 站点身份已部分站点化（`site.url`、`site.author`、首页标题） | 示例中引用的作者域名与标题 |
 > | **字体链重构（v1.0.15）**：EarlySummer 47 分片重切 + serif 页面级子集 + UI 字体 `*.subset.woff2` 子集 + 分片声明拆入 `src/styles/earlysummer-shards.css`（仅 serif 构建产出）；`font.css` 仅剩 UI faces 与 Subset；新增 `benchmark/` 基准与门禁、`scripts/` 四个字体脚本，构建尾部多一步 `apply-page-fonts.mjs`（serif 模式） | 本套报告中涉及 `font.css` 结构、字体预载清单、scripts/ 目录清单、构建步骤的描述 |
+> | **字体性能三轮（v1.0.16–v1.0.18）**：预载收窄 + EarlySummer-Subset 重建（11.2KB/34 码位）+ UI 子集按渲染角色分策略收窄（v1.0.19 修复 class_chars 字集静默丢弃后 Snell-Black 4.3KB、STIX-Italic 12.8KB/66 码位）；Snell/STIX 源字体迁至 `src/assets/fonts/`，`public/fonts/` 只留可部署子集；`gen-page-fonts.py` 同时解析两个 CSS 源 | 字体文件清单与体积、`public/fonts/` 目录内容、`scripts/` 脚本清单 |
+> | **构建链扩至四步 + 死重清扫（v1.0.17/v1.0.20）**：`astro build && pnpm apply-lqip && node scripts/apply-page-fonts.mjs && node scripts/optimize-dist.mjs`；optimize-dist 三步：og PNG 调色板重编码、KaTeX woff/ttf 遗留裁剪、不可达资产清扫（`benchmark/reachability.mjs` 引用闭包，无数学内容时自动删除 KaTeX CSS+字体，写数学后自愈保留） | 「构建序列」「构建产物形态」——dist 里 katex/无引用资产不再存在，部署足迹 20.31→10.35MB |
+> | **benchmark 扩为三维基准 + CI 红线（v1.0.19/v1.0.21）**：CI build job 末尾 `run-all.mjs --assert`（绝对红线：死重探针/覆盖率 ≥95%/不可达资产为零）；新增 reachability、page-timing（CDP FCP/LCP/wire 双口径）、compare-timing；并修复 v1.0.16 起站点标题/页脚/"min" 字形静默回退的兼容性 bug | 「无性能基准」「CI 仅 lint+build」的描述；性能相关结论以 [note/report/perf/](../../report/perf/) 为准 |
 >
 > **与版本无关、仍然准确**：六层架构划分、remark/rehype 管道顺序与各插件职责、LQIP 位打包协议、
 > memoize 缓存策略、错误处理三层分治、常量表与函数级调用链中的算法部分。
@@ -27,7 +30,7 @@
 | 分析模式 | 七阶段完整分析：项目发现 → 架构 → 运行原理 → 工作流 → AI 替代 → Skill Blueprint → 校验 |
 | 项目规模 | 约 117 个代码/内容文件；26 个 .astro、22 个 .ts、7 个 .mjs、55 个 .md、9 个 .css；TS/JS/astro 源码约 5100 行 |
 | 技术栈 | Astro 6 + TypeScript strict + UnoCSS(attributify + preset-theme) + MDX + pnpm 10 + sharp + astro-og-canvas + feed |
-| 项目性质 | astro-theme-retypeset（开源 Astro 博客主题）实例站点；分析时为 v1.0.0 且无 `.git`、无 `.github/workflows` —— **〔现状 v1.0.15〕已有 git 仓库与 GitHub Actions 双 job 门禁，仍无 Dockerfile** |
+| 项目性质 | astro-theme-retypeset（开源 Astro 博客主题）实例站点；分析时为 v1.0.0 且无 `.git`、无 `.github/workflows` —— **〔现状 v1.0.21〕已有 git 仓库与 GitHub Actions 双 job 门禁（build job 含性能红线断言），仍无 Dockerfile** |
 
 ## 报告目录
 
