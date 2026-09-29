@@ -9,10 +9,11 @@ interface Props {
   postDescription?: string
   postSlug?: string
   postMath?: boolean
+  serifShardsHref?: string
 }
 
 // Props
-const { postTitle, postDescription, postSlug, postMath } = Astro.props
+const { postTitle, postDescription, postSlug, postMath, serifShardsHref } = Astro.props
 
 // Site Configuration
 const { title, subtitle, description, author, favicon } = themeConfig.site
@@ -56,6 +57,10 @@ const pageImage = new URL(`${base}/og/${postSlug ?? 'home'}.png`, Astro.url.orig
 <link rel="preload" href={`${base}/fonts/STIX-Italic-VF.subset.woff2`} as="font" type="font/woff2" crossorigin />
 -->
 {katexEnabled && postMath && <link rel="stylesheet" href={katexCSS} media="print" onload={`this.media='all'`} />}
+<!-- serif 模式专用分片声明；必须留在 head 末尾之前 —— apply-page-fonts.mjs 注入的页面级
+     EarlySummer face 挂在 head 结束标签处，靠“后声明者胜”赢得层叠（见 scripts/apply-page-fonts.mjs）。
+     注意：本注释里严禁写出 head 结束标签的字面量，注入器按字符串匹配定位 -->
+{serifShardsHref && <link rel="stylesheet" href={serifShardsHref} />}
 
 <!-- Site Links -->
 <link rel="canonical" href={Astro.url} />

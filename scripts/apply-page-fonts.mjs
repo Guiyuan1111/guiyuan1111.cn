@@ -31,7 +31,15 @@ function inject(html, fontUrl) {
   const style = `<style ${MARKER}>@font-face{font-family:"EarlySummer";`
     + `src:url("${fontUrl}")format("woff2-variations");`
     + 'font-display:swap;font-weight:400 700;}</style>'
-  return html.replace('</head>', `${style}</head>`)
+  // Anchor on the LAST head closer: HTML comments (e.g. Head.astro notes) may
+  // legitimately spell out the head closing tag inside a comment, and body text
+  // always escapes such literals to entities — so the final occurrence is the
+  // only one guaranteed to be the real </head>.
+  const at = html.lastIndexOf('</head>')
+  if (at < 0) {
+    throw new Error('no head closer found')
+  }
+  return html.slice(0, at) + style + html.slice(at)
 }
 
 function* walk(dir) {

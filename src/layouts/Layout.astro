@@ -13,6 +13,10 @@ import MediaEmbed from '@/components/Widgets/MediaEmbed.astro'
 // import SoundEffect from '@/components/Widgets/SoundEffect.astro'
 import { themeConfig } from '@/config'
 import Head from '@/layouts/Head.astro'
+// [EarlySummer 分片仅 serif 模式加载] 47 个分片 @font-face（约 67KB 原始 / 26KB gzip）只在
+// fontStyle='serif' 时被正文字体栈引用；默认 sans 模式下整段声明是死重量，改为条件 <link>。
+// 恢复为无条件加载：把 Head 的 serifShards prop 去掉、改回静态 import 即可
+import earlysummerShardsHref from '@/styles/earlysummer-shards.css?url'
 import { getPageInfo } from '@/utils/page'
 // [CSS 按页分割以优化性能] comment/extension/markdown 三个样式仅文章页、关于页与首页文章摘要使用，
 // 已移至对应页面按需加载：posts/[slug].astro（comment + extension + markdown）、about.astro（extension + markdown）、index.astro（markdown）
@@ -47,7 +51,7 @@ const MarginBottom = 'mb-12'
     isPost ? 'scroll-smooth' : '',
   ]}
 >
-  <Head {postTitle} {postDescription} {postSlug} {postMath} />
+  <Head postTitle={postTitle} postDescription={postDescription} postSlug={postSlug} postMath={postMath} serifShardsHref={fontStyle === 'font-serif' ? earlysummerShardsHref : undefined} />
   <body>
     <div
       class="mx-auto max-w-205.848 min-h-vh w-full min-h-dvh"
