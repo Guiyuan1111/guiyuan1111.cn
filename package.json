@@ -6,7 +6,7 @@
   "repository": "https://github.com/radishzzz/astro-theme-retypeset",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && pnpm apply-lqip && node scripts/apply-page-fonts.mjs",
+    "build": "astro build && pnpm apply-lqip && node scripts/apply-page-fonts.mjs && node scripts/optimize-dist.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
