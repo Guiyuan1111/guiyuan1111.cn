@@ -173,3 +173,21 @@
    仍值得做的是 wheel passive 化与字体预载精简。主题层改进若要回报上游，走 `pnpm update-theme` 的 upstream 流程
 
 > 本报告为只读分析，未改动任何源码。所有文件行号以 2026-09-27 的代码快照为准。
+
+---
+
+## 2026-09-29 附测：访客加载链路（传输压缩与 HTTP 缓存实测）
+
+> 首页首次加载约 190KB（gzip 后：JS ≈ 6.4KB + CSS ≈ 30.4KB + 字体预载 ≈ 132.7KB + HTML ≈ 4–5KB）。
+> 本节是对"二次访问体验"的线上只读探测（curl 响应头；站点托管于腾讯 EdgeOne Pages）。
+
+| 资源 | 实测响应头 | 评价 |
+| --- | --- | --- |
+| HTML | `Cache-Control: public,max-age=0,must-revalidate` + ETag，边缘命中（`EO-Cache-Status: Cache Hit`） | ✅ 新部署立即可见 |
+| `/_astro/*`（JS/CSS/图，文件名带内容 hash） | `public,max-age=31536000,immutable` + `Content-Encoding: br` | ✅ brotli 已开启（gzip 回退可用）；二次访问零请求 |
+| `/fonts/*` | 同为 immutable 一年 | ✅ 见下方唯一注意点 |
+| og 图 / RSS / 音效 | `max-age=0,must-revalidate` | ✅ 协商缓存合理 |
+
+**结论**：访客二次访问时，除 HTML 协商（通常 304 空响应）外全部命中本地缓存。"内容 hash 文件名 + immutable 强缓存 + brotli 压缩"三件套已由 EdgeOne Pages 默认提供，**无需任何操作**——这也是访客加载体验的最大杠杆，已就位。
+
+**唯一注意点**：`EarlySummer-VF-Subset.woff2` 是固定文件名且被 immutable 一年。将来改标题/副标题并按 [font-subset.md](../../font-subset.md) 重建子集后，老访客最长一年内仍使用旧子集（新增字符回退到分片字体，直至缓存过期）。对策二选一：EdgeOne 控制台清除该 URL 的缓存；或给 `font.css` 中该 `url()` 加版本参数（如 `?v=2`）。Snell 双字体虽同为固定文件名，但内容实际不变，无此风险。

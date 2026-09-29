@@ -27,7 +27,7 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 - Rich theme customization
 - Optimized typography
 - Responsive design
-- Comment system
+- Comment system *(本站已永久停用，见下文)*
 
 ## 本项目自定义（Project Customizations）
 
@@ -41,6 +41,7 @@ Retypeset is a static blog theme based on the [Astro](https://astro.build/) fram
 - **禁用界面音效**：页面加载不再预载 10 个音效 WAV 文件（注释保留，可随时恢复）。
 - **评论系统永久停用**（v1.0.8）：站点不使用评论功能。评论组件 4 个（412 行）+ `comment.css`（208 行）+ giscus 主题资源共 7 个文件 `git mv` 到 `comment-backup/`（v1.0.14 起移至本地 `备份/` 文件夹，不入库）；`config.ts`/`types`/`Layout`/`posts/[slug]` 的接入点注释保留；依赖 `@waline/client`、`twikoo` 已移除。构建产物不再有任何评论请求。
 - **上游演示内容已删除**（v1.0.9）：`posts/guides/`、`posts/examples/` 与草稿 Universal Post 均为主题示例（含上游 URL、图床与失效的评论说明），已从 git 历史可找回；写新文章用 `pnpm new-post <标题>`。
+- **首批内容已发布**（v1.0.11）：「文哲」文集 21 篇（鲁迅、史铁生、周国平、朱自清、张爱玲、郁达夫、钱理群、茨威格、普希金等），由 `备份/` 下 docx 源稿转换，双标签「文哲 + 作者」归档。命名/标签/诗歌/排版等写作规范见 [note/writing-guide.md](note/writing-guide.md)。
 
 ### 构建与部署优化
 

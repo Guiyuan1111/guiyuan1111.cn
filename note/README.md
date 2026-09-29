@@ -13,6 +13,7 @@ guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目�
 
 | 我想… | 看这里 |
 | --- | --- |
+| 写文章 / 发文章（命名、标签、诗歌、排版） | [writing-guide.md](./writing-guide.md) |
 | 知道哪些功能被禁用了、怎么恢复 | [disabled-features.md](./disabled-features.md) |
 | 改站点标题 / 作者 / 域名 / 统计等个人信息 | [site-identity.md](./site-identity.md) |
 | 改了标题或 UI 文案，怕字体不对 | [font-subset.md](./font-subset.md) |
@@ -28,6 +29,7 @@ guiyuan1111.cn（基于 astro-theme-retypeset 的静态博客）的全部项目�
 
 | 文件 | 内容 |
 | --- | --- |
+| [writing-guide.md](./writing-guide.md) | **写作与发文规范**。文件命名与 URL 规则（含"为什么不用文件夹/abbrlink"）、frontmatter 字段约定、诗歌硬换行顶格写法、首行缩进归属 CSS、图片与发文流程 |
 | [disabled-features.md](./disabled-features.md) | **功能停用总账**。多语言（5 阶段：性能裁剪 → 内容归档 → 文件备份 → 路由去 i18n → **v1.0.9 配置唯一化删除 i18n 层**）、评论系统、界面音效的改动位置与恢复方法 |
 | [site-identity.md](./site-identity.md) | **个人信息位置清单**。站点化已收尾：标题/描述单源生效，作者遗留（统计/验证码/页脚/图床）已清空或替换 |
 | [font-subset.md](./font-subset.md) | **EarlySummer 显示字体子集重建方法**。改标题/副标题必看：版本对齐、子集命令、unicode-range 同步与自检 |
