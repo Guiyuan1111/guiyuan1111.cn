@@ -100,9 +100,24 @@ export function run(cfg = {}) {
   }
   const esFaces = faces.filter(f => f.family.startsWith('EarlySummer'))
 
+  // per-page exact subsets (R2): when a page carries an injected full-coverage
+  // face, the browser downloads that single file INSTEAD of touching any shard
+  let pageManifest = null
+  if (cfg.pagesManifest) {
+    try {
+      pageManifest = JSON.parse(fs.readFileSync(cfg.pagesManifest, 'utf8'))
+    }
+    catch {
+      pageManifest = null
+    }
+  }
+
   const pages = []
   for (const p of walkHtml(dist)) {
-    const text = extractVisibleText(fs.readFileSync(p, 'utf8'))
+    const html = fs.readFileSync(p, 'utf8')
+    const rel = path.relative(dist, p).replaceAll('\\', '/')
+    const injected = /<style[^>]*data-page-font[^>]*>[\s\S]*?url\(([^)]+)\)[\s\S]*?<\/style>/.exec(html)
+    const text = extractVisibleText(html)
     const cpSet = new Set()
     for (const ch of text) {
       const c = ch.codePointAt(0)
@@ -130,13 +145,35 @@ export function run(cfg = {}) {
     for (const h of hits) {
       shardBytes += sizeOf.get(h) || 0
     }
+    let pageFontBytes = 0
+    let pageFontChars = null
+    if (injected) {
+      const url = injected[1].replace(/["']/g, '')
+      try {
+        pageFontBytes = fs.statSync(path.join(dist, url.replace(/^\//, ''))).size
+      }
+      catch {
+        pageFontBytes = 0
+      }
+      const entry = pageManifest ? pageManifest[rel] : null
+      pageFontChars = entry ? entry.chars : null
+      // the injected face wins the cascade for every codepoint it maps; shards
+      // are not fetched for this page
+      shardBytes = 0
+      hits.clear()
+      if (pageFontChars !== null) {
+        covered = Math.min(covered, pageFontChars)
+      }
+    }
     pages.push({
-      page: path.relative(dist, p).replaceAll('\\', '/'),
+      page: rel,
       uniqueNonAscii: cpSet.size,
       covered,
       coveragePct: cpSet.size ? Number(((covered / cpSet.size) * 100).toFixed(1)) : null,
       shardCount: hits.size,
       shardBytes,
+      pageFontBytes,
+      pageFontChars,
       shards: [...hits],
     })
   }
@@ -150,7 +187,8 @@ export function run(cfg = {}) {
   const shardFiles = esFaces.filter(f => f.family === 'EarlySummer' && f.hasRange).map(f => f.file)
   const union = new Set(pages.flatMap(r => r.shards))
   const unionBytes = [...union].reduce((s, f) => s + (sizeOf.get(f) || 0), 0)
-  const worst = pages.slice().sort((a, b) => b.shardBytes - a.shardBytes)[0] || null
+  const fontTotal = r => r.shardBytes + r.pageFontBytes
+  const worst = pages.slice().sort((a, b) => fontTotal(b) - fontTotal(a))[0] || null
 
   const summary = {
     faceCount: faces.length,
@@ -158,9 +196,11 @@ export function run(cfg = {}) {
     shardTotalBytes: shardFiles.reduce((s, f) => s + (sizeOf.get(f) || 0), 0),
     siteUnionShardCount: union.size,
     siteUnionShardBytes: unionBytes,
-    worstPageShardBytes: worst ? worst.shardBytes : 0,
+    pagesWithPageFont: pages.filter(r => r.pageFontBytes > 0).length,
+    worstPageFontBytes: worst ? fontTotal(worst) : 0,
     worstPage: worst ? worst.page : null,
     medianPageShardBytes: median(pages.map(r => r.shardBytes)),
+    medianPageFontBytes: median(pages.map(fontTotal)),
     minPageCoveragePct: pages.length ? Math.min(...pages.map(r => r.coveragePct ?? 100)) : null,
   }
   return {
@@ -178,14 +218,18 @@ const invokedDirectly = process.argv[1]
   && path.resolve(process.argv[1]) === fileURLToPath(new URL(import.meta.url))
 if (invokedDirectly) {
   const arg = k => process.argv.find(a => a.startsWith(`--${k}=`))?.split('=').slice(1).join('=')
-  const cfg = { dist: arg('dist') ?? 'dist', css: arg('css') ?? 'src/styles/font.css' }
+  const cfg = {
+    dist: arg('dist') ?? 'dist',
+    css: arg('css') ?? 'src/styles/font.css',
+    pagesManifest: arg('pages-manifest'),
+  }
   const r = run(cfg)
   const top = Number(arg('top') ?? 10)
   const kb = b => (b / 1024).toFixed(1)
-  console.log(`== font-traffic == dist=${cfg.dist} css=${cfg.css}`)
-  console.log(`faces=${r.summary.faceCount} shards=${r.summary.shardFaceCount} shardTotal=${(r.summary.shardTotalBytes / 1048576).toFixed(2)}MB siteUnion=${r.summary.siteUnionShardCount}shards/${(r.summary.siteUnionShardBytes / 1048576).toFixed(2)}MB worstPage=${r.summary.worstPage}=${kb(r.summary.worstPageShardBytes)}KB median=${kb(r.summary.medianPageShardBytes)}KB minCoverage=${r.summary.minPageCoveragePct}%`)
-  for (const p of r.pages.sort((a, b) => b.shardBytes - a.shardBytes).slice(0, top)) {
-    console.log(`  ${kb(p.shardBytes).padStart(8)}KB ${String(p.shardCount).padStart(3)}片 cov=${p.coveragePct}%  ${p.page}`)
+  console.log(`== font-traffic == dist=${cfg.dist} css=${cfg.css} manifest=${cfg.pagesManifest ?? 'off'}`)
+  console.log(`faces=${r.summary.faceCount} shards=${r.summary.shardFaceCount} shardTotal=${(r.summary.shardTotalBytes / 1048576).toFixed(2)}MB pageFontPages=${r.summary.pagesWithPageFont} worst=${r.summary.worstPage}=${kb(r.summary.worstPageFontBytes)}KB medianShard=${kb(r.summary.medianPageShardBytes)}KB medianTotal=${kb(r.summary.medianPageFontBytes)}KB minCoverage=${r.summary.minPageCoveragePct}%`)
+  for (const p of r.pages.sort((a, b) => (b.shardBytes + b.pageFontBytes) - (a.shardBytes + a.pageFontBytes)).slice(0, top)) {
+    console.log(`  ${kb(p.shardBytes + p.pageFontBytes).padStart(8)}KB ${String(p.shardCount).padStart(3)}片 pageFont=${kb(p.pageFontBytes)}KB cov=${p.coveragePct}%  ${p.page}`)
   }
   const json = arg('json')
   if (json) {

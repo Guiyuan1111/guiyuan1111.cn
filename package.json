@@ -6,7 +6,7 @@
   "repository": "https://github.com/radishzzz/astro-theme-retypeset",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && pnpm apply-lqip",
+    "build": "astro build && pnpm apply-lqip && node scripts/apply-page-fonts.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
@@ -16,7 +16,8 @@
     "apply-lqip": "tsx scripts/apply-lqip.ts",
     "format-posts": "tsx scripts/format-posts.ts",
     "update-theme": "tsx scripts/update-theme.ts",
-    "bench": "node benchmark/run-all.mjs --label=latest"
+    "bench": "node benchmark/run-all.mjs --label=latest",
+    "gen:pagefonts": "python scripts/gen-page-fonts.py"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",

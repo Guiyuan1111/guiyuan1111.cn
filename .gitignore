@@ -32,3 +32,8 @@ pnpm-debug.log*
 # local source material & temp workdir (not for publishing)
 备份/
 TEMP/
+
+# generated serif-mode font artifacts (regenerable via scripts/gen-page-fonts.py;
+# only referenced when themeConfig.global.fontStyle === 'serif', see benchmark/README.md)
+public/fonts/earlysummer-pages/
+scripts/data/EarlySummer-universe.woff2

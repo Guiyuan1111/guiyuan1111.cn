@@ -97,6 +97,13 @@ export function run(cfg = {}) {
         refs.push({ kind: 'img', href: src })
       }
     }
+    // per-page exact font subsets are referenced from an inline <style>
+    for (const m of html.matchAll(/<style[^>]*data-page-font[^>]*>[\s\S]*?<\/style>/gi)) {
+      const u = /url\(([^)]+)\)/.exec(m[0])
+      if (u) {
+        refs.push({ kind: 'font', href: u[1].replace(/["']/g, '') })
+      }
+    }
     // inline script bytes: script elements whose open tag carries no src attr
     let inlineScript = 0
     for (const m of html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script\s*>/gi)) {
