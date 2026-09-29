@@ -74,5 +74,6 @@ unicode-range（含 fvar 存活与 cmap 覆盖校验）。详细体积对比见
 - 用新版（如 1.008）重建会与仓库里现存的 1.003 分片产生字形差异，务必对齐版本。
 - 重切分片用 `scripts/split-earlysummer.py`（其 `--old-css` 指向
   `src/styles/earlysummer-shards.css`）；serif 模式的页面级子集用
-  `scripts/gen-page-fonts.py` + 构建尾部的 `scripts/apply-page-fonts.mjs`（注入锚点是
-  HTML 中**最后一个** head 闭合标签，注释里不要写该字面量）。
+  `pnpm gen:pagefonts`（`scripts/gen-page-fonts.py`）+ 构建尾部的
+  `scripts/apply-page-fonts.mjs`（注入锚点是 HTML 中**最后一个** head 闭合标签，
+  注释里不要写该字面量）。
