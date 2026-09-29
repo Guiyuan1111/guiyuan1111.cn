@@ -1,7 +1,7 @@
 # astro-theme-retypeset 深度分析总览
 
 > ⚠️ **本套报告是 2026-09-27 00:13 的分析快照**，当时项目为 v1.0.0、无版本控制、无 CI。
-> 此后已迭代至 **v1.0.8**，下文部分细节已过时。**分析本目录下任意报告前，请先看这张表。**
+> 此后已迭代至 **v1.0.15**，下文部分细节已过时。**分析本目录下任意报告前，请先看这张表。**
 >
 > | 已发生的变化 | 导致本套报告哪些内容失效 |
 > | --- | --- |
@@ -12,6 +12,7 @@
 > | **配置唯一化重构（v1.0.9）**：`src/i18n/` 删除、astro.config i18n 块删除、`i18nTitle`/`moreLocales`/`apiflashKey` 死字段删除、lang 传递链移除；上游演示文章与 partytown 集成删除 | 所有涉及 `src/i18n/`、`[...lang]`、语言切换、统计开关的描述；页面数基线（现为 4 页） |
 > | 45 篇外语文章由 `src/content/_archive/` 迁至 `i18n-backup/`（v1.0.6） | 目录树中的内容归档路径 |
 > | 站点身份已部分站点化（`site.url`、`site.author`、首页标题） | 示例中引用的作者域名与标题 |
+> | **字体链重构（v1.0.15）**：EarlySummer 47 分片重切 + serif 页面级子集 + UI 字体 `*.subset.woff2` 子集 + 分片声明拆入 `src/styles/earlysummer-shards.css`（仅 serif 构建产出）；`font.css` 仅剩 UI faces 与 Subset；新增 `benchmark/` 基准与门禁、`scripts/` 四个字体脚本，构建尾部多一步 `apply-page-fonts.mjs`（serif 模式） | 本套报告中涉及 `font.css` 结构、字体预载清单、scripts/ 目录清单、构建步骤的描述 |
 >
 > **与版本无关、仍然准确**：六层架构划分、remark/rehype 管道顺序与各插件职责、LQIP 位打包协议、
 > memoize 缓存策略、错误处理三层分治、常量表与函数级调用链中的算法部分。
@@ -26,7 +27,7 @@
 | 分析模式 | 七阶段完整分析：项目发现 → 架构 → 运行原理 → 工作流 → AI 替代 → Skill Blueprint → 校验 |
 | 项目规模 | 约 117 个代码/内容文件；26 个 .astro、22 个 .ts、7 个 .mjs、55 个 .md、9 个 .css；TS/JS/astro 源码约 5100 行 |
 | 技术栈 | Astro 6 + TypeScript strict + UnoCSS(attributify + preset-theme) + MDX + pnpm 10 + sharp + astro-og-canvas + feed |
-| 项目性质 | astro-theme-retypeset（开源 Astro 博客主题）实例站点；分析时为 v1.0.0 且无 `.git`、无 `.github/workflows` —— **〔现状 v1.0.8〕已有 git 仓库与 GitHub Actions 双 job 门禁，仍无 Dockerfile** |
+| 项目性质 | astro-theme-retypeset（开源 Astro 博客主题）实例站点；分析时为 v1.0.0 且无 `.git`、无 `.github/workflows` —— **〔现状 v1.0.15〕已有 git 仓库与 GitHub Actions 双 job 门禁，仍无 Dockerfile** |
 
 ## 报告目录
 
