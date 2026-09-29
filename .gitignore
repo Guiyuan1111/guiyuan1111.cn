@@ -37,3 +37,7 @@ TEMP/
 # only referenced when themeConfig.global.fontStyle === 'serif', see benchmark/README.md)
 public/fonts/earlysummer-pages/
 scripts/data/EarlySummer-universe.woff2
+
+# rolling benchmark snapshot (overwritten by every pnpm bench; labeled
+# snapshots like r8-final.json are committed as evidence)
+benchmark/results/latest.json
